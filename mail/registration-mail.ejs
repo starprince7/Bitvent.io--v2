@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        /* background-color: black; */
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+      li,
+      h4,
+      p {
+        color: #323256;
+      }
+
+      h4 {
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .flex-container {
+        height: 100%;
+        width: 100%;
+      }
+
+      .letter-document {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        /* border: solid red; */
+      }
+
+      .flex-container,
+      .letter-header,
+      .letter-footer {
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .letter-header,
+      .letter-footer {
+        letter-spacing: 1px;
+        width: 100%;
+        color: #c4c5c5;
+        background-color: #f8f8ff;
+      }
+
+      .letter-header {
+        padding: 20px 0;
+        font-size: 15px;
+        font-weight: 900;
+        text-transform: capitalize;
+        border-bottom: solid 1px #d4d9db;
+      }
+
+      .letter-footer {
+        font-size: 12px;
+        font-weight: 300;
+        padding: 45px 0;
+        border-top: solid 1px #d4d9db;
+      }
+
+      .content-letter {
+        height: auto;
+        width: 400px;
+        margin: auto;
+        text-align: left;
+        /* border: solid green; */
+        padding: 16px 15px;
+        box-sizing: border-box;
+      }
+
+      .content-letter h4 {
+        text-transform: capitalize;
+      }
+
+      .content-letter .user {
+        text-transform: capitalize;
+      }
+
+      #button-section {
+        width: 100%;
+        padding: 30px 0;
+        margin: 10px 0;
+        /* border: solid yellow; */
+        background-color: #f8f8ff;
+        text-align: center;
+      }
+
+      #button-section button {
+        outline: none;
+        cursor: pointer;
+        border: solid 1px #8a8abaab;
+        padding: 10.5px 37px;
+        margin: 10px 0;
+        background: transparent;
+        color: #8A8ABA;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 3px;
+        text-transform: capitalize;
+      }
+
+      #button-section button:active {
+        background-color: rgb(214, 79, 162);
+        color: #f8f8ff;
+      }
+
+      .plan-details {
+        /* border: solid red; */
+        margin-left: -15px !important;
+      }
+
+      .plan-details ol > li {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .plan-details ul > li {
+        font-size: 14px;
+      }
+
+
+    </style>
+    <title>Welcome</title>
+  </head>
+  <body>
+    <div class="letter-header">
+      <h3>skyview trading</h3>
+    </div>
+    <div class="flex-container">
+      <div class="centered">
+        <div class="letter-document">
+          <div class="content-letter">
+            <h4>hi there!</h4>
+            <p>
+              Welcome <span class="user"><%= client.name %></span>, thank you so much for choosing us
+              by signing up to our platform.
+            </p>
+            <p>
+              We appreciate your confidence in us and we are pleased to offer you our quality services. Your
+              satisfaction is our priority
+            </p>
+            <p>
+              Your success starts with skyview trading providing you with a signup bonus of $50 accompined 
+              with the best possible customer support. That is why our 24/7 support team is staffed by real people
+              who are passionate about helping you get the most out of this platform.
+            </p>
+            <p>
+              Kindly click on the login below to get redirected back to our server so as to start your investment 
+              with any plan of your choice.
+            </p>
+            <div id="button-section">
+              <a href="https://skyviewtrading.co.uk/login"><button>login</button></a>
+            </div>
+            <p>
+              If you did not create an account, no further action is required.
+            </p>
+            <br />
+            <p>Regards,
+              <br>
+              Skyview trading
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="letter-footer">
+      <span>&copy; skyview trading. All rights reserved.</span>
+    </div>
+  </body>
+</html>

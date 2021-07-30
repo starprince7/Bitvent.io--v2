@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+      body {
+      }
+
+      .centered {
+        text-align: center;
+      }
+
+      .arrow {
+        margin: 15px 0;
+        background-color: black;
+        height: 50px;
+        width: 2px;
+        position: relative;
+        top: 0;
+        left: 50.05%;
+      }
+
+      .arrow-edge {
+        border-top: solid black 1px;
+        border-right: solid red 1px;
+        height: 10px;
+        width: 10px;
+        position: relative;
+        top: 0;
+        left: 50%;
+        transform: rotate(135deg);
+      }
+
+      table {
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      th,
+      td {
+        padding: 1em 20px;
+        border: solid 1px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="centered">
+      <h5>Upline</h5>
+      <table>
+        <tbody>
+          <tr>
+            <td>user name</td>
+            <td><%= client.username %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= client.email %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="arrow"></div>
+      <div class="arrow-edge"></div>
+
+      <h5>Downline - ( New Customer )</h5>
+      <table>
+        <tbody>
+          <tr>
+            <td>user name</td>
+            <td><%= newUser.username %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= newUser.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

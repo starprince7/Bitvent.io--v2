@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        /* background-color: black; */
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+
+      li,
+      h4,
+      p {
+        color: #323256;
+      }
+
+      h4 {
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .flex-container {
+        height: 100%;
+        width: 100%;
+      }
+
+      .letter-document {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        /* border: solid red; */
+      }
+
+      .flex-container,
+      .letter-header,
+      .letter-footer {
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .letter-header,
+      .letter-footer {
+        /* letter-spacing: 1px; */
+        width: 100%;
+        color: #c4c5c5;
+        background-color: #f8f8ff;
+      }
+
+      .letter-header {
+        padding: 20px 0;
+        font-size: 17px;
+        font-weight: 900;
+        text-transform: capitalize;
+        border-bottom: solid 1px #d4d9db88;
+      }
+
+      .letter-footer {
+        font-size: 12px;
+        font-weight: 300;
+        padding: 45px 0;
+        border-top: solid 1px #d4d9db88;
+      }
+
+      .content-letter {
+        height: auto;
+        width: 400px;
+        margin: auto;
+        text-align: left;
+        /* border: solid green; */
+        padding: 3em 15px;
+        box-sizing: border-box;
+      }
+
+      .content-letter h4 {
+        text-transform: capitalize;
+      }
+
+      .content-letter .user {
+        text-transform: capitalize;
+      }
+
+      .withdraw-info {
+        /* border: solid red; */
+        padding: 2em;
+        background-color: #f8f8ff;
+      }
+
+      .withdraw-info p {
+        font-size: 12px;
+      }
+
+      #button-section {
+        width: 100%;
+        padding: 30px 0;
+        margin: 10px 0;
+        /* border: solid yellow; */
+        background-color: #f8f8ff;
+        text-align: center;
+      }
+
+      #button-section button {
+        outline: none;
+        cursor: pointer;
+        border: solid 1px #8a8abaab;
+        padding: 10.5px 37px;
+        margin: 10px 0;
+        background: transparent;
+        color: #8a8aba;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 3px;
+        text-transform: capitalize;
+      }
+
+      #button-section button:active {
+        background-color: rgb(214, 79, 162);
+        color: #f8f8ff;
+      }
+
+      .plan-details {
+        /* border: solid red; */
+        margin-left: -15px !important;
+      }
+
+      .plan-details ol > li {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .plan-details ul > li {
+        font-size: 14px;
+      }
+    </style>
+    <title>Withdraw Request Successful!</title>
+  </head>
+  <body>
+    <div class="letter-header">
+      <h3>skyview trading</h3>
+    </div>
+    <div class="flex-container">
+      <div class="centered">
+        <div class="letter-document">
+          <div class="content-letter">
+            <h4>withdrawal successful!</h4>
+            <p>Hello <%= client.name%>.</p>
+            <p>
+              Your requested fund has been sent to your designated wallet account
+              successfully.
+            </p>
+            <div class="withdraw-info">
+              <p>Amount: <strong>$<%= amount %></strong></p>
+              <p>wallet address: <%= walletAddress %></p>
+              <p>Customer email: <%= client.email %></p>
+            </div>
+            <p>
+              Enjoy earnings with us, skyview trading. And let our bond grow stronger, have a
+              great day!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="letter-footer">
+      <span>&copy; skyview trading, All rights reserved.</span>
+    </div>
+  </body>
+</html>
