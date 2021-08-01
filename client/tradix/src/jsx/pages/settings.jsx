@@ -4,10 +4,11 @@ import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import SettingsNav from '../element/settings-nav';
+import { connect } from 'react-redux'
 
 
 
-function Settings() {
+function Settings({ user }) {
 
     return (
         <>
@@ -31,16 +32,13 @@ function Settings() {
                                         <div className="card-body">
                                             <form action="#">
                                                 <div className="form-row">
-                                                    <div className="form-group col-xl-12">
-                                                        <label className="mr-sm-2">Your Name</label>
-                                                        <input type="text" className="form-control" placeholder="Name" />
-                                                    </div>
+                                                    
                                                     <div className="form-group col-xl-12">
                                                         <div className="media align-items-center mb-3">
                                                             <img className="mr-3 rounded-circle mr-0 mr-sm-3"
                                                                 src={require('./../../images/profile/2.png')} width="55" height="55" alt="" />
                                                             <div className="media-body">
-                                                                <h4 className="mb-0">John Doe</h4>
+                                                                <h4 className="mb-0">{user?.name} { user?.lastname }</h4>
                                                                 <p className="mb-0">Max file size is 20mb
                                                             </p>
                                                             </div>
@@ -61,14 +59,14 @@ function Settings() {
                                 <div className="col-xl-6">
                                     <div className="card">
                                         <div className="card-header">
-                                            <h4 className="card-title">User Profile</h4>
+                                            <h4 className="card-title">Change Password</h4>
                                         </div>
                                         <div className="card-body">
                                             <form action="#">
                                                 <div className="form-row">
                                                     <div className="form-group col-xl-12">
-                                                        <label className="mr-sm-2">New Email</label>
-                                                        <input type="email" className="form-control" placeholder="Email" />
+                                                        <label className="mr-sm-2">Current Password</label>
+                                                        <input type="password" className="form-control" placeholder="password" />
                                                     </div>
                                                     <div className="form-group col-xl-12">
                                                         <label className="mr-sm-2">New Password</label>
@@ -96,13 +94,13 @@ function Settings() {
                                                 <div className="form-row">
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Your Name</label>
-                                                        <input type="text" className="form-control" placeholder="Maria Pascle"
+                                                        <input type="text" className="form-control" defaultValue={user?.name}
                                                             name="fullname" />
                                                     </div>
                                                     <div className="form-group col-xl-6">
-                                                        <label className="mr-sm-2">Email</label>
-                                                        <input type="email" className="form-control"
-                                                            placeholder="Hello@example.com" name="email" />
+                                                        <label className="mr-sm-2">Last Name</label>
+                                                        <input type="text" className="form-control"
+                                                            defaultValue={user?.lastname} name="lastname" />
                                                     </div>
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Date of birth</label>
@@ -433,4 +431,10 @@ function Settings() {
     )
 }
 
-export default Settings;
+const mapStateToProps = state => {
+    return {
+        user: state.dashboard_state.user
+    }
+}
+
+export default connect(mapStateToProps)(Settings);

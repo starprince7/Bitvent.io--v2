@@ -40,6 +40,10 @@ const customerSchema = new schema({
     lowercase: true,
     required: [true, "Please enter your full name!"],
   },
+  lastname: {
+    type: String,
+    lowercase: true,
+  },
   username: {
     type: String,
     unique: { required: true },
@@ -90,12 +94,14 @@ customerSchema.statics.login = async function (email, password) {
     wallet: null,
     email: null,
     name: null,
+    lastname: null,
     plan: null,
     bonus: null,
     payouts: null,
     deposit: null,
     referral: null,
     username: null,
+    lastDeposit: null
   };
   const user = await this.findOne({ email });
   if (!user) {
@@ -112,12 +118,14 @@ customerSchema.statics.login = async function (email, password) {
       verifiedUser.wallet = user.wallet;
       verifiedUser.email = user.email;
       verifiedUser.name = user.name;
+      verifiedUser.lastname = user.lastname;
       verifiedUser.plan = user.plan;
       verifiedUser.bonus = user.bonus;
       verifiedUser.payouts = user.payouts;
       verifiedUser.deposit = user.deposit;
       verifiedUser.referral = user.referral;
       verifiedUser.username = user.username;
+      verifiedUser.lastDeposit = user.lastDeposit;
 
       return verifiedUser;
     }

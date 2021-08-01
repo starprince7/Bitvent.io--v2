@@ -1,8 +1,9 @@
 import React, { } from 'react';
+import { connect } from 'react-redux';
 
 
 
-function PageTitle() {
+function PageTitle({ user }) {
 
     return (
         <>
@@ -12,7 +13,8 @@ function PageTitle() {
                         <div className="col-xl-12">
                             <div className="page-title-content">
                                 <p>Welcome Back,
-                                <span> Maria Pascle</span>
+                                <span> {user?.name} </span>
+                                <span> {user?.lastname} </span>
                                 </p>
                             </div>
                         </div>
@@ -23,4 +25,10 @@ function PageTitle() {
     )
 }
 
-export default PageTitle;
+const mapStateToProps = (state) => {
+    return {
+        user: state.dashboard_state.user
+    }
+}
+
+export default connect(mapStateToProps)(PageTitle);

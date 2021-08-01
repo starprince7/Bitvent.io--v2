@@ -35,7 +35,7 @@ function About() {
                                     litecoin.
                                     We're based in the United Kingdom.</p>
                                 
-                                <p>Here at cryptoaim we are charged with the responsibility of using advance and ethical medium to
+                                <p>Here at WealthWiseFx. we are charged with the responsibility of using advance and ethical medium to
                                     bring you the best and most suitable result in your investment.</p>
 
                             </div>
@@ -75,7 +75,7 @@ function About() {
                         </div>
                         <div className="col-lg-6">
                             <div className="service-content my-5">
-                            <h3>Working at Tradix</h3>
+                            <h3>Working at WealthWiseFx.</h3>
                                 <p>We’ve taken a huge challenge and made it into our mission: To create an open financial
                                     system
                                     for the world. To achieve this, we are building a team of smart, creative, passionate

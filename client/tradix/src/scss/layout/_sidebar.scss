@@ -6,6 +6,11 @@
     width: 75px;
     top: 0;
 }
+@media (max-width: 500px) {
+    .sidebar {
+        width: 50px;
+    }
+}
 
 .menu {
     margin-top: 100px;

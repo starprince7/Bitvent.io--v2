@@ -40,7 +40,7 @@ const handleErrors = (error) => {
 
 
 // WEB ROUTE!
-router.get("*", (req, res) => {
+router.get("/", (req, res) => {
   console.log("req just came in to load up React client/Build files ");
   res.sendFile(
     path.resolve(

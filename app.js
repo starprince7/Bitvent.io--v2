@@ -43,7 +43,7 @@ app.set('view engine', 'ejs');
 const port = process.env.PORT || 5000;
 
 // db connection
-const dbURI = `mongodb+srv://starprince:starprince7@cluster0.vyxlv.mongodb.net/wwfx_database`;
+const dbURI = `mongodb+srv://starprince:starprince7@cluster0.vyxlv.mongodb.net/wwfx_database?retryWrites=true&w=majority`;
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
@@ -92,7 +92,7 @@ app.post("/signup", async (req, res) => {
   const userId = req.params.id;
   console.log("The Path Paramter ==>", userId)
   console.log("The signUp details === ====", req.body);
-  const { email } = req.body
+  const { name, lastname, username, email, password } = req.body
 
   function spreadAndUpdateTheDate(object) {
     return {
@@ -102,7 +102,7 @@ app.post("/signup", async (req, res) => {
   }
 
   try {
-    const customer = await Customer.create(spreadAndUpdateTheDate(req.body));
+    const customer = await Customer.create(spreadAndUpdateTheDate({ name, lastname, username, email, password }));
     customer && console.log(customer);
     const token = createToken(customer._id);
     

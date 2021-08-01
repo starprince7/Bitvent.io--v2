@@ -39,7 +39,7 @@ function Career() {
                         </div>
                         <div className="col-xl-6">
                             <div className="career-content py-5">
-                                <h3>Working at Tradix</h3>
+                                <h3>Working at WealthWiseFx.</h3>
                                 <p>We’ve taken a huge challenge and made it into our mission: To create an open financial
                                     system
                                     for the world. To achieve this, we are building a team of smart, creative, passionate

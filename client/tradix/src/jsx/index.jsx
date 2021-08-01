@@ -70,7 +70,7 @@ class Index extends Component {
                             <Route path='/otp-2' component={Otp2} />
                             <Route path='/privacy-policy' component={PrivacyPolicy} />
                             <Route path='/reset' component={Reset} />
-                            <Route path='/signin' component={Signin} />
+                            <Route path='/login' component={Signin} />
                             <Route path='/signup' component={Signup} />
                             <Route path='/terms-condition' component={TermsCondition} />
                             <Route path='/verify-step-1' component={VerifyStep1} />

@@ -31,7 +31,7 @@
 @import url("../icons/cryptocoins/css/cryptocoins.css");
 @import url("../icons/cryptocoins/css/cryptocoins-colors.css");
 @import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css");
-
+/* @import url("../../node_modules/react-modal-video/scss/modal-video.scss"); */
 :root {
   --blue: #5e72e4;
   --indigo: #6610f2;
@@ -8294,6 +8294,10 @@ a {
   width: 75px;
   top: 0; }
 
+@media (max-width: 500px) {
+  .sidebar {
+    width: 48px; } }
+
 .menu {
   margin-top: 100px; }
   .menu ul li {
@@ -9223,7 +9227,8 @@ button,
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  z-index: 0; }
+  z-index: 0;
+  filter: brightness(10px); }
   .intro2:after {
     z-index: -1;
     content: "";

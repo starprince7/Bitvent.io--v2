@@ -1,13 +1,32 @@
 import React, { } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { logUserIn } from '../../redux/app_state/actions'
 
 
 
-function Signin() {
+function Signin({ logUserIn }) {
+
+    const handle_login_submit = (e) => {
+        e.preventDefault()
+
+        // Grab form
+        const form = document.querySelector('.signin_validate');
+        const email = form.email.value;
+        const password = form.password.value;
+
+        const Client = {
+            email,
+            password
+        }
+
+        logUserIn(Client);
+        
+    }
 
     return (
         <>
-            <div className="authincation section-padding">
+            <div className="authincation">
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-5 col-md-6">
@@ -16,19 +35,19 @@ function Signin() {
                             </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Sign in</h4>
+                                    <h4 className="card-title">Sign In</h4>
                                 </div>
                                 <div className="card-body">
-                                    <form method="post" name="myform" className="signin_validate" action="#">
+                                    <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
                                         <div className="form-group">
                                             <label>Email</label>
-                                            <input type="email" className="form-control" placeholder="hello@example.com"
-                                                name="email" />
+                                            <input type="email" className="form-control" placeholder="Enter your email"
+                                                name="email" required />
                                         </div>
                                         <div className="form-group">
                                             <label>Password</label>
                                             <input type="password" className="form-control" placeholder="Password"
-                                                name="password" />
+                                                name="password" required />
                                         </div>
                                         <div className="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div className="form-group mb-0">
@@ -42,12 +61,12 @@ function Signin() {
                                                 <Link href="reset.html">Forgot Password?</Link>
                                             </div>
                                         </div>
-                                        <div className="text-center">
-                                            <Link to={'./otp-1'} type="submit" className="btn btn-success btn-block">Sign in</Link>
+                                        <div className="text-center mt-4">
+                                            <button type="submit" className="btn btn-success btn-block">Sign in</button>
                                         </div>
                                     </form>
                                     <div className="new-account mt-3">
-                                        <p>Don't have an account? <Link className="text-primary" href="signup.html">Sign
+                                        <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
                                             up</Link></p>
                                     </div>
                                 </div>
@@ -60,4 +79,10 @@ function Signin() {
     )
 }
 
-export default Signin;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: (user) => dispatch(logUserIn(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signin);

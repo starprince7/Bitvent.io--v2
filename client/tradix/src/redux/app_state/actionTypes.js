@@ -6,3 +6,4 @@ export const SET_LOADING = 'SET_LOADING'
 export const SET_AUTHENTICATED_ID = 'SET_AUTHENTICATED_ID'
 
 export const STOP_LOADING = 'STOP_LOADING'
+export const CLEAR_ERROR = 'CLEAR_ERROR'

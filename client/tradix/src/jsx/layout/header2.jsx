@@ -1,13 +1,18 @@
 import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { DropdownButton, } from 'react-bootstrap'
+// Error popup
+import ErrorPopup from '../element/error-popup'
 
 
 
-function Header2() {
+function Header2({ fetchUser, user }) {
+   
+    
 
     return (
         <>
+            <ErrorPopup />
             <div className="header dashboard">
                 <div className="container-fluid">
                     <div className="row">
@@ -31,7 +36,7 @@ function Header2() {
 
                                         <DropdownButton
                                             alignRight
-                                            title="Maria Pascle"
+                                            title={user?.email}
                                             className="profile_log"
                                         >
                                             <Link to={'./accounts'} className="dropdown-item">
@@ -60,5 +65,6 @@ function Header2() {
         </>
     )
 }
+
 
 export default Header2;

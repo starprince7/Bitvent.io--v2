@@ -55,20 +55,28 @@ function sendMailTo(customer, res, successResponse, walletAddress, amount) {
 // Test
 
 
-// Authenticate This Router Module.
+// Route Authentication Func.
 AdminRouter.use( requireAuth2 );
-AdminRouter.use( requireAuth );
+
 
 
 AdminRouter.get("/customer/:id", async (req, res) => {
-    const userId = req.params.id;
-    console.log("Fetching One User's info From Admin router!  ID ---", userId)
+  const userId = req.params.id;
+  console.log('The customer unique ID', userId)
+    
+  // If no Customer ID from
+  // client-side take client to "/login"
+    if (!userId) {
+      res.json({redirect: '/login'})
+    } else {
+      console.log("Fetching One User's info From Admin router!  ID ---", userId)
 
-    try {
-        const customer = await Customer.findById(userId).select("-password");
-        customer && res.json({customer});
-     } catch (error) {
-        console.log("Cant Find User!! ---", error)
+      try {
+          const customer = await Customer.findById(userId).select("-password");
+          customer && res.json({ customer });
+      } catch (error) {
+          console.log("Cant Find User!! ---", error)
+      }
     }
 })
 
