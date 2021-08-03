@@ -1,13 +1,26 @@
 import React, { } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { DropdownButton, } from 'react-bootstrap'
 // Error popup
 import ErrorPopup from '../element/error-popup'
+import axios from 'axios';
 
 
 
 function Header2({ fetchUser, user }) {
-   
+    const history = useHistory()
+
+    const handle_logout = () => {
+       axios.get('/logout')
+       .then(response => {
+           localStorage.removeItem('user')
+           history.push('/login')
+       })
+       .catch(e => {
+           alert("ERR! Cannot logout")
+           console.log("logout ERROR", e)
+       })
+   }
     
 
     return (
@@ -51,7 +64,7 @@ function Header2({ fetchUser, user }) {
                                             <Link to={'./lock'} className="dropdown-item">
                                                 <i className="la la-lock"></i> Lock
                                             </Link>
-                                            <Link to={'./signin'} className="dropdown-item logout">
+                                            <Link to={'#'} onClick={handle_logout} className="dropdown-item logout">
                                                 <i className="la la-sign-out"></i> Logout
                                             </Link>
                                         </DropdownButton>

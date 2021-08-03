@@ -7800,7 +7800,7 @@ a {
     opacity: 1; }
 
 .content-body {
-  margin-left: 75px;
+  margin-left: 45px;
   margin-top: 15px; }
 
 
@@ -8296,7 +8296,7 @@ a {
 
 @media (max-width: 500px) {
   .sidebar {
-    width: 48px; } }
+    width: 50px; } }
 
 .menu {
   margin-top: 100px; }
@@ -8339,13 +8339,14 @@ a {
 
 .footer {
   border-top: 1px solid #203055;
-  background: #1B2A4E;
+  background: transparent;
   padding: 27px 0px; }
   .footer.dashboard {
-    background: #f9f9f9;
+    background: transparent;
     margin-left: 75px;
     border-color: #f1f4f8; }
   .footer .copyright p {
+    text-align: right;
     margin: 0;
     font-size: 14px;
     color: #7f88a6; }

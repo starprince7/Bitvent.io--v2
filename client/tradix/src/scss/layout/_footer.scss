@@ -1,14 +1,17 @@
 .footer{
     border-top:1px solid #203055;
-    background: #1B2A4E;
+    margin-top: 10px;
+    // background: #1B2A4E;
+    background: transparent;
     padding: 27px 0px;
     &.dashboard{
-        background: #f9f9f9;
+        background: transparent;
         margin-left: 75px;
         border-color: $border-color;
     }
     .copyright{
         p{
+            text-align: right;
             margin: 0;
             font-size: 14px;
             color: #7f88a6;

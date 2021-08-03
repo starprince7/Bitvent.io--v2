@@ -110,7 +110,7 @@ export const fetchUser = () => {
                         // data to the App State!
                         // After condition.
                         if (!response.data.redirect) {
-                            console.log("From Thunk Action creator!!!", response.data)
+                            // console.log("From Thunk Action creator!!!", response.data)
                             dispatch(setUser(response.data.customer))
                             // dispatch(setLoading(false))
                         } else {
