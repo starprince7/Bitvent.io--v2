@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../redux/app_state/actions'
 // Currency Module
 import CurrencyFormat from 'react-currency-format'
+import axios from 'axios'
 
 
 
@@ -19,7 +20,21 @@ function Dashboard({ user, fetchUser }) {
 
     // Authenticate the App First!
     // Server does the Bouncing
-        // 
+    useEffect(() => {
+        // authenticate App with Server!
+        axios.get("/verify-cookie")
+            .then(response => {
+            if (response.data.redirect) {
+                alert("Session expired, Please login!")
+                window.location.assign(response.data.redirect)
+            }
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }, [])
+        
+
     useEffect(() => {
 
         if (user === null) {
@@ -46,7 +61,7 @@ function Dashboard({ user, fetchUser }) {
 
     return (
         <>
-            <Header2 user={user} fetchUser={fetchUser} />
+            <Header2 />
             <Sidebar />
             <PageTitle />
 

@@ -7,6 +7,7 @@ function Sidebar() {
 
     return (
         <>
+        {/* ADD BORDER RADIUS IN BOOTSTARP TO SIDE BAR */}
             <div className="sidebar">
                 <div className="menu">
                     <ul>

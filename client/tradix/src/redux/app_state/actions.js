@@ -34,6 +34,18 @@ export function clearError() {
     }
 }
 
+export const logUserOut = () => {
+    axios.get('/logout')
+       .then(response => {
+           localStorage.removeItem('user')
+           window.location.assign('/login')
+       })
+       .catch(e => {
+           alert("ERR! Cannot logout")
+           console.log("logout ERROR", e)
+       })
+}
+
 export const logUserIn = (user) => {
     const options = {
         email: user.email,
@@ -79,18 +91,6 @@ export const fetchUser = () => {
     return (dispatch, getState) => {
         // Loader
         dispatch(setLoading(true))
-
-        // authenticate App with Server!
-        axios.get("/verify-cookie")
-        .then(response => {
-            if (response.data.redirect) {
-                alert("Session expired, Please login!")
-                window.location.assign(response.data.redirect)
-            }
-        })
-        .catch(e => {
-            console.log(e)
-        })
 
         // Async Here!
         // grab user ID from localStorage.

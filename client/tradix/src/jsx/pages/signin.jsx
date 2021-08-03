@@ -35,7 +35,7 @@ function Signin({ logUserIn }) {
                             </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Sign In</h4>
+                                    <h4 className="card-title">Sign in</h4>
                                 </div>
                                 <div className="card-body">
                                     <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">

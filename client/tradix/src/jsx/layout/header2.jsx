@@ -1,25 +1,18 @@
 import React, { } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { DropdownButton, } from 'react-bootstrap'
 // Error popup
 import ErrorPopup from '../element/error-popup'
-import axios from 'axios';
+// Action
+import { logUserOut } from '../../redux/app_state/actions'
 
 
-
-function Header2({ fetchUser, user }) {
-    const history = useHistory()
+function Header2({ user, logUserOut }) {
 
     const handle_logout = () => {
-       axios.get('/logout')
-       .then(response => {
-           localStorage.removeItem('user')
-           history.push('/login')
-       })
-       .catch(e => {
-           alert("ERR! Cannot logout")
-           console.log("logout ERROR", e)
-       })
+        // Call logout logic from Redux
+        logUserOut()
    }
     
 
@@ -79,5 +72,17 @@ function Header2({ fetchUser, user }) {
     )
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        logUserOut: () => dispatch(logUserOut())
+    }
+}
 
-export default Header2;
+const mapStateToProps = (state) => {
+    return {
+        user: state.dashboard_state.user
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header2);

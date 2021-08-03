@@ -68,24 +68,20 @@ mongoose
 
 
 
-// Web Routes!
+  const maxAge =  3 * 60 * 60;   /* this is in Seconds! - 3hrs To seconds. */
+  
+  // Craete Token here!
+  const createToken = (id) => {
+    return jwt.sign({ id }, "mysecret", { expiresIn: maxAge });
+  };
+  
 
 
-// ACCESSING THE REACT APP here!
-app.use("/admin", AdminRouter);
-app.use('/password-reset', resetRouter);
-app.use("/access/admin", AdminRouter);
-app.use("/", Router);
-
-
-const maxAge =  3 * 60 * 60;   /* this is in Seconds! - 3hrs To seconds. */
-
-// Craete Token here!
-const createToken = (id) => {
-  return jwt.sign({ id }, "mysecret", { expiresIn: maxAge });
-};
-
-
+  
+  // == Web Routes!
+  
+ 
+  
 // Post routes!
 // Signup post request With no referral ID === here!
 app.post("/signup", async (req, res) => {
@@ -208,7 +204,18 @@ app.post('/toggle-bot', async (req, res) => {
 })
 
 
+// Checking.. cookie Route!
+app.get("/verify-cookie", requireAuth2, (req, res) => {
+  console.log("Req made for Cookie!!!");
+  console.log("Cookies just came in ====", req.cookies);
+});
 
+
+
+
+// Server Note: Why i haven't moved this func is
+// = The Emailing Func depends On an accurate
+// file path else it throws an error.
 
 // Emailing Functions
 function sendMailTo(customer, cB) {
@@ -471,17 +478,6 @@ app.post('/password-change', async (req, res) => {
 })
 
 
-// *
-// *
-// *
-// Checking.. cookie Route!
-app.get("/verify-cookie", requireAuth2, (req, res) => {
-  console.log("Req made for Cookie!!!");
-  console.log("Cookies just came in ====", req.cookies);
-});
-
-
-
 
 // Coingate Integration
 
@@ -652,3 +648,12 @@ client.getAccount("primary", function (err, account) {
   }
 });
  */
+
+
+
+// ACCESSING THE REACT APP here!
+app.use("/admin", AdminRouter);
+app.use('/password-reset', resetRouter);
+app.use("/access/admin", AdminRouter);
+app.use("/", Router);
+
