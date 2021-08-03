@@ -90,36 +90,52 @@ function Accounts() {
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4">
-                            <div className="card">
-                                <div className="card-header">
-                                    <h4 className="card-title">Withdraw</h4>
-                                </div>
-                                <div className="card-body">
-                                    <form action="#">
-                                        <div className="form-group">
-                                            <div className="input-group mb-3">
-                                                <div className="input-group-prepend">
-                                                    <label className="input-group-text"><i className="fa fa-money"></i></label>
+                           <h3 className="text-center mt-5">Make Deposit</h3>
+                                        <form method="post" name="myform" className="currency_validate">
+                                            <div className="form-group">
+                                                <label className="mr-sm-2">Currency</label>
+                                                <div className="input-group mb-3">
+                                                    <select name='currency' className="form-control">
+                                                        <option data-display="Bitcoin" value="bitcoin">Bitcoin
+                                                    </option>
+                                                        <option value="litecoin">Litecoin</option>
+                                                    </select>
+                                                    <input type="text" name="usd_amount" className="form-control"
+                                                        value="125.00 USD" />
                                                 </div>
-                                                <input type="text" className="form-control" placeholder="5000 USD" />
                                             </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="input-group mb-3">
-                                                <div className="input-group-prepend">
-                                                    <label className="input-group-text"><i className="fa fa-bank"></i></label>
-                                                </div>
-                                                <select className="form-control">
-                                                    <option>Bank of America ********45845</option>
-                                                    <option>Master Card ***********5458</option>
-                                                </select>
-                                            </div>
-                                        </div>
 
-                                        <button className="btn btn-primary btn-block">Withdraw Now</button>
-                                    </form>
-                                </div>
-                            </div>
+                                            <div className="form-group">
+                                                <label className="mr-sm-2">Payment Method</label>
+                                                <div className="input-group mb-3">
+                                                    <select name='currency' className="form-control">
+                                                        <option data-display="Bitcoin" value="bitcoin">Bitcoin
+                                                    </option>
+                                                        <option value="litecoin">Litecoin</option>
+                                                    </select>
+                                                    <input type="text" name="usd_amount" className="form-control"
+                                                        value="125.00 USD" />
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="mr-sm-2">Enter your amount</label>
+                                                <div className="input-group">
+                                                    <input type="text" name="currency_amount" className="form-control"
+                                                        placeholder="0.0214 BTC" />
+                                                    <input type="text" name="usd_amount" className="form-control"
+                                                        placeholder="125.00 USD" />
+                                                </div>
+                                                <div className="d-flex justify-content-between mt-3">
+                                                    <p className="mb-0">Monthly Limit</p>
+                                                    <h6 className="mb-0">$49750 remaining</h6>
+                                                </div>
+                                            </div>
+                                            <button type="submit" name="submit"
+                                                className="btn btn-success btn-block">Exchange
+                                            Now</button>
+
+                                        </form> 
                         </div>
                     </div>
                     <div className="row">

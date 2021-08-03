@@ -324,7 +324,7 @@ function Dashboard({ user, fetchUser }) {
                                         </ul>
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-xl-3 col-lg-4 col-xxl-4">
                             <div className="card">
                                 <div className="card-header border-0 py-0">
@@ -432,7 +432,7 @@ function Dashboard({ user, fetchUser }) {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

@@ -2,6 +2,7 @@ import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { RegisterUser } from '../../redux/app_state/actions'
+import Footer2 from '../layout/footer2';
 
 
 function Signup({ registerUser }) {
@@ -110,6 +111,14 @@ function Signup({ registerUser }) {
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Footer2 />
         </>
     )
 }

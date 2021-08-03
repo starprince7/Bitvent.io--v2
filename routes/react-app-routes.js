@@ -40,7 +40,7 @@ const handleErrors = (error) => {
 
 
 // WEB ROUTE!
-router.get("/", (req, res) => {
+router.get("*", (req, res) => {
   console.log("req just came in to load up React client/Build files ");
   res.sendFile(
     path.resolve(
@@ -65,7 +65,7 @@ router.get("/portal", (req, res) => {
       __dirname,
       "..",
       "client",
-      "browser-router",
+      "tradix",
       "build",
       "index.html"
     )
@@ -77,7 +77,6 @@ router.get("/portal", (req, res) => {
 // SignUp Page
 // On the React front-end
 router.get("/referral", (req, res) => {
-  console.log("req just came in to load up React client/Build files ");
   res.sendFile(
     path.resolve(
       __dirname,

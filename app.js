@@ -72,10 +72,10 @@ mongoose
 
 
 // ACCESSING THE REACT APP here!
-app.use("/", Router);
 app.use("/admin", AdminRouter);
 app.use('/password-reset', resetRouter);
 app.use("/access/admin", AdminRouter);
+app.use("/", Router);
 
 
 const maxAge =  3 * 60 * 60;   /* this is in Seconds! - 3hrs To seconds. */

@@ -12,7 +12,6 @@ const customerSchema = new schema({
   key: {
     type: String,
     default: null,
-    unique: { required: true },
   },
   isTradeOn: {
     type: Boolean,
@@ -38,7 +37,7 @@ const customerSchema = new schema({
   name: {
     type: String,
     lowercase: true,
-    required: [true, "Please enter your full name!"],
+    required: [true, "Please enter your names"],
   },
   lastname: {
     type: String,
@@ -47,7 +46,7 @@ const customerSchema = new schema({
   username: {
     type: String,
     unique: { required: true },
-    required: [true, "Please enter a username!"],
+    required: [true, "Please enter a username"],
   },
   email: {
     type: String,

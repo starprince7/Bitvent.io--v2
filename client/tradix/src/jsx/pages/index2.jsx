@@ -383,7 +383,7 @@ function Homepage2() {
                         <div className="col-xl-7">
                             <div className="section-title text-center">
                                 <h2>Create your cryptocurrency portfolio today</h2>
-                                <p>Tradix has a variety of features that make it the best place to start trading</p>
+                                <p>WWFX. has a variety of features that make it the best place to start trading</p>
                             </div>
                         </div>
                     </div>
@@ -491,15 +491,16 @@ function Homepage2() {
                         {/* WORK ON THE BOOTSTRAP COLUMNS NOW! ASAP!!! */}
                         <div className="col-xl-6 col-lg-6 col-md-12">
                             <div className="appss-content">
-                                <h3>Basic Plan 10 %</h3>
+                                <h3>Start Up Plan 25 %</h3>
                                 <ul>
                                     <li><i className="la la-check"></i> Minimum deposit: $500</li>
-                                    <li><i className="la la-check"></i> Maximum deposit: $999</li>
-                                    <li><i className="la la-check"></i> Withdrawal interval: 1</li>
+                                    <li><i className="la la-check"></i> Maximum deposit: $5,000</li>
+                                    <li><i className="la la-check"></i> Duration:  7days</li>
+                                    <li><i className="la la-check"></i> 25 %  daily</li>
                                     <li><i className="la la-check"></i> Free support</li>
                                 </ul>
                                 <div className="mt-4">
-                                    <Link to={'#'} className="btn btn-success my-1 waves-effect">
+                                    <Link to={'/login'} className="btn btn-success my-1 waves-effect">
                                         Invest
                                     </Link>
 
@@ -507,15 +508,16 @@ function Homepage2() {
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-12 mt-5">
                                 <div className="appss-content">
-                                    <h3>Standard Plan 20 %</h3>
+                                    <h3>Business Plan 35 %</h3>
                                     <ul>
-                                        <li><i className="la la-check"></i> Minimum deposit: $1000</li>
-                                        <li><i className="la la-check"></i> Maximum deposit: $2999</li>
-                                        <li><i className="la la-check"></i> Withdrawal interval: 1</li>
+                                        <li><i className="la la-check"></i> Minimum deposit: $5,000</li>
+                                        <li><i className="la la-check"></i> Maximum deposit: $15,000</li>
+                                        <li><i className="la la-check"></i> Duration:  7days</li>
+                                        <li><i className="la la-check"></i> 35 %  daily</li>
                                         <li><i className="la la-check"></i> Free support</li>
                                     </ul>
                                     <div className="mt-4">
-                                        <Link to={'#'} className="btn btn-success my-1 waves-effect">
+                                        <Link to={'/login'} className="btn btn-success my-1 waves-effect">
                                             Invest
                                         </Link>
 
@@ -524,15 +526,34 @@ function Homepage2() {
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-12 mt-5">
                                 <div className="appss-content">
-                                    <h3>Corporate Plan 30 %</h3>
+                                    <h3>Corporate Plan 50 %</h3>
                                     <ul>
-                                        <li><i className="la la-check"></i> Minimum deposit: $3000</li>
-                                        <li><i className="la la-check"></i> Maximum deposit: $4999</li>
-                                        <li><i className="la la-check"></i> Withdrawal interval: 1</li>
+                                        <li><i className="la la-check"></i> Minimum deposit: $15,000</li>
+                                        <li><i className="la la-check"></i> Maximum deposit: $50,000</li>
+                                        <li><i className="la la-check"></i> Duration:  7days</li>
+                                        <li><i className="la la-check"></i> 50 %  daily</li>
                                         <li><i className="la la-check"></i> Free support</li>
                                     </ul>
                                     <div className="mt-4">
-                                        <Link to={'#'} className="btn btn-success my-1 waves-effect">
+                                        <Link to={'/login'} className="btn btn-success my-1 waves-effect">
+                                            Invest
+                                        </Link>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-xl-6 col-lg-6 col-md-12 mt-5">
+                                <div className="appss-content">
+                                    <h3>5-Star-Corporate Plan 80 %</h3>
+                                    <ul>
+                                        <li><i className="la la-check"></i> Minimum deposit: $50,000</li>
+                                        <li><i className="la la-check"></i> Maximum deposit: $100,000</li>
+                                        <li><i className="la la-check"></i> Withdrawal interval: 1</li>
+                                        <li><i className="la la-check"></i> 80 %  daily</li>
+                                        <li><i className="la la-check"></i> Free support</li>
+                                    </ul>
+                                    <div className="mt-4">
+                                        <Link to={'/login'} className="btn btn-success my-1 waves-effect">
                                             Invest
                                         </Link>
 

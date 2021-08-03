@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "./static/css/main.2c8ac96f.chunk.css",
-    "main.js": "./static/js/main.6f8d4027.chunk.js",
-    "main.js.map": "./static/js/main.6f8d4027.chunk.js.map",
+    "main.css": "./static/css/main.ab700a54.chunk.css",
+    "main.js": "./static/js/main.dd6a7f9d.chunk.js",
+    "main.js.map": "./static/js/main.dd6a7f9d.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.f5344a74.js",
     "runtime-main.js.map": "./static/js/runtime-main.f5344a74.js.map",
     "static/css/2.9874530a.chunk.css": "./static/css/2.9874530a.chunk.css",
-    "static/js/2.69774f8c.chunk.js": "./static/js/2.69774f8c.chunk.js",
-    "static/js/2.69774f8c.chunk.js.map": "./static/js/2.69774f8c.chunk.js.map",
+    "static/js/2.d32f7709.chunk.js": "./static/js/2.d32f7709.chunk.js",
+    "static/js/2.d32f7709.chunk.js.map": "./static/js/2.d32f7709.chunk.js.map",
     "index.html": "./index.html",
     "static/css/2.9874530a.chunk.css.map": "./static/css/2.9874530a.chunk.css.map",
-    "static/css/main.2c8ac96f.chunk.css.map": "./static/css/main.2c8ac96f.chunk.css.map",
-    "static/js/2.69774f8c.chunk.js.LICENSE.txt": "./static/js/2.69774f8c.chunk.js.LICENSE.txt",
+    "static/css/main.ab700a54.chunk.css.map": "./static/css/main.ab700a54.chunk.css.map",
+    "static/js/2.d32f7709.chunk.js.LICENSE.txt": "./static/js/2.d32f7709.chunk.js.LICENSE.txt",
     "static/media/1.jpg": "./static/media/1.232e2979.jpg",
     "static/media/1.686fe026.jpg": "./static/media/1.686fe026.jpg",
     "static/media/1.ae4a5451.jpg": "./static/media/1.ae4a5451.jpg",
@@ -49,6 +49,7 @@
     "static/media/id-verified.png": "./static/media/id-verified.20fcddd7.png",
     "static/media/id-verifing.png": "./static/media/id-verifing.ad216012.png",
     "static/media/linked-account.png": "./static/media/linked-account.faf4bea1.png",
+    "static/media/loading_blocks.6a9c3383.gif": "./static/media/loading_blocks.6a9c3383.gif",
     "static/media/lock.png": "./static/media/lock.8d690ccc.png",
     "static/media/london.0bb41253.png": "./static/media/london.0bb41253.png",
     "static/media/map.png": "./static/media/map.f63d5ff9.png",
@@ -75,8 +76,8 @@
   "entrypoints": [
     "static/js/runtime-main.f5344a74.js",
     "static/css/2.9874530a.chunk.css",
-    "static/js/2.69774f8c.chunk.js",
-    "static/css/main.2c8ac96f.chunk.css",
-    "static/js/main.6f8d4027.chunk.js"
+    "static/js/2.d32f7709.chunk.js",
+    "static/css/main.ab700a54.chunk.css",
+    "static/js/main.dd6a7f9d.chunk.js"
   ]
 }

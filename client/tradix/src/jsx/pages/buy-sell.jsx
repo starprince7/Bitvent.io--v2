@@ -26,100 +26,73 @@ function BuySell() {
 
                                         <Tabs defaultActiveKey="deposit" id="uncontrolled-tab-example">
                                             <Tab eventKey="deposit" title="Deposit">
-                                                <h3 className="text-center mt-5">Make Deposit</h3>
-                                                <form method="post" name="myform" className="currency_validate">
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Currency</label>
-                                                        <div className="input-group mb-3">
-                                                            <select name='currency' className="form-control">
-                                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                            </option>
-                                                                <option value="litecoin">Litecoin</option>
-                                                            </select>
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                value="125.00 USD" />
-                                                        </div>
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <h4 className="card-title mt-3">Deposit</h4>
                                                     </div>
+                                                    <div className="card-body">
+                                                        <form action="#">
+                                                            <div className="form-group">
+                                                                <div className="input-group mb-3">
+                                                                    <div className="input-group-prepend">
+                                                                        <label className="input-group-text"><i className="fa fa-money"></i></label>
+                                                                    </div>
+                                                                    <input type="text" name="deposit" className="form-control" placeholder="5000 USD" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="form-group">
+                                                                <div className="input-group mb-3">
+                                                                    <div className="input-group-prepend">
+                                                                        <label className="input-group-text"><i className="fa fa-bank"></i></label>
+                                                                    </div>
+                                                                    <select className="form-control">
+                                                                        {/* <option>Bank of America ********45845</option> */}
+                                                                        {/* <option>Master Card ***********5458</option> */}
+                                                                    <option value="">Choose Financial Plan</option>
+                                                                    <option value="">Start up plan 25%</option>
+                                                                    <option value="">Business plan 35%</option>
+                                                                    <option value="">Corporate plan 50%</option>
+                                                                    <option value="">5-star-corporate plan 80%</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Payment Method</label>
-                                                        <div className="input-group mb-3">
-                                                            <select name='currency' className="form-control">
-                                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                            </option>
-                                                                <option value="litecoin">Litecoin</option>
-                                                            </select>
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                value="125.00 USD" />
-                                                        </div>
+                                                            <button className="btn btn-primary btn-block">Pay Now</button>
+                                                        </form>
                                                     </div>
-
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Enter your amount</label>
-                                                        <div className="input-group">
-                                                            <input type="text" name="currency_amount" className="form-control"
-                                                                placeholder="0.0214 BTC" />
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                placeholder="125.00 USD" />
-                                                        </div>
-                                                        <div className="d-flex justify-content-between mt-3">
-                                                            <p className="mb-0">Monthly Limit</p>
-                                                            <h6 className="mb-0">$49750 remaining</h6>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" name="submit"
-                                                        className="btn btn-success btn-block">Exchange
-                                                    Now</button>
-
-                                                </form>
+                                                </div>
                                             </Tab>
                                             <Tab eventKey="withdraw" title="Withdraw">
-                                            <h3 className="text-center mt-5">Withdraw Fund</h3>
-                                                <form method="post" name="myform" className="currency2_validate">
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Currency</label>
-                                                        <div className="input-group mb-3">
-                                                            <select name='currency' className="form-control">
-                                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                            </option>
-                                                                <option value="litecoin">Litecoin</option>
-                                                            </select>
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                value="125.00 USD" />
+                                                <div className="card">
+                                                        <div className="card-header">
+                                                            <h4 className="card-title mt-3">Withdraw</h4>
                                                         </div>
-                                                    </div>
+                                                        <div className="card-body">
+                                                            <form action="#">
+                                                                <div className="form-group">
+                                                                    <div className="input-group mb-3">
+                                                                        <div className="input-group-prepend">
+                                                                            <label className="input-group-text"><i className="fa fa-money"></i></label>
+                                                                        </div>
+                                                                        <input type="text" className="form-control" placeholder="5000 USD" />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="form-group">
+                                                                    <div className="input-group mb-3">
+                                                                        <div className="input-group-prepend">
+                                                                            <label className="input-group-text"><i className="fa fa-bank"></i></label>
+                                                                        </div>
+                                                                        <select className="form-control">
+                                                                            <option>Bank of America ********45845</option>
+                                                                            <option>Master Card ***********5458</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
 
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Payment Method</label>
-                                                        <div className="input-group mb-3">
-                                                            <select name='currency' className="form-control">
-                                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                            </option>
-                                                                <option value="litecoin">Litecoin</option>
-                                                            </select>
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                value="125.00 USD" />
-                                                        </div>
+                                                                <button className="btn btn-primary btn-block">Withdraw Now</button>
+                                                            </form>
                                                     </div>
-
-                                                    <div className="form-group">
-                                                        <label className="mr-sm-2">Enter your amount</label>
-                                                        <div className="input-group">
-                                                            <input type="text" name="currency_amount" className="form-control"
-                                                                placeholder="0.0214 BTC" />
-                                                            <input type="text" name="usd_amount" className="form-control"
-                                                                placeholder="125.00 USD" />
-                                                        </div>
-                                                        <div className="d-flex justify-content-between mt-3">
-                                                            <p className="mb-0">Monthly Limit</p>
-                                                            <h6 className="mb-0">$49750 remaining</h6>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" name="submit"
-                                                        className="btn btn-success btn-block">Exchange
-                                                    Now</button>
-
-                                                </form>
+                                                </div>
                                             </Tab>
                                         </Tabs>
                                         
