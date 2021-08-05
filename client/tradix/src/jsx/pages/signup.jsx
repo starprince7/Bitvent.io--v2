@@ -7,7 +7,7 @@ import Footer2 from '../layout/footer2';
 
 function Signup({ registerUser }) {
     const style = {
-        marginBottom: '110px'
+        marginBottom: '30px'
     }
 
     const handle_signup_submit = (e) => {
@@ -42,9 +42,12 @@ function Signup({ registerUser }) {
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-10 col-md-10">
-                            {/* <div className="mini-logo text-center my-3">
-                                <Link to={'./'}><img src={require('./../../images/logo.png')} alt="" /></Link>
-                            </div> */}
+                            <div className="mini-logo text-center mb-5">
+                                <Link to={'./'}>
+                                    {/* <img src={require('../../images/logo.png')} alt="" /> */}
+                                    <h2>WealthWiseFx.</h2>
+                                </Link>
+                            </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
                                     <h4 className="card-title">Create an Account</h4>

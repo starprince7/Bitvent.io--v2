@@ -8339,6 +8339,7 @@ a {
 
 .footer {
   border-top: 1px solid #203055;
+  margin-top: 10px;
   background: transparent;
   padding: 27px 0px; }
   .footer.dashboard {
@@ -8346,7 +8347,7 @@ a {
     margin-left: 75px;
     border-color: #f1f4f8; }
   .footer .copyright p {
-    text-align: right;
+    text-align: center !important;
     margin: 0;
     font-size: 14px;
     color: #7f88a6; }
@@ -9947,7 +9948,7 @@ button,
     width: 45%;
     text-align: center;
     padding: 10px 10px;
-    font-size: 18px;
+    font-size: 14px;
     text-transform: uppercase;
     border: 0px;
     font-weight: 600;

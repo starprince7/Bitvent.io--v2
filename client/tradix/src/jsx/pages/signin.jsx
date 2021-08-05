@@ -2,6 +2,7 @@ import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logUserIn } from '../../redux/app_state/actions'
+import Footer1 from '../layout/footer1';
 
 
 
@@ -31,7 +32,10 @@ function Signin({ logUserIn }) {
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-5 col-md-6">
                             <div className="mini-logo text-center my-5">
-                                <Link to={'./'}><img src={require('./../../images/logo.png')} alt="" /></Link>
+                                <Link to={'./'}>
+                                    {/* <img src={require('./../../images/logo.png')} alt="" /> */}
+                                    <h2>WealthWiseFx.</h2>
+                                </Link>
                             </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
@@ -75,6 +79,7 @@ function Signin({ logUserIn }) {
                     </div>
                 </div>
             </div>
+            <Footer1 />
         </>
     )
 }

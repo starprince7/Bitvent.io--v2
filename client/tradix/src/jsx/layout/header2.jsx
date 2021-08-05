@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { DropdownButton, } from 'react-bootstrap'
@@ -6,14 +6,68 @@ import { DropdownButton, } from 'react-bootstrap'
 import ErrorPopup from '../element/error-popup'
 // Action
 import { logUserOut } from '../../redux/app_state/actions'
+import profile_img from '../../images/logo.png'
+import { setUser } from '../../redux/app_state/actions'
+import axios from 'axios'
 
 
-function Header2({ user, logUserOut }) {
+function Header2({ user, logUserOut, setUser }) {
+    // Authenticate the App First!
+    // Server does the Bouncing
+    useEffect(() => {
+        // authenticate App with Server!
+        axios.get("/verify-cookie")
+        .then(response => {
+            if (response.data.redirect) {
+                alert("Session expired, Please Login!")
+                window.location.assign(response.data.redirect)
+            }
+
+            if (response.data.customer) setUser(response.data.customer)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }, [])
+
+
+    useEffect(() => {
+        // grab user ID from localStorage.
+        // Try-catch for Privacy settings restriction.
+        try {
+            const user = localStorage.getItem("user")
+            // console.log('I have the user ID >>>',  user)
+            // console.log('I have the user ID >>>',  JSON.parse(user))
+
+            if (user) {
+                const userId = JSON.parse(user);
+
+                if (userId !== undefined) {
+                    axios.get(`admin/customer/${userId}`)
+                    .then((response) => {
+                        // Now 'dispatch' this
+                        // data to the App State!
+                        // After condition.
+                        if (!response.data.redirect) {
+                            setUser(response.data.customer)
+                            // dispatch(setLoading(false))
+                        } else {
+                            window.location.assign(response.data.redirect);
+                        };
+                    })
+                }
+                    
+            } else return
+            
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
 
     const handle_logout = () => {
         // Call logout logic from Redux
         logUserOut()
-   }
+    }
     
 
     return (
@@ -24,7 +78,10 @@ function Header2({ user, logUserOut }) {
                     <div className="row">
                         <div className="col-xl-12">
                             <nav className="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
-                                <Link className="navbar-brand" to={'/'}><img src={require('./../../images/logo.png')} alt="" /></Link>
+                                <Link className="navbar-brand" to={'/'}>
+                                    {/* <img src={profile_img} alt="" /> */}
+                                    {/* <h5>WWFx.</h5> */}
+                                </Link>
 
                                 <div className="dashboard_log my-2">
                                     <div className="d-flex align-items-center">
@@ -74,7 +131,8 @@ function Header2({ user, logUserOut }) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logUserOut: () => dispatch(logUserOut())
+        logUserOut: () => dispatch(logUserOut()),
+        setUser: (user) => dispatch(setUser(user))
     }
 }
 

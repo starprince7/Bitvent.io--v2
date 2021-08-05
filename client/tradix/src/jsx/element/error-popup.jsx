@@ -65,7 +65,7 @@ function ErrorPopup({ error, isLoading, clearError }) {
             (<div style={error_styling}>
                 <div style={bootstrap_alert} className="alert alert-danger" role="alert">
                     <div>
-                        <p className="btn" onClick={() => setDisplay('none')} style={btn_style}>{'x'}</p>
+                        {/* <p className="btn" onClick={() => setDisplay('none')} style={btn_style}>{'x'}</p> */}
                     
                         {/* display error the here! */}
                         {error?.name && (<span style={text_style}>{error?.name}.<br /></span>)}

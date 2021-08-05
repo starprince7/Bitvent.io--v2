@@ -1,15 +1,71 @@
-import React, { } from 'react';
- import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Accordion, Tabs,Tab, Card } from 'react-bootstrap';
 import Header2 from '../layout/header2';
 import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import Popup from '../element/popup';
+import { connect } from 'react-redux'
+import { checkAmount } from '../../redux/app_state/actions';
+import { setInvoice, setError } from '../../redux/app_state/actions';
 
 
 
-function BuySell() {
+function BuySell({ checkAmount, setInvoice, setError, error, user }) {
+    const history = useHistory()
+    const [errorInComponent, setInComponentError] = useState(null)
+
+    useEffect(() => {
+        if (error) setInComponentError(error)
+        const paynow_btn = window.document.querySelector(".custom_paynow_btn");
+        if (errorInComponent) paynow_btn.disabled = true
+        if(!errorInComponent) paynow_btn.disabled = false
+        
+    }, [error, errorInComponent])
+    
+
+    const callCheckAmount = (e) => {
+        // clear Component error here.
+        setInComponentError(null)
+        
+        const form = document.querySelector(".form");
+        const amount = form.deposit_amount.value;
+        const plan = form.plan_type.value;
+    
+        // Import CheckAmount from redux Actions!
+        // to check Plan with Amount.
+        checkAmount(amount, plan)
+
+    };
+
+    const handle_deposit_submit = (e) => {
+        e.preventDefault()
+
+        const button = document.querySelector('.custom_paynow_btn')
+        button.textContent = 'Processing...'
+
+        const form = document.querySelector('.form')
+        const plan = form.plan_type.value
+        const amount = form.deposit_amount.value;
+        const email = user?.email
+
+        const options = {
+            plan,
+            amount,
+            email
+        }
+
+        if (!plan && !amount) {
+            setTimeout(() => button.textContent = 'Pay Now', 2000)
+            setError('Please complete the required field')
+        } else {
+            // Submit deposit to Invoice
+            // for payment checkout.
+            setInvoice(options)
+            setTimeout(() => history.push("/invoice"), 2000)
+        }
+    }
 
     return (
         <>
@@ -31,13 +87,13 @@ function BuySell() {
                                                         <h4 className="card-title mt-3">Deposit</h4>
                                                     </div>
                                                     <div className="card-body">
-                                                        <form action="#">
+                                                        <form onSubmit={handle_deposit_submit} className="form">
                                                             <div className="form-group">
                                                                 <div className="input-group mb-3">
                                                                     <div className="input-group-prepend">
                                                                         <label className="input-group-text"><i className="fa fa-money"></i></label>
                                                                     </div>
-                                                                    <input type="text" name="deposit" className="form-control" placeholder="5000 USD" />
+                                                                    <input type="text" name="deposit_amount" onChange={ callCheckAmount } className="form-control" placeholder="5000 USD" />
                                                                 </div>
                                                             </div>
                                                             <div className="form-group">
@@ -45,19 +101,19 @@ function BuySell() {
                                                                     <div className="input-group-prepend">
                                                                         <label className="input-group-text"><i className="fa fa-bank"></i></label>
                                                                     </div>
-                                                                    <select className="form-control">
+                                                                    <select onChange={ callCheckAmount } name="plan_type" className="form-control">
                                                                         {/* <option>Bank of America ********45845</option> */}
                                                                         {/* <option>Master Card ***********5458</option> */}
-                                                                    <option value="">Choose Financial Plan</option>
-                                                                    <option value="">Start up plan 25%</option>
-                                                                    <option value="">Business plan 35%</option>
-                                                                    <option value="">Corporate plan 50%</option>
-                                                                    <option value="">5-star-corporate plan 80%</option>
+                                                                    <option value="">Select Plan</option>
+                                                                    <option value="Start-up Plan">Start-up Plan 25% (daily)  $[500 - 5,000] </option>
+                                                                    <option value="Business Plan">Business Plan 35% (daily)  $[6,000 - 15,000]</option>
+                                                                    <option value="Corporate Plan">Corporate Plan 50% (daily)  $[16,000 - 50,000]</option>
+                                                                    <option value="5-Star-Corporate Plan">5-Star-Corporate Plan 80% (daily)  $[50,000 - 10,000]</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
 
-                                                            <button className="btn btn-primary btn-block">Pay Now</button>
+                                                            <button className="custom_paynow_btn btn btn-primary btn-block">Pay Now</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -100,11 +156,11 @@ function BuySell() {
 
                                 </div>
                             </div>
-                            <p className="p-4">Note: Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate
-                            suscipit explicabo voluptas eos in tenetur error temporibus dolorum. Nulla!</p>
+                            {/* <p className="p-4">Note: Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate
+                            suscipit explicabo voluptas eos in tenetur error temporibus dolorum. Nulla!</p> */}
                         </div>
 
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-xl-6 col-xxl-12">
                             <div className="card">
                                 <div className="card-header">
@@ -155,7 +211,7 @@ function BuySell() {
                         <div className="col-xl-6">
                             <Popup />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -164,4 +220,19 @@ function BuySell() {
     )
 }
 
-export default BuySell;
+const mapDispatchToProps = dispatch => {
+    return {
+        checkAmount: (amount, plan) => dispatch(checkAmount(amount, plan)),
+        setInvoice: (options) => dispatch(setInvoice(options)),
+        setError: (e) => dispatch(setError(e))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        error: state.dashboard_state.error,
+        user: state.dashboard_state.user
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuySell);

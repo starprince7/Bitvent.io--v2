@@ -14,6 +14,7 @@ import HelpDesk from './pages/helpdesk';
 import Faq from './pages/faq';
 import Dashboard from './pages/dashboard';
 import BuySell from './pages/buy-sell';
+import Invoice from './pages/invoice';
 import Accounts from './pages/accounts';
 import Settings from './pages/settings';
 import Preferences from './pages/settings-preferences';
@@ -58,6 +59,7 @@ class Index extends Component {
                             <Route path='/faq' component={Faq} />
                             <Route path='/dashboard' component={Dashboard} />
                             <Route path='/buy-sell' component={BuySell} />
+                            <Route path='/invoice' component={Invoice} />
                             <Route path='/accounts' component={Accounts} />
                             <Route path='/settings' component={Settings} />
                             <Route path='/settings-preferences' component={Preferences} />

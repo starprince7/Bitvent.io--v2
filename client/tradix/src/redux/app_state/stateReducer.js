@@ -2,8 +2,9 @@
 import {
     SET_USER,
     SET_ERROR,
-    CLEAR_ERROR,
     SET_LOADING,
+    SET_INVOICE,
+    CLEAR_ERROR,
     SET_AUTHENTICATED_ID,
 } from './actionTypes'
 
@@ -11,6 +12,7 @@ import {
 const initialState = {
     error: null,
     user: null,
+    invoice: null,
     isLoading: false,
     authenticatedID: null
 };
@@ -23,6 +25,10 @@ const StateReducer = (state = initialState, action) => {
             user: action.payload,
             authenticatedID: action.payload._id
         }
+        case SET_INVOICE: return {
+            ...state,
+            invoice: action.payload
+        }
         case SET_LOADING: return {
             ...state,
             isLoading: action.payload
@@ -34,7 +40,7 @@ const StateReducer = (state = initialState, action) => {
         }
         case CLEAR_ERROR: return {
             ...state,
-            error: ''
+            error: null
         }
         case SET_AUTHENTICATED_ID: return {
             ...state,

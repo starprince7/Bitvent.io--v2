@@ -3,6 +3,7 @@ import {
     SET_USER,
     SET_ERROR,
     SET_LOADING,
+    SET_INVOICE,
     CLEAR_ERROR
 } from './actionTypes'
 
@@ -14,14 +15,14 @@ function setLoading(boolean) {
     }
 }
 
-function setError(e) {
+export function setError(e) {
     return {
         type: SET_ERROR,
         payload: e
     }
 }
 
-function setUser(user) {
+export function setUser(user) {
     return {
         type: SET_USER,
         payload: user
@@ -34,16 +35,25 @@ export function clearError() {
     }
 }
 
+export const setInvoice = (options) => {
+    return {
+        type: SET_INVOICE,
+        payload: options
+    }
+}
+
 export const logUserOut = () => {
-    axios.get('/logout')
+    return (dispatch) => {
+        axios.get('/logout')
        .then(response => {
            localStorage.removeItem('user')
            window.location.assign('/login')
        })
        .catch(e => {
-           alert("ERR! Cannot logout")
+           alert("ERR! in Log Out!")
            console.log("logout ERROR", e)
        })
+    }
 }
 
 export const logUserIn = (user) => {
@@ -177,3 +187,54 @@ export const RegisterUser = (object) => {
         }
     }
 }
+
+
+export const checkAmount = (amount, plan) => {
+    return (dispatch) => {
+        // setOnChangeAmount(e.target.value)
+
+    // Clear Error here
+    dispatch(clearError())    
+    
+        // err msg.
+        const error_msg = 'Invalid amount for your selected plan.'
+
+        switch (plan) {
+            case "Start-up Plan":
+                // console.log("START-UP PLAN")
+                if (amount > 5000) {
+                    dispatch(setError(error_msg));
+                } else if (amount < 500) {
+                    dispatch(setError(error_msg));
+                }
+
+                break;
+            case "Business Plan":
+                // console.log("BUSINESS PLAN")
+                if (amount > 15000) {
+                    dispatch(setError(error_msg));
+                } else if (amount < 6000) {
+                    dispatch(setError(error_msg));
+                }
+
+                break;
+            case "Corporate Plan":
+                // console.log("CORPOPRATE PLAN")
+                if (amount > 50000) {
+                    dispatch(setError(error_msg));
+                } else if (amount < 16000) {
+                    dispatch(setError(error_msg));
+                }
+
+                break;
+            case "5-Star-Corporate Plan":
+                // console.log("5-STAR-CORPORATE PLAN")
+                if (amount < 51000) {
+                    dispatch(setError(error_msg));
+                }
+
+                break;
+            default:
+        }
+    }
+  };

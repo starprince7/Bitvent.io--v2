@@ -4,10 +4,11 @@ import Header2 from '../layout/header2';
 import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
+import { connect } from 'react-redux'
 
 
 
-function Accounts() {
+function Accounts({ user }) {
 
     return (
         <>
@@ -26,12 +27,12 @@ function Accounts() {
                                             height="60" alt="" />
                                         <div className="media-body">
                                             <span>Hello</span>
-                                            <h4 className="mb-2">Maria Pascle</h4>
+                                            <h4 className="mb-2">{ user?.name } { user?.lastname }</h4>
                                             <p className="mb-1"> <span><i className="fa fa-phone mr-2 text-primary"></i></span> +1
                                             235 5547</p>
                                             <p className="mb-1"> <span><i className="fa fa-envelope mr-2 text-primary"></i></span>
-                                                hello@example.com
-                                        </p>
+                                                { user?.email }
+                                            </p>
                                         </div>
                                     </div>
 
@@ -88,54 +89,6 @@ function Accounts() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-xl-4 col-lg-4">
-                           <h3 className="text-center mt-5">Make Deposit</h3>
-                                        <form method="post" name="myform" className="currency_validate">
-                                            <div className="form-group">
-                                                <label className="mr-sm-2">Currency</label>
-                                                <div className="input-group mb-3">
-                                                    <select name='currency' className="form-control">
-                                                        <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                    </option>
-                                                        <option value="litecoin">Litecoin</option>
-                                                    </select>
-                                                    <input type="text" name="usd_amount" className="form-control"
-                                                        value="125.00 USD" />
-                                                </div>
-                                            </div>
-
-                                            <div className="form-group">
-                                                <label className="mr-sm-2">Payment Method</label>
-                                                <div className="input-group mb-3">
-                                                    <select name='currency' className="form-control">
-                                                        <option data-display="Bitcoin" value="bitcoin">Bitcoin
-                                                    </option>
-                                                        <option value="litecoin">Litecoin</option>
-                                                    </select>
-                                                    <input type="text" name="usd_amount" className="form-control"
-                                                        value="125.00 USD" />
-                                                </div>
-                                            </div>
-
-                                            <div className="form-group">
-                                                <label className="mr-sm-2">Enter your amount</label>
-                                                <div className="input-group">
-                                                    <input type="text" name="currency_amount" className="form-control"
-                                                        placeholder="0.0214 BTC" />
-                                                    <input type="text" name="usd_amount" className="form-control"
-                                                        placeholder="125.00 USD" />
-                                                </div>
-                                                <div className="d-flex justify-content-between mt-3">
-                                                    <p className="mb-0">Monthly Limit</p>
-                                                    <h6 className="mb-0">$49750 remaining</h6>
-                                                </div>
-                                            </div>
-                                            <button type="submit" name="submit"
-                                                className="btn btn-success btn-block">Exchange
-                                            Now</button>
-
-                                        </form> 
                         </div>
                     </div>
                     <div className="row">
@@ -241,4 +194,10 @@ function Accounts() {
     )
 }
 
-export default Accounts;
+const mapStateToProps = state => {
+    return {
+        user: state.dashboard_state.user
+    }
+}
+
+export default connect(mapStateToProps)(Accounts);

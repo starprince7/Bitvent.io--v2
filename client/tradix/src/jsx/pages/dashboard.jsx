@@ -18,23 +18,6 @@ import axios from 'axios'
 
 function Dashboard({ user, fetchUser }) {
 
-    // Authenticate the App First!
-    // Server does the Bouncing
-    useEffect(() => {
-        // authenticate App with Server!
-        axios.get("/verify-cookie")
-            .then(response => {
-            if (response.data.redirect) {
-                alert("Session expired, Please login!")
-                window.location.assign(response.data.redirect)
-            }
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    }, [])
-        
-
     useEffect(() => {
 
         if (user === null) {
