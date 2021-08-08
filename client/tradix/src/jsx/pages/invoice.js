@@ -2,10 +2,14 @@ import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import Footer1 from '../layout/footer1'
 import Header2 from '../layout/header2'
+// QR images
 import QrCode from '../../images/QR-code/QR-placeholder.png'
+import BCH from '../../images/QR-code/bitcoin_cash.jpg'
+import ETH from '../../images/QR-code/ethereum.jpg'
+import BTC from '../../images/QR-code/bitcoin.jpg'
 
 
-function Invoice({ invoice }) {
+function Invoice({ invoice, user }) {
     const [address, setAddress] = useState('')
     const [srcImage, setSrcImage] = useState(QrCode)
     const walletSelectRef = useRef(null)
@@ -22,18 +26,28 @@ function Invoice({ invoice }) {
         const wallet = walletSelectRef.current.value
 
         if (wallet === 'bitcoin') {
-            setAddress("Bitcoin");
-            // setSrcImage('')
+            setAddress("bc1q2p4kdevvjfddtu4xzpaq696jdy4t777sgrxddc");
+            setSrcImage(BTC)
         } else if (wallet === 'ethereum') {
-            setAddress("Ethereum");
-            // setSrcImage('')
+            setAddress("0xba28Bc64E9f1C2AFA7A1C5A89E025b69aDE20267");
+            setSrcImage(ETH)
         } else if (wallet === 'litecoin') {
             setAddress("Litcoin");
             // setSrcImage('')
         } else if (wallet === 'bitcoin cash') {
-            setAddress("Bitcoin Cash");
-            // setSrcImage('')
+            setAddress("qp4gt2nrmzcpxg4k7vk84mdn7wvhz80nxgfl3zl2lq");
+            setSrcImage(BCH)
+        } else if (wallet === "") {
+            setAddress("")
+            setSrcImage(QrCode)
         }
+    }
+
+    const payment_confirmation_message = (e) => {
+        e.preventDefault()
+        alert(
+            `Hi ${user?.name}, please send your evidence of payment to our live customer support at the right-bottom corner of your screen for payment confirmation.`
+        )
     }
     
     return (
@@ -43,7 +57,7 @@ function Invoice({ invoice }) {
                     <div className="invoice-content">
                         <div style={style}>
                             <h4>Email</h4>
-                        <p>{ invoice?.email }</p>
+                        <p>{ user?.email }</p>
                         </div>
                         <div style={style}>
                             <h4>Plan</h4>
@@ -82,14 +96,14 @@ function Invoice({ invoice }) {
                                         <option value="">Select </option>
                                         <option value="bitcoin">Bitcoin</option>
                                         <option value="ethereum">Ethereum</option>
-                                        <option value="litecoin">Litecoin</option>
+                                        {/* <option value="litecoin">Litecoin</option> */}
                                         <option value="bitcoin cash">Bitcoin Cash</option>
                                     </select>
                                 </div>
                             </div>
                             <span style={{fontSize: '13px'}}>Confirm that you have made payment.</span>
-                            <button type="submit" name="submit" className="btn btn-success btn-block mt-1">Approve</button>
                         </form>
+                        <button onClick={payment_confirmation_message} type="submit" name="submit" className="btn btn-success btn-block mt-1">Approve</button>
                     </div>
                 </div>
             <Footer1 />
@@ -99,7 +113,8 @@ function Invoice({ invoice }) {
 
 const mapStateToProps = state => {
     return {
-        invoice: state.dashboard_state.invoice
+        invoice: state.dashboard_state.invoice,
+        user: state.dashboard_state.user
     }
 }
 

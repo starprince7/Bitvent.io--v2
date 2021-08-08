@@ -34,12 +34,12 @@ function Signin({ logUserIn }) {
                             <div className="mini-logo text-center my-5">
                                 <Link to={'./'}>
                                     {/* <img src={require('./../../images/logo.png')} alt="" /> */}
-                                    <h2>WealthWiseFx.</h2>
+                                    <h2>Logo_Fx.</h2>
                                 </Link>
                             </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Sign in</h4>
+                                    <h4 className="card-title">Log in</h4>
                                 </div>
                                 <div className="card-body">
                                     <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">

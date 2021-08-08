@@ -20,6 +20,7 @@ const initialState = {
 const StateReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_USER: return {
+            ...state,
             error: null,
             isLoading: false,
             user: action.payload,
