@@ -1,6 +1,7 @@
 // import action types
 import {
     SET_USER,
+    SET_USERS,
     SET_ERROR,
     SET_LOADING,
     SET_INVOICE,
@@ -12,6 +13,7 @@ import {
 const initialState = {
     error: null,
     user: null,
+    users: null,
     invoice: null,
     isLoading: false,
     authenticatedID: null
@@ -25,6 +27,10 @@ const StateReducer = (state = initialState, action) => {
             isLoading: false,
             user: action.payload,
             authenticatedID: action.payload._id
+        }
+        case SET_USERS: return {
+            ...state,
+            users: action.payload
         }
         case SET_INVOICE: return {
             ...state,

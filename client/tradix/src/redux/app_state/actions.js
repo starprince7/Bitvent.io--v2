@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
     SET_USER,
+    SET_USERS,
     SET_ERROR,
     SET_LOADING,
     SET_INVOICE,
@@ -8,7 +9,7 @@ import {
 } from './actionTypes'
 
 
-function setLoading(boolean) {
+export function setLoading(boolean) {
     return {
         type: SET_LOADING,
         payload: boolean
@@ -26,6 +27,13 @@ export function setUser(user) {
     return {
         type: SET_USER,
         payload: user
+    }
+}
+
+export function setUsers(users) {
+    return {
+        type: SET_USERS,
+        payload: users
     }
 }
 
@@ -92,6 +100,29 @@ export const logUserIn = (user) => {
             console.log(e)
             dispatch(setError("Sorry could not reach server! try again."))
         })
+    }
+}
+
+
+export const fetchAllUsers = () => {
+    return (dispatch, getState) => {
+        dispatch(setLoading(true))
+
+    axios
+      .get("/admin/all-customers")
+      .then((result) => {
+        // console.log(result);
+        // console.log(result.data);
+        dispatch(setUsers(result.data));
+        dispatch(setLoading(false));
+
+      })
+      .catch((error) => {
+        console.log("ERR! Getting All Customers", error);
+        dispatch(setUsers(null));
+        dispatch(setLoading(false));
+
+      });
     }
 }
 

@@ -12,6 +12,8 @@ import Career from './pages/career';
 import Contact from './pages/contact';
 import HelpDesk from './pages/helpdesk';
 import Faq from './pages/faq';
+import AdminDashboard from './pages/admin-dashboard';
+import SingleRoute from './pages/single-route';
 import Dashboard from './pages/dashboard';
 import BuySell from './pages/buy-sell';
 import Invoice from './pages/invoice';
@@ -57,6 +59,7 @@ class Index extends Component {
                             <Route path='/contact' component={Contact} />
                             <Route path='/helpdesk' component={HelpDesk} />
                             <Route path='/faq' component={Faq} />
+                            <Route path='/admin_dashboard' component={AdminDashboard} />
                             <Route path='/dashboard' component={Dashboard} />
                             <Route path='/buy-sell' component={BuySell} />
                             <Route path='/invoice' component={Invoice} />
@@ -83,6 +86,7 @@ class Index extends Component {
                             <Route path='/verify-step-6' component={VerifyStep6} />
                             <Route path='/history' component={History} />
                             <Route path='/demo' component={Demo} />
+                            <Route path='/:email' component={SingleRoute} />
                         </Switch>
                     </div>
                 </BrowserRouter>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function Sidebar() {
+function Sidebar2() {
 
     const style = {
         fontSize: '12px',
@@ -19,24 +19,24 @@ function Sidebar() {
                     <ul>
                         <li>
                             <Link to={'./dashboard'} data-toggle="tooltip" data-placement="right" title="Home">
-                                <span><i className="la la-igloo"></i></span>
-                                <span style={style}>Overview</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'./buy-sell'} data-toggle="tooltip" data-placement="right" title="Exchange">
-                                <span><i className="la la-exchange"></i></span>
-                                <span style={style}>Buy & Sell</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'./accounts'} data-toggle="tooltip" data-placement="right" title="Account">
-                                <span><i className="la la-user"></i></span>
+                                <span><i class="fas fa-users"></i></span>
                                 <span style={style}>Accounts</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={'./settings'} data-toggle="tooltip" data-placement="right" title="Setting">
+                            <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Exchange">
+                                <span><i class="fas fa-funnel-dollar"></i></span>
+                                <span style={style}>Fund Account</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Account">
+                                <span><i class="fas fa-money-check-alt"></i></span>
+                                <span style={style}>Withdraw Request</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Setting">
                                 <span><i className="la la-tools"></i></span>
                                 <span style={style}>Settings</span>
                             </Link>
@@ -48,4 +48,4 @@ function Sidebar() {
     )
 }
 
-export default Sidebar;
+export default Sidebar2;
