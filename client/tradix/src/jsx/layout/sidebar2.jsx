@@ -1,15 +1,27 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { fetchWithdrawRequest } from '../../redux/app_state/actions'
 
 
 
-function Sidebar2() {
+function Sidebar2({ fetchWithdrawRequest, withdraw_request }) {
 
     const style = {
         fontSize: '12px',
         color: 'white',
-        display: 'inline-flex'
+        display: 'inline-flex',
+        marginLeft: "-10px"
     }
+
+    const icon_style = {
+        fontSize: "14px",
+        marginLeft: "-15px"
+    }
+
+    useEffect(() => {
+        fetchWithdrawRequest()
+    }, [fetchWithdrawRequest])
 
     return (
         <>
@@ -18,20 +30,22 @@ function Sidebar2() {
                 <div className="menu">
                     <ul>
                         <li>
-                            <Link to={'./dashboard'} data-toggle="tooltip" data-placement="right" title="Home">
-                                <span><i class="fas fa-users"></i></span>
+                            <Link to={'./admin_dashboard'} data-toggle="tooltip" data-placement="right" title="Home">
+                                <span><i style={icon_style} className="fas fa-users"></i></span><br />
                                 <span style={style}>Accounts</span>
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Exchange">
-                                <span><i class="fas fa-funnel-dollar"></i></span>
+                                <span><i style={icon_style} className="fas fa-funnel-dollar"></i></span>
                                 <span style={style}>Fund Account</span>
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
-                            <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Account">
-                                <span><i class="fas fa-money-check-alt"></i></span>
+                            <Link to={'./admin_withdrawal_request'} data-toggle="tooltip" data-placement="right" title="Account">
+                                <span><i style={icon_style} className="fas fa-money-check-alt"></i></span>
+                                { withdraw_request?.length !== 0 &&
+                                    <span style={{ fontSize: '9px' }} className="badge badge-pill badge-danger text-white">{ withdraw_request?.length }</span> }
                                 <span style={style}>Withdraw Request</span>
                             </Link>
                         </li>
@@ -48,4 +62,16 @@ function Sidebar2() {
     )
 }
 
-export default Sidebar2;
+const mapStateToProps = state => {
+    return {
+        withdraw_request: state.dashboard_state.withdraw_request
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchWithdrawRequest: () => dispatch(fetchWithdrawRequest())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar2);

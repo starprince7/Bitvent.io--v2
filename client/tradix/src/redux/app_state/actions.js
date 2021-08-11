@@ -5,9 +5,17 @@ import {
     SET_ERROR,
     SET_LOADING,
     SET_INVOICE,
-    CLEAR_ERROR
+    CLEAR_ERROR,
+    SET_WITHDRAW_REQUEST
 } from './actionTypes'
 
+
+function setWithdrawRequest(request_data) {
+    return {
+        type: SET_WITHDRAW_REQUEST,
+        payload: request_data
+    }
+}
 
 export function setLoading(boolean) {
     return {
@@ -269,3 +277,18 @@ export const checkAmount = (amount, plan) => {
         }
     }
   };
+
+  export const fetchWithdrawRequest = () => {
+      return (dispatch) => {
+        axios
+        .get("/admin/request")
+        .then((result) => {
+            dispatch(setWithdrawRequest(result.data));     
+        })
+        .catch((error) => {
+            console.log("ERR! Fetching Customer Request ==>", error);
+
+        });
+  
+      }
+  }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom'
 import { Accordion, Tabs,Tab, Card } from 'react-bootstrap';
 import Header2 from '../layout/header2';
@@ -9,10 +9,16 @@ import Popup from '../element/popup';
 import { connect } from 'react-redux'
 import { checkAmount } from '../../redux/app_state/actions';
 import { setInvoice, setError } from '../../redux/app_state/actions';
+import axios from 'axios'
 
 
 
 function BuySell({ checkAmount, setInvoice, setError, error, user }) {
+    // DOM Reference here
+    const cryptoTypeRef = useRef(null)
+    const cryptoAddressRef = useRef(null)
+    const inputRef = useRef(null)
+    const buttonRef = useRef(null)
     const history = useHistory()
     const [errorInComponent, setInComponentError] = useState(null)
 
@@ -65,6 +71,38 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
             setInvoice(options)
             setTimeout(() => history.push("/invoice"), 2000)
         }
+    }
+
+    const handle_withdraw_submit = (e) => {
+        e.preventDefault()
+        buttonRef.current.textContent = "Processing..."
+        
+        const email = user?.email
+        const amount = inputRef.current.value
+        const crypto_type = cryptoTypeRef.current.value
+        const wallet_address = cryptoAddressRef.current.value
+
+        const options = {
+            email,
+            amount,
+            wallet_address,
+            crypto_type
+        }
+        
+        axios.post("/admin/request", options)
+            .then(result => {
+                buttonRef.current.textContent = "Withdraw Now"
+                // console.log(result);
+                // console.log(result.data);
+
+                result.data && alert(`Success! $${amount} has been requested for withdrawal, it is being processed at the moment and it will be credited to your wallet shortly.`)
+
+                
+            })
+            .catch(error => {
+                buttonRef.current.textContent = "Withdraw Now"
+                console.log("ERR! Creating Withdrawal request ==>", error)
+            })
     }
 
     return (
@@ -124,28 +162,37 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
                                                             <h4 className="card-title mt-3">Withdraw</h4>
                                                         </div>
                                                         <div className="card-body">
-                                                            <form action="#">
+                                                            <form onSubmit={handle_withdraw_submit}>
                                                                 <div className="form-group">
                                                                     <div className="input-group mb-3">
                                                                         <div className="input-group-prepend">
                                                                             <label className="input-group-text"><i className="fa fa-money"></i></label>
                                                                         </div>
-                                                                        <input type="text" className="form-control" placeholder="5000 USD" />
+                                                                        <input required ref={inputRef} type="number" className="form-control" placeholder="5000 USD" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="form-group">
                                                                     <div className="input-group mb-3">
                                                                         <div className="input-group-prepend">
-                                                                            <label className="input-group-text"><i className="fa fa-bank"></i></label>
+                                                                            <label className="input-group-text"><i className="fas fa-coins"></i></label>
                                                                         </div>
-                                                                        <select className="form-control">
-                                                                            <option>Bank of America ********45845</option>
-                                                                            <option>Master Card ***********5458</option>
+                                                                        <select required ref={cryptoTypeRef} className="form-control">
+                                                                            <option value="">Choose Wallet</option>
+                                                                            <option value="bitcoin">Bitcoin</option>
+                                                                            <option value="ethereum">Ethereum</option>
+                                                                            <option value="litecoin">Litecoin</option>
+                                                                            <option value="bitcoin cash">Bitcoin Cash</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
+                                                                <div className="form-group">
+                                                                <p>Paste your wallet address</p>
+                                                                    <div className="input-group mb-3">
+                                                                        <input required ref={cryptoAddressRef} type="text" className="form-control text-center" placeholder="PASTE" />
+                                                                    </div>
+                                                                </div>
 
-                                                                <button className="btn btn-primary btn-block">Withdraw Now</button>
+                                                                <button ref={buttonRef} className="btn btn-primary btn-block">Withdraw Now</button>
                                                             </form>
                                                     </div>
                                                 </div>

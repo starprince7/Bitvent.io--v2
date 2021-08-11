@@ -7,6 +7,7 @@ import {
     SET_INVOICE,
     CLEAR_ERROR,
     SET_AUTHENTICATED_ID,
+    SET_WITHDRAW_REQUEST
 } from './actionTypes'
 
 // initialize state
@@ -16,7 +17,8 @@ const initialState = {
     users: null,
     invoice: null,
     isLoading: false,
-    authenticatedID: null
+    authenticatedID: null,
+    withdraw_request: null
 };
 
 const StateReducer = (state = initialState, action) => {
@@ -52,6 +54,10 @@ const StateReducer = (state = initialState, action) => {
         case SET_AUTHENTICATED_ID: return {
             ...state,
             authenticatedID: action.payload
+        }
+        case SET_WITHDRAW_REQUEST: return {
+            ...state,
+            withdraw_request: action.payload
         }
         default:
             return state
