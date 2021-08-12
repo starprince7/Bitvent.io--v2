@@ -76,6 +76,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
     const handle_withdraw_submit = (e) => {
         e.preventDefault()
         buttonRef.current.textContent = "Processing..."
+        buttonRef.current.disabled = true
         
         const email = user?.email
         const amount = inputRef.current.value
@@ -92,15 +93,20 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
         axios.post("/admin/request", options)
             .then(result => {
                 buttonRef.current.textContent = "Withdraw Now"
+                buttonRef.current.disabled = false
                 // console.log(result);
                 // console.log(result.data);
 
-                result.data && alert(`Success! $${amount} has been requested for withdrawal, it is being processed at the moment and it will be credited to your wallet shortly.`)
-
+                result.data && alert(`Success! $${amount} is been requested for withdrawal, your value will be credited shortly.`)
+                // Reset Withdrawal Form field.
+                inputRef.current.value = ""
+                cryptoTypeRef.current.value = ""
+                cryptoAddressRef.current.value = ""
                 
             })
             .catch(error => {
                 buttonRef.current.textContent = "Withdraw Now"
+                buttonRef.current.disabled = false
                 console.log("ERR! Creating Withdrawal request ==>", error)
             })
     }

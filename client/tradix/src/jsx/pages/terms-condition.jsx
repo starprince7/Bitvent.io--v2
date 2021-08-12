@@ -18,11 +18,11 @@ function TermsCondition() {
                         <div className="terms_condition-content">
                             <div className="terms_condition-text">
                                 <h3>Terms of Service : </h3>
-                                <p>By using Tradix.com you agree to and are bound by these Terms and Conditions in
+                                <p>By using WWFX you agree to and are bound by these Terms and Conditions in
                                     their entirety and, without reservation, all applicable laws and regulations, and
                                     you agree that you are responsible for compliance with
                                     any applicable laws. These Terms of Service govern your use of this website. If you
-                                    do not agree with any of these terms, you are prohibited from using Tradix.com.
+                                    do not agree with any of these terms, you are prohibited from using WWFX.com.
                                 </p>
                             </div>
 
@@ -32,7 +32,7 @@ function TermsCondition() {
                                 <ul>
                                     <li>
                                         <i className="fa fa-circle"></i>
-                                        <p>You must not use Tradix.com in any way that can cause damage to Tradix.com
+                                        <p>You must not use WWFX.com in any way that can cause damage to WWFX.com
                                             or in any way which is unlawful, illegal, fraudulent or harmful, or in
                                             connection with any illegal, fraudulent, or harmful activity.
                                         </p>
@@ -45,7 +45,7 @@ function TermsCondition() {
                                     <li>
                                         <i className="fa fa-circle"></i>
                                         <p>You must not use this website for any purposes related to marketing without
-                                            the permission of Tradix.com.</p>
+                                            the permission of WWFX.com.</p>
                                     </li>
                                     <li>
                                         <i className="fa fa-circle"></i>
@@ -84,7 +84,7 @@ function TermsCondition() {
                                     <li>
                                         <i className="fa fa-circle"></i>
                                         <p>Account balance may not be transferred, exchanged, sold, or otherwise change
-                                            ownership under any circumstances, except by Tradix.com</p>
+                                            ownership under any circumstances, except by WWFX.com</p>
                                     </li>
                                     <li>
                                         <i className="fa fa-circle"></i>
@@ -102,11 +102,11 @@ function TermsCondition() {
 
                             <div className="terms_condition-text">
                                 <h3>Indemnity : </h3>
-                                <p>You hereby indemnify Tradix.com and undertake to keep Tradix.com indemnified
+                                <p>You hereby indemnify WWFX.com and undertake to keep WWFX.com indemnified
                                     against any losses, damages, costs, liabilities, and/or expenses (including without
-                                    limitation legal expenses) and any amounts paid by Tradix.com
-                                    to a third party in settlement of a claim or dispute on the advice of Tradix.com’s
-                                    legal advisers) incurred or suffered by Tradix.com arising out of any breach by you
+                                    limitation legal expenses) and any amounts paid by WWFX.com
+                                    to a third party in settlement of a claim or dispute on the advice of WWFX.com’s
+                                    legal advisers) incurred or suffered by WWFX.com arising out of any breach by you
                                     of any provision of these terms and conditions,
                                     or arising out of any claim that you have breachedany provision of these terms and
                                     conditions.
@@ -115,10 +115,10 @@ function TermsCondition() {
 
                             <div className="terms_condition-text">
                                 <h3>No warranties : </h3>
-                                <p>Tradix is provided “as is” without any representations or warranties. Tradix.com
+                                <p>WWFX is provided “as is” without any representations or warranties. WWFX.com
                                     makes no representations or warranties in relation to this website or the
                                     information and materials provided on this website.</p>
-                                <p>Tradix.com does not warrant that:</p>
+                                <p>WWFX.com does not warrant that:</p>
 
                                 <ul>
                                     <li>
@@ -153,7 +153,7 @@ function TermsCondition() {
 
                             <div className="terms_condition-text">
                                 <h3>Modifications: </h3>
-                                <p>Tradix.com may revise these terms of use for its website at any time without notice.
+                                <p>WWFX.com may revise these terms of use for its website at any time without notice.
                                     By using this web site you are agreeing to be bound by the then current version of
                                     these terms of service.</p>
                             </div>
@@ -163,14 +163,14 @@ function TermsCondition() {
                                 <ul>
                                     <li>
                                         <i className="fa fa-circle"></i>
-                                        <p>Tradix.com reserves the rights under these terms and conditions to take
+                                        <p>WWFX.com reserves the rights under these terms and conditions to take
                                             action if you breach these terms and conditions in any way. </p>
                                     </li>
                                     <li>
                                         <i className="fa fa-circle"></i>
-                                        <p>Tradix.com may take such action as seems appropriate to deal with the
+                                        <p>WWFX.com may take such action as seems appropriate to deal with the
                                             breach, including suspending your access to the website, suspending your
-                                            earnings made trough Tradix.com,prohibiting you from accessing the
+                                            earnings made trough WWFX.com,prohibiting you from accessing the
                                             website, or bringing court proceedings against you.</p>
                                     </li>
                                 </ul>

@@ -136,7 +136,7 @@ function SingleRoute(props) {
                         <div className="media-body">
                             <span>Hello</span>
                             <h4 className="mb-2">{ user?.name } { user?.lastname }</h4>
-                            <p className="mb-1"> <span><i className="text-muted fas fa-wallet text-primary mr-2"></i>Wallet Balance</span>
+                            <p className="mb-1"> <span><i className="text-muted fas fa-wallet text-primary mr-2"></i>Customer Wallet :</span>
                                 <CurrencyFormat
                                     renderText={(value) => (
                                     <>

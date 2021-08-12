@@ -122,7 +122,7 @@ function Dashboard({ user, fetchUser }) {
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
                                                             <div className="coin-title">
-                                                                <span><i class="fas fa-piggy-bank"></i></span>
+                                                                <span><i className="fas fa-piggy-bank"></i></span>
                                                                 <h5 className="d-inline-block ml-2 mb-3">Total Payout <span>($)</span>
                                                                 </h5>
                                                             </div>
@@ -154,7 +154,7 @@ function Dashboard({ user, fetchUser }) {
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
                                                             <div className="coin-title">
-                                                                <span><i class="fas fa-users"></i></span>
+                                                                <span><i className="fas fa-users"></i></span>
                                                                 <h5 className="d-inline-block ml-2 mb-3">Referrals <span>(accounts)</span>
                                                                 </h5>
                                                             </div>
@@ -169,7 +169,7 @@ function Dashboard({ user, fetchUser }) {
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
                                                             <div className="coin-title">
-                                                                <span><i class="fas fa-money-bill-wave-alt"></i></span>
+                                                                <span><i className="fas fa-money-bill-wave-alt"></i></span>
                                                                 <h5 className="d-inline-block ml-2 mb-3">Bonus <span>($)</span>
                                                                 </h5>
                                                             </div>

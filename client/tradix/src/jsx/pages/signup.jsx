@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { RegisterUser } from '../../redux/app_state/actions'
 import Footer2 from '../layout/footer2';
+import WWFX_LOGO  from '../../images/wealth_wise.png'
 
 
 function Signup({ registerUser }) {
@@ -44,8 +45,7 @@ function Signup({ registerUser }) {
                         <div className="col-xl-10 col-md-10">
                             <div className="mini-logo text-center mb-5">
                                 <Link to={'./'}>
-                                    {/* <img src={require('../../images/logo.png')} alt="" /> */}
-                                    <h2>WealthWiseFx.</h2>
+                                    <img src={WWFX_LOGO} alt="Logo" />
                                 </Link>
                             </div>
                             <div className="auth-form card">

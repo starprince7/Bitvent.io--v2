@@ -1,6 +1,7 @@
 import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import WWFX_LOGO  from '../../images/wealth_wise.png'
 
 
 
@@ -14,7 +15,9 @@ function Header1() {
                         <div className="col-xl-12">
                             <div className="navigation">
                                 <Navbar bg="light" expand="lg">
-                                    <Link className="navbar-brand text-primary" to={'/'}><h3>WealthWiseFx.</h3></Link>
+                                    <Link className="navbar-brand text-primary" to={'/'}>
+                                        <img src={WWFX_LOGO} alt="Logo" />
+                                    </Link>
                                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                     <Navbar.Collapse>
                                         <Nav className="ml-auto">

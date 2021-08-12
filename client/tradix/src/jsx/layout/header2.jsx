@@ -6,9 +6,10 @@ import { DropdownButton, } from 'react-bootstrap'
 import ErrorPopup from '../element/error-popup'
 // Action
 import { logUserOut } from '../../redux/app_state/actions'
-import profile_img from '../../images/logo.png'
+
 import { setUser } from '../../redux/app_state/actions'
 import axios from 'axios'
+import WWFX_LOG0  from '../../images/wealth_wise.png'
 
 
 function Header2({ user, logUserOut, setUser }) {
@@ -79,8 +80,7 @@ function Header2({ user, logUserOut, setUser }) {
                         <div className="col-xl-12">
                             <nav className="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
                                 <Link className="navbar-brand" to={'/'}>
-                                    {/* <img src={profile_img} alt="" /> */}
-                                    {/* <h5>WWFx.</h5> */}
+                                    <img src={WWFX_LOG0} alt="Logo" />
                                 </Link>
 
                                 <div className="dashboard_log my-2">

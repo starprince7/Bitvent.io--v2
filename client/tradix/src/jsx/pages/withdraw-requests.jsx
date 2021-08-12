@@ -1,12 +1,90 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Header2 from "../layout/header2";
 import Sidebar2 from "../layout/sidebar2";
 import PageTitle from "../element/page-title";
 import Footer2 from "../layout/footer2";
 import { connect } from 'react-redux'
 import { fetchWithdrawRequest } from '../../redux/app_state/actions'
+import axios from 'axios'
 
-function WithdrawRequests({ withdraw_request }) {
+function WithdrawRequests({ withdraw_request, fetchWithdrawRequest }) {
+  const approve_btn_ref = useRef(null)
+  const remove_btn_ref = useRef(null)
+
+
+  const deleteRequest = (id) => {
+    // delete Func block.
+    const button = () => !window.event.target ? null : window.event.target
+    // Dispatch Loader
+    if (button) {
+      button.textContent = "Deleting..."
+      button.disabled = true
+    }
+
+    axios
+      .delete(`/admin/request/${id}`)
+      .then((result) => {
+      //  Stop Loader
+        if (button) {
+          button.textContent = "Delete"
+          button.disabled = false
+        }
+        result.data && alert("Withdrawal request deleted!");
+        fetchWithdrawRequest()
+      })
+      .catch((error) => {
+        console.log("ERR! Deleting Request ==>", error);
+        // Stop Loader
+        if (button) {
+          button.textContent = "Delete Error"
+          button.disabled = false
+        }
+      });
+  };
+
+  const approve_withdrawal_request = (id, amount, email, walletAddress) => {
+    window.event.preventDefault();
+    const button = window.event.target
+    // Dispatch Loader
+    button.textContent = "Loading..."
+    button.disabled = true
+
+    let options = {
+      amount,
+      email,
+      walletAddress
+    };
+
+    axios.post("/admin/request/approval", options)
+      .then(result => {
+
+        const button = window.event.target
+        // Dispatch Loader
+        button.textContent = "Approved"
+        button.disabled = false
+      
+      if (result.data ) {
+        
+        setTimeout(() => {       
+          deleteRequest(id);  /* The ID is of the Request API and not the Customers APi */
+        }, 500)
+
+      }
+        
+    })
+      .catch(error => {
+        const button = window.event.target
+        // Dispatch Loader
+        button.textContent = "Error"
+        button.disabled = false
+        
+        console.log("ERR! Aproving Withdraw Request ==>", error);
+    })
+
+
+
+  }
+
     return (
         <>
            <Header2 />
@@ -28,7 +106,7 @@ function WithdrawRequests({ withdraw_request }) {
                           {
                             withdraw_request && withdraw_request.map( (request) => (
                               <tr key={request._id}>
-                              <td><button onClick={() => alert("Not-working for now!")} className="btn btn-success">Approve</button></td>
+                              <td><button ref={approve_btn_ref} onClick={() => approve_withdrawal_request(request._id, request.amount, request.email, request.walletAddress)} className="btn btn-success">Approve</button></td>
                                 <td>
                                   <span className="badge badge-info">{ request.email }</span>
                                 </td>
@@ -36,7 +114,7 @@ function WithdrawRequests({ withdraw_request }) {
                                 <td className="text-primary">{ request.amount }</td>
                                 <td className="text-primary">{ request.crypto_type }</td>
                                 <td className="text-primary">{ request.wallet_address }</td>
-                                <td><button onClick={() => alert("Not-working for now!")} className="btn btn-danger">Delete</button></td>
+                                <td><button ref={remove_btn_ref} data-id={request._id} onClick={() => deleteRequest(request._id)} className="delete_btn btn btn-danger">Delete</button></td>
                             </tr>
                             ))
                           }
@@ -61,5 +139,11 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchWithdrawRequest: () => dispatch(fetchWithdrawRequest())
+  }
+}
 
-export default connect(mapStateToProps)(WithdrawRequests)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithdrawRequests)

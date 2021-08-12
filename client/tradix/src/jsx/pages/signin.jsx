@@ -2,8 +2,8 @@ import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logUserIn } from '../../redux/app_state/actions'
-import Footer1 from '../layout/footer1';
-
+import Footer2 from '../layout/footer2';
+import WWFX_LOGO  from '../../images/wealth_wise.png'
 
 
 function Signin({ logUserIn }) {
@@ -31,17 +31,16 @@ function Signin({ logUserIn }) {
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-5 col-md-6">
-                            <div className="mini-logo text-center my-5">
+                            <div className="mini-logo text-center mb-5">
                                 <Link to={'./'}>
-                                    {/* <img src={require('./../../images/logo.png')} alt="" /> */}
-                                    <h2>Logo_Fx.</h2>
+                                    <img src={WWFX_LOGO} alt="Logo" />
                                 </Link>
                             </div>
-                            <div className="auth-form card">
+                            <div className="auth-form card pb-5">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Log in</h4>
+                                    <h4 className="card-title">Sign in</h4>
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body p-4">
                                     <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
                                         <div className="form-group">
                                             <label>Email</label>
@@ -79,7 +78,7 @@ function Signin({ logUserIn }) {
                     </div>
                 </div>
             </div>
-            <Footer1 />
+            <Footer2 />
         </>
     )
 }
