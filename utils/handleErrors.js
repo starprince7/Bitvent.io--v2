@@ -8,7 +8,7 @@ const handleErrors = (error) => {
   
     if (error.code === 11000) {
       error.keyValue.username && (
-        refErrors.username = "Username isn't available!"
+        refErrors.username = "Username has already been taken!"
       )
       error.keyValue.email && (
       refErrors.email = "This email is already registered!"

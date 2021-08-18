@@ -8,19 +8,39 @@ import Testimonial from '../element/testimonial';
 
 // Image
 import bitcoin_bag_img from './../../images/bitcoin_bag.jpg';
+import { connect } from 'react-redux'
+import { logUserIn } from '../../redux/app_state/actions'
 
 
 
-function Homepage2() {
+function Homepage2({ logUserIn }) {
+
+    const handle_login_submit = (e) => {
+        e.preventDefault()
+
+        // Grab form
+        const form = document.querySelector('.signin_validate');
+        const email = form.email.value;
+        const password = form.password.value;
+
+        const Client = {
+            email,
+            password
+        }
+
+        logUserIn(Client);
+        
+    }
 
     return (
-        <><Header1 />
+        <>
+            <Header1 />
             <div className="intro2"  id="intro" data-scroll-index="0">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-xl-7 col-lg-12">
                             <div className="intro-content text-center">
-                                <h1>World Class Finance Planning.</h1>
+                                <h1>World Class Finance Planning</h1>
                                 <p>Financial Freedom without Boundaries</p>
                                 <div className="intro-form">
                                     <form action="#">
@@ -42,38 +62,44 @@ function Homepage2() {
                     <div className="row align-items-center justify-content-center">
                         <div className="col-xl-7 col-lg-7">
                             <div className="intro-form-exchange">
-                                <form method="post" name="myform" className="currency_validate">
-                                    <div className="form-group">
-                                        <label className="mr-sm-2">Send</label>
-                                        <div className="input-group mb-3">
-                                            <select name='currency' className="form-control">
-                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin</option>
-                                                <option value="litecoin">Litecoin</option>
-                                            </select>
-                                            <input type="text" name="usd_amount" className="form-control" value="125.00 USD" />
+                            <div className="auth-form card pb-5">
+                                <div className="card-header justify-content-center">
+                                    <h4 className="card-title">Let's get you started</h4>
+                                </div>
+                                <div className="card-body p-4">
+                                    <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
+                                        <div className="form-group">
+                                            <label>Email</label>
+                                            <input type="email" className="form-control" placeholder="Enter your email"
+                                                name="email" required />
                                         </div>
+                                        <div className="form-group">
+                                            <label>Password</label>
+                                            <input type="password" className="form-control" placeholder="Password"
+                                                name="password" required />
+                                        </div>
+                                        <div className="form-row d-flex justify-content-between mt-4 mb-2">
+                                            <div className="form-group mb-0">
+                                                <label className="toggle">
+                                                    <input className="toggle-checkbox" type="checkbox" />
+                                                    <span className="toggle-switch"></span>
+                                                    <span className="toggle-label">Remember me</span>
+                                                </label>
+                                            </div>
+                                            <div className="form-group mb-0">
+                                                <Link href="reset.html">Forgot Password?</Link>
+                                            </div>
+                                        </div>
+                                        <div className="text-center mt-4">
+                                            <button type="submit" className="btn btn-success btn-block">Sign in</button>
+                                        </div>
+                                    </form>
+                                    <div className="new-account mt-3">
+                                        <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
+                                            up</Link></p>
                                     </div>
-
-                                    <div className="form-group">
-                                        <label className="mr-sm-2">Get</label>
-                                        <div className="input-group mb-3">
-                                            <select name='currency' className="form-control">
-                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin</option>
-                                                <option value="litecoin">Litecoin</option>
-                                            </select>
-                                            <input type="text" name="usd_amount" className="form-control" value="125.00 USD" />
-                                        </div>
-                                        <div className="d-flex justify-content-between mt-0 align-items-center">
-                                            <p className="mb-0">Monthly Limit</p>
-                                            <h6 className="mb-0">$49750 remaining</h6>
-                                        </div>
-                                    </div>
-                                    <Link to={'./signin'} type="submit" name="submit" className="btn btn-success btn-block">
-                                        Exchange Now
-                                    <i className="la la-arrow-right"></i>
-                                    </Link>
-
-                                </form>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -654,4 +680,10 @@ function Homepage2() {
     )
 }
 
-export default Homepage2;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: (user) => dispatch(logUserIn(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Homepage2);

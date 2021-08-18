@@ -204,6 +204,10 @@ function SingleRoute(props) {
                             <h5 className="mr-4">Registered on:</h5>
                             <span>{ user?.date }</span>
                         </li>
+                        <li className="mb-1">
+                            <h5 className="mr-4">Last Logged in:</h5>
+                            <span>{ user?.lastLogin }</span>
+                        </li>
                         {/* <li>
                             <h5 className="text-danger mr-4">Action</h5>
                             <span onClick={() => deleteUser(user)} className=" btn btn-danger"><strong>Delete Account</strong></span>

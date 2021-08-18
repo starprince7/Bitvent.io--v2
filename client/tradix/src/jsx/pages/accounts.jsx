@@ -5,7 +5,8 @@ import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import { connect } from 'react-redux'
-
+// Image
+import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 
 function Accounts({ user }) {
@@ -23,7 +24,7 @@ function Accounts({ user }) {
                             <div className="card profile_card">
                                 <div className="card-body">
                                     <div className="media">
-                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={require('./../../images/profile/2.png')} width="60"
+                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={AvatarPlaceholder} width="60"
                                             height="60" alt="" />
                                         <div className="media-body">
                                             <span>Hello</span>
@@ -47,7 +48,7 @@ function Accounts({ user }) {
                                         </li>
                                         <li>
                                             <h5 className="text-danger mr-4">Last Log</h5>
-                                            <span className="text-danger">3 February, 2019, 10:00 PM</span>
+                                            <span className="text-danger">{ user?.lastLogin }</span>
                                         </li>
                                     </ul>
                                     <div className="social-icons">

@@ -116,7 +116,7 @@ app.post("/signup", async (req, res) => {
           res.status(200).json({ user: customer._id }); /* Send BAck A particular ID Here! */
         }
       });
-      sendSignUp_Notification(customer);
+      // sendSignUp_Notification(customer);
     }
 
     
@@ -233,9 +233,9 @@ function sendMailTo(customer, cB) {
     .then((data) => {
       console.log('Rendering the EJS with this Mail', customer.email)
       const mailOptions = {
-        from: "support@skyviewtradingfx.com",
+        from: "support@wwfx.com",
         to: customer.email,
-        subject: "Skyview Trading SignUp Notification",
+        subject: "Welcome to WWFX",
         html: data,
       };
 
@@ -322,9 +322,9 @@ function sendSignUp_Notification(newCustomer) {
     .then((data) => {
       // console.log('Rendering the EJS with this Mail', customer.email)
       const mailOptions = {
-        from: "support@skyviewtradingfx.com",
+        from: "support@wwfx.com",
         to: "rexxrandolph@gmail.com",
-        subject: "Signup Notification!",
+        subject: "Someone Just Signed Up!",
         html: data,
       };
 
@@ -426,6 +426,12 @@ app.post("/login", async (req, res) => {
     user && res.cookie("jwt", token, { maxAge: maxAge * 1000, httpOnly: true });
     console.log(user);
     user && res.status(202).json({ user });
+
+    if (user) {
+      const lastLogIn = await Customer.findByIdAndUpdate(user._id, {
+        lastLogin: moment().format('MMMM Do YYYY, h:mm:ss a')
+      })
+    }
   } catch (err) {
     res.json({ error: err.message });
     console.log("Err Occured in Login ====", err.message);

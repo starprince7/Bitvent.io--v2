@@ -6,6 +6,7 @@ import {
     SET_LOADING,
     SET_INVOICE,
     CLEAR_ERROR,
+    SET_CRYPTO_PRICE,
     SET_AUTHENTICATED_ID,
     SET_WITHDRAW_REQUEST
 } from './actionTypes'
@@ -17,6 +18,7 @@ const initialState = {
     users: null,
     invoice: null,
     isLoading: false,
+    cryptoPrice: null,
     authenticatedID: null,
     withdraw_request: null
 };
@@ -58,6 +60,10 @@ const StateReducer = (state = initialState, action) => {
         case SET_WITHDRAW_REQUEST: return {
             ...state,
             withdraw_request: action.payload
+        }
+        case SET_CRYPTO_PRICE: return {
+            ...state,
+            cryptoPrice: action.payload
         }
         default:
             return state

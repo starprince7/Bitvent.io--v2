@@ -21,6 +21,7 @@ const customerSchema = new schema({
     type: Number,
     default: 0,
   },
+  lastLogin: String,
   tradingDay: {
     type: Number,
     default: 0

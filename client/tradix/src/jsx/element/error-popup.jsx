@@ -68,7 +68,7 @@ function ErrorPopup({ error, isLoading, clearError }) {
                         {/* <p className="btn" onClick={() => setDisplay('none')} style={btn_style}>{'x'}</p> */}
                     
                         {/* display error the here! */}
-                        {error?.name && (<span style={text_style}>{error?.name}.<br /></span>)}
+                        {error?.username && (<span style={text_style}>{error?.username}.<br /></span>)}
                         {error?.email && (<span style={text_style}>{error?.email}.<br /></span>)}
                         {error?.password && (<span style={text_style}>{ error?.password }.<br /></span>)}
 

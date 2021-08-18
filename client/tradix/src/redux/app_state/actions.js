@@ -6,6 +6,7 @@ import {
     SET_LOADING,
     SET_INVOICE,
     CLEAR_ERROR,
+    SET_CRYPTO_PRICE,
     SET_WITHDRAW_REQUEST
 } from './actionTypes'
 
@@ -35,6 +36,13 @@ export function setUser(user) {
     return {
         type: SET_USER,
         payload: user
+    }
+}
+
+function setCryptoPrice(crypto) {
+    return {
+        type: SET_CRYPTO_PRICE,
+        payload: crypto
     }
 }
 
@@ -161,6 +169,7 @@ export const fetchUser = () => {
                         if (!response.data.redirect) {
                             // console.log("From Thunk Action creator!!!", response.data)
                             dispatch(setUser(response.data.customer))
+                            dispatch(setCryptoPrice(response.data.crypto))
                             // dispatch(setLoading(false))
                         } else {
                             window.location.assign(response.data.redirect);

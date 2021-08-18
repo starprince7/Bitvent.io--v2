@@ -5,6 +5,8 @@ import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import SettingsNav from '../element/settings-nav';
 import { connect } from 'react-redux'
+// Image
+import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 
 
@@ -36,7 +38,7 @@ function Settings({ user }) {
                                                     <div className="form-group col-xl-12">
                                                         <div className="media align-items-center mb-3">
                                                             <img className="mr-3 rounded-circle mr-0 mr-sm-3"
-                                                                src={require('./../../images/profile/2.png')} width="55" height="55" alt="" />
+                                                                src={AvatarPlaceholder} width="55" height="55" alt="" />
                                                             <div className="media-body">
                                                                 <h4 className="mb-0">{user?.name} { user?.lastname }</h4>
                                                                 <p className="mb-0">Max file size is 20mb

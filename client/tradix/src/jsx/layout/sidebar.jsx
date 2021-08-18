@@ -6,15 +6,20 @@ import { Link } from 'react-router-dom';
 function Sidebar() {
 
     const style = {
-        fontSize: '12px',
+        fontSize: '11px',
         color: 'white',
         marginLeft: "-10px",
+
         display: 'inline-flex'
     }
 
     const icon_style = {
         fontSize: "14px",
-        marginLeft: "-15px",
+        marginLeft: "-10px",
+    }
+
+    const li_style = {
+        borderBottom: "solid 1px silver"
     }
 
     return (
@@ -23,25 +28,25 @@ function Sidebar() {
             <div className="sidebar">
                 <div className="menu">
                     <ul>
-                        <li>
+                        <li style={li_style}>
                             <Link to={'./dashboard'} data-toggle="tooltip" data-placement="right" title="Home">
-                                <span><i style={icon_style}  className="la la-igloo"></i></span><br />
-                                <span style={style}>Overview</span>
+                                <span><i style={icon_style}  className="la la-igloo"></i></span> <br />
+                                <span style={style}>Portal</span>
                             </Link>
                         </li>
-                        <li>
+                        <li style={li_style}>
                             <Link to={'./buy-sell'} data-toggle="tooltip" data-placement="right" title="Exchange">
                                 <span><i style={icon_style}  className="la la-exchange"></i></span><br />
-                                <span style={style}>Buy & Sell</span>
+                                <span style={style}>Trade</span>
                             </Link>
                         </li>
-                        <li>
+                        <li style={li_style}>
                             <Link to={'./accounts'} data-toggle="tooltip" data-placement="right" title="Account">
                                 <span><i style={icon_style}  className="la la-user"></i></span><br />
-                                <span style={style}>Accounts</span>
+                                <span style={style}>Profile</span>
                             </Link>
                         </li>
-                        <li>
+                        <li style={li_style}>
                             <Link to={'./settings'} data-toggle="tooltip" data-placement="right" title="Setting">
                                 <span><i style={icon_style}  className="la la-tools"></i></span><br />
                                 <span style={style}>Settings</span>

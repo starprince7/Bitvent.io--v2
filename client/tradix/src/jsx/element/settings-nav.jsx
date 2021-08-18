@@ -20,24 +20,24 @@ function SettingsNav() {
                                 <span>Edit Profile</span>
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link to={'./settings-preferences'} className="nav-link">
                                 <i className="la la-cog"></i>
                                 <span>Preferences</span>
                             </Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <Link to={'./settings-security'} className="nav-link">
                                 <i className="la la-lock"></i>
                                 <span>Security</span>
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link to={'./settings-account'} className="nav-link">
                                 <i className="la la-university"></i>
                                 <span>Linked Account</span>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
