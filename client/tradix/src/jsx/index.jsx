@@ -30,6 +30,7 @@ import Otp1 from './pages/otp-1';
 import Otp2 from './pages/otp-2';
 import PrivacyPolicy from './pages/privacy-policy';
 import Reset from './pages/reset';
+import ResetPassword from './pages/reset-password';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
 import TermsCondition from './pages/terms-condition';
@@ -77,6 +78,7 @@ class Index extends Component {
                             <Route path='/otp-2' component={Otp2} />
                             <Route path='/privacy-policy' component={PrivacyPolicy} />
                             <Route path='/reset' component={Reset} />
+                            <Route path='/password-reset' component={ResetPassword} />
                             <Route path='/login' component={Signin} />
                             <Route path='/signup' component={Signup} />
                             <Route path='/terms-condition' component={TermsCondition} />

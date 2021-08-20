@@ -61,7 +61,7 @@ function Signin({ logUserIn }) {
                                                 </label>
                                             </div>
                                             <div className="form-group mb-0">
-                                                <Link href="reset.html">Forgot Password?</Link>
+                                                <Link to="/reset">Forgot Password?</Link>
                                             </div>
                                         </div>
                                         <div className="text-center mt-4">

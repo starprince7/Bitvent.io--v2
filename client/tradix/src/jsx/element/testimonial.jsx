@@ -30,8 +30,7 @@ function Testimonial() {
                         <div className="col-xl-6 col-lg-6">
                             <div className="customer-review">
                                 <img className="img-fluid" src={require('./../../images/brand/2.webp')} alt="" />
-                                <p>I never expected having this spectacular side investment opportunity
-                                 on this platform to be so reliable.</p>
+                                <p>A great opportunity to start earning from stocks and shares in the market.</p>
                                 <div className="customer-info">
                                     <h6>Mr Dave Mckenzie</h6>
                                     <p>Investment Banker</p>
@@ -52,8 +51,8 @@ function Testimonial() {
                             <div className="customer-review">
                                 <img className="img-fluid" src={require('./../../images/brand/3.webp')} alt="" />
                                 <p>
-                                    Works like a charm i would highly recommend purchasing a standard plan
-                                     to create a perfect opportunity to earn more.
+                                    Works like a charm i would highly recommend going for a Standard plan
+                                     to increase chances of earning more.
                                 </p>
                                 <div className="customer-info">
                                     <h6>Mr Mathew Holmes</h6>

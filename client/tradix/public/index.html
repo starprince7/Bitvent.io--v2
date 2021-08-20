@@ -36,87 +36,8 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="language-select" style="transform: translate(0px, 6rem) scale(.7);">
+    <div class="language-select pt-1" style="transform: translate(0px, 6rem) scale(.7);">
       <!-- GTranslate: https://gtranslate.io/ -->
-      <span class="language-label">выберите язык</span> <br>
-      <a
-        href="#"
-        onclick="doGTranslate('en|en');return false;"
-        title="English"
-        class="gflag nturl"
-        style="background-position: -0px -0px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="English" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|fr');return false;"
-        title="French"
-        class="gflag nturl"
-        style="background-position: -200px -100px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="French" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|de');return false;"
-        title="German"
-        class="gflag nturl"
-        style="background-position: -300px -100px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="German" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|it');return false;"
-        title="Italian"
-        class="gflag nturl"
-        style="background-position: -600px -100px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="Italian" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|pt');return false;"
-        title="Portuguese"
-        class="gflag nturl"
-        style="background-position: -300px -200px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="Portuguese" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|ru');return false;"
-        title="Russian"
-        class="gflag nturl"
-        style="background-position: -500px -200px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="Russian" /></a
-      ><a
-        href="#"
-        onclick="doGTranslate('en|es');return false;"
-        title="Spanish"
-        class="gflag nturl"
-        style="background-position: -600px -200px"
-        ><img
-          src="//gtranslate.net/flags/blank.png"
-          height="16"
-          width="16"
-          alt="Spanish"
-      /></a>
     
       <style type="text/css">
     
@@ -131,8 +52,8 @@
     
       </style>
     
-      <br /><select onchange="doGTranslate(this);">
-        <option value="">Select Language</option>
+      <select onchange="doGTranslate(this);">
+        <option value="">Change Language</option>
         <option value="en|af">Afrikaans</option>
         <option value="en|sq">Albanian</option>
         <option value="en|ar">Arabic</option>
@@ -256,5 +177,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
+    <script src="https://cdn.jsdelivr.net/gh/coinponent/coinponent@1.2.6/dist/coinponent.js"></script>
+
   </body>
 </html>

@@ -9,10 +9,13 @@ import { logUserOut } from '../../redux/app_state/actions'
 
 import { setUser } from '../../redux/app_state/actions'
 import axios from 'axios'
-import WWFX_LOG0  from '../../images/wealth_wise.png'
+import WWFX_LOG0 from '../../images/wealth_wise.png'
+import CurrencyFormat from 'react-currency-format';
+// Image
+import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 
-function Header2({ user, logUserOut, setUser }) {
+function Header2({ user, logUserOut, setUser, cryptoPrice }) {
     // Authenticate the App First!
     // Server does the Bouncing
     useEffect(() => {
@@ -92,22 +95,37 @@ function Header2({ user, logUserOut, setUser }) {
                                                     <i className="cc BTC"></i>
                                                 </li>
                                                 <li className="usd">
-                                                    <span>19.93 USD</span>
+                                                        <CurrencyFormat
+                                                            renderText={(value) => (
+                                                            <>
+                                                                <span>
+                                                                <strong>{value}</strong>
+                                                                </span>
+                                                            </>
+                                                            )}
+                                                            value={cryptoPrice?.btc.price}
+                                                            decimalScale={2}
+                                                            fixedDecimalScale={true}
+                                                            thousandSeparator={true}
+                                                            displayType={"text"}
+                                                            prefix={"$"}
+                                                        />
                                                 </li>
                                             </ul>
                                         </div>
-
+                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={AvatarPlaceholder} width="30"
+                                            height="30" alt="profile" />
                                         <DropdownButton
                                             alignRight
-                                            title={user?.email}
+                                            title={'profile'}
                                             className="profile_log"
                                         >
                                             <Link to={'./accounts'} className="dropdown-item">
-                                                <i className="la la-user"></i> Account
+                                                <i className="la la-user"></i> <span style={{fontSize: "9px"}}>{user?.email}</span> 
                                             </Link>
-                                            <Link to={'./history'} className="dropdown-item">
+                                            {/* <Link to={'./history'} className="dropdown-item">
                                                 <i className="la la-book"></i> History
-                                            </Link>
+                                            </Link> */}
                                             <Link to={'./settings'} className="dropdown-item">
                                                 <i className="la la-cog"></i> Setting
                                             </Link>
@@ -138,7 +156,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.dashboard_state.user
+        user: state.dashboard_state.user,
+        cryptoPrice: state.dashboard_state.cryptoPrice,
     }
 }
 

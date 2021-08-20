@@ -11,6 +11,7 @@ const uniqid = require('uniqid')
 const resetRouter = express.Router();
 
 
+/* ==================== This-Route-Will-Be-Handle-By-The-React-App ==================== */
 resetRouter.get('/', async (req, res) => {
 
     // Grab the resest Key/Token here!
@@ -18,29 +19,30 @@ resetRouter.get('/', async (req, res) => {
     console.log(key);
 
     if (!key) {
-        res.status(403).send({ msg: 'Service denied, invalid access!' })
+        res.json({ msg: 'Service denied, invalid access!' })
     } else {
         // Reset logic Here!
         try {
-            console.log('finding.. document with d Key! -', key)
+            console.log('finding.. user that needs account reset with d Key! ==->', key)
             const user = await Customer.findOne({ key })
             if (user) {
-                // Send the rest password Page Here!
-                res.render('create-new-password', { user });
-            } else res.send('<h3 style="margin: .5rem 5px; color: #737373;" >Invalid link. Please restart this proccess!</h3>')
+                // Here Send back a user to show that the reset link is valid!
+                res.json({ user });
+            } else res.json({ msg: 'Invalid link. Please restart this proccess'})
         } catch (error) {
             console.log('ERR! getting the User from DB...', error)
-            res.status(401).send({ msg: 'Sorry, this link is invalid' })
+            res.json({ msg: 'Sorry, this link is invalid' })
         }
     }
 })
+/* ==================== This-Route-Will-Be-Handle-By-The-React-App ==================== */
 
 
 resetRouter.post('/', async (req, res) => {
     console.log('Post To ===>  /password-reset? key =')
     const {id, newPassword, email} = req.body
     const _id = id.trim();
-    if(!newPassword) res.status(403).json({ error: 'You have not entered your new Password!' })
+    if(!newPassword) res.json({ error: 'You have not entered your new Password!' })
     
 
     // First! hash new password and wait!
@@ -63,11 +65,11 @@ resetRouter.post('/', async (req, res) => {
                 console.log('Reset Key ----> key', resetKey)
                 const token = createToken(user._id);
                 resetKey && res.cookie("jwt", token, { maxAge: maxAge * 1000, httpOnly: true });
-                resetKey && res.status(202).json({ user });
+                resetKey && res.json({ user });
             }
         } catch (err) {
             console.log("Cannot Replace to new Password ===>", err)
-            res.status(500).json({ error: 'Something wrong with our server, try agin later' })
+            res.json({ error: 'Something wrong with our server, try agin later' })
         }
     }
 })
@@ -81,10 +83,19 @@ resetRouter.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
     console.log(email)
 
+    let user;
+
     try {
-        const user = await Customer.findOne({ email });   
-        !user && res.status(404).json({ error: 'This email is not registered! ' });
-        // user && console.log('The found User ==>', user)
+        user = await Customer.findOne({ email });   
+        !user && res.json({ error: 'This email is not registered! ' });
+        console.log('The found User ==>', user)
+     }
+    catch (e) {
+        console.log("First Try Catch() ==>", e)
+    }
+
+    // 2nd Try Catch.
+    try {
 
         // Generate a unique Token /OR/ Key here!
         const key = uniqid('token_key-');
@@ -102,7 +113,7 @@ resetRouter.post('/forgot-password', async (req, res) => {
                 const data = {
                     client: lostCustomer,
                     key: key,
-                    msg: 'This link will expire in an hour'
+                    msg: 'This link will expire in one hour'
                 }
 
                 // 2. Send The mail to the customer here!
@@ -111,7 +122,7 @@ resetRouter.post('/forgot-password', async (req, res) => {
                         res.status(500).json({ error: 'An error was thrown on the server! restart this proccess' });
                     } else {
                         // Send a response here!
-                         res.status(200).json({ msg: 'A password reset link has been sent to your email' });
+                         res.status(200).json({ msg: 'A password reset link was sent to your email, Please follow the link to recover your account' });
 
                         // console.log('The Sent message ---', successMsg);
 

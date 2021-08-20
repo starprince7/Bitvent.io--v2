@@ -361,7 +361,9 @@ app.post("/signup/:id", async (req, res) => {
 
   if (UrlUserId !== undefined) {
     try {
-      const customer = await Customer.create(req.body);
+        // Create a user first
+        // before updating the referring user.
+        const customer = await Customer.create(req.body);
       if (customer) {
         // NOTE: ALl this below is STARTed / done, when a new Person/Customer is created!
         // NOTE: I am finding the old customer Twice here!
@@ -455,31 +457,46 @@ app.post('/password-change', async (req, res) => {
   const newHashedPassword = await bcrypt.hash(newPassword, salt);
   console.log(newHashedPassword);
 
-  
-  Customer.findById(accountId).then(async (customer) => {
+  try {
+    const customer = await Customer.findById(accountId)
+    console.log("The Customer ==>", customer)
+
     // Check to see if old [password matches!]
     // Bcrypt hashes under the hood B4 compare.
-    const authenticated = await bcrypt.compare(previousPassword, customer.password);
+    const authenticated = customer && await bcrypt.compare(previousPassword, customer.password);
 
-    // Check to see if the Password was Verified!
-    if (authenticated) {
-     
-      try {
-        const customerDoc = await Customer.findByIdAndUpdate(accountId, {
-          password: newHashedPassword
-        }, { new: true })
-        customerDoc && console.log('Newly Changed PAssword ===>', customerDoc)
-        customerDoc && res.json(customerDoc)
-       } catch (err) {
-        console.log("Cannot Replace to new Password ===>", err)
+      // Check to see if the Password was Verified!
+      if (authenticated) {     
+        // Update new-hashed Password in DB
+          try {
+              const customerDoc = await Customer.findByIdAndUpdate(accountId, {
+              password: newHashedPassword
+            }, { new: true })
+              customerDoc && console.log('Newly Changed PAssword ===>', customerDoc)
+              customerDoc && res.json({ success: customerDoc })
+            
+          } catch (err) {
+              console.log("Cannot Replace to new Password ===>", err)
+          }
+
+      } else {
+        console.log("Password Change ERR not Verified!")
+        res.json({ error: "Incorrect password" })
       }
+  }
+  catch (e) {
+    console.log('Cannot find User!!! ===> ', e)
+  }
+  
+  // Customer.findById(accountId).then(async (customer) => {
+  //   // Check to see if old [password matches!]
+  //   // Bcrypt hashes under the hood B4 compare.
+  //   console.log("The Customer ==>", customer)
+  //   const authenticated = await bcrypt.compare(previousPassword, customer.password);
 
-    } else {
-      console.log("Password Change ERR not Verified!")
-      res.status(401).json("Incorrect password")
-    }
     
-   }).catch(error => console.log('Cannot find User!!! ===> ', error));
+    
+  //  }).catch(error => console.log('Cannot find User!!! ===> ', error));
 
 })
 

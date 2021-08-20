@@ -80,20 +80,19 @@ function Dashboard({ user, cryptoPrice, fetchUser }) {
                                                 </Card.Text>
                                             </Card.Title>
                                         </Card>
-                                        
                                 <div className="card">
                                     <div className="card-header border-0 py-0">
                                         {/* <h4 className="card-title">Account Overview</h4> */}
                                     </div>
                                     <div className="card-body">
                                         <div className="row">
-                                            <div className="col-xl-12 col-lg-6 col-xxl-6">
+                                            <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                 <div className="widget-card">
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
                                                             <div className="coin-title">
                                                                 <span><i className="fas fa-money-check-alt"></i></span>
-                                                                <h5 className="d-inline-block ml-2 mb-3">Total Deposit <span>($)</span>
+                                                                <h5 className="d-inline-block ml-2 mb-3">All-time Deposit <span>($)</span>
                                                                 </h5>
                                                             </div>
                                                             <h4>
@@ -119,13 +118,13 @@ function Dashboard({ user, cryptoPrice, fetchUser }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-12 col-lg-6 col-xxl-6">
+                                            <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                 <div className="widget-card">
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
                                                             <div className="coin-title">
                                                                 <span><i className="fas fa-piggy-bank"></i></span>
-                                                                <h5 className="d-inline-block ml-2 mb-3">Total Payout <span>($)</span>
+                                                                <h5 className="d-inline-block ml-2 mb-3">All-time Payouts <span>($)</span>
                                                                 </h5>
                                                             </div>
                                                             <h4>
@@ -151,7 +150,7 @@ function Dashboard({ user, cryptoPrice, fetchUser }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-12 col-lg-6 col-xxl-6">
+                                            <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                 <div className="widget-card">
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
@@ -166,7 +165,7 @@ function Dashboard({ user, cryptoPrice, fetchUser }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-12 col-lg-6 col-xxl-6">
+                                            <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                 <div className="widget-card">
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="widget-stat">
@@ -201,121 +200,128 @@ function Dashboard({ user, cryptoPrice, fetchUser }) {
                                         </div>
                                     </div>
                             </div>
+                        {/* --- Referral Link --- */}
+                        <span className="p-2">
+                            <strong>Referral Link:</strong><br />
+                        </span>
+                        <p className="p-2" style={{fontSize: "10px"}}>
+                            
+                            { `${window.location.hostname}/signup?ref=${user?._id}` }
+                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className="col-xl-3 col-lg-12 col-xxl-12">
                         <ul className="list-unstyled">
-                                            <li className="media">
-                                                <i className="cc BTC mr-3"></i>
-                                                <div className="media-body">
-                                                    <h5 className="m-0">Bitcoin</h5>
-                                                </div>
-                                                <div className="text-right">
-                                                    <h5>
-                                                        <CurrencyFormat
-                                                            renderText={(value) => (
-                                                            <>
-                                                                <p>
-                                                                <strong>{value}</strong>
-                                                                </p>
-                                                            </>
-                                                            )}
-                                                            value={cryptoPrice?.btc.price}
-                                                            decimalScale={2}
-                                                            fixedDecimalScale={true}
-                                                            thousandSeparator={true}
-                                                            displayType={"text"}
-                                                            prefix={"$"}
-                                                        />
-                                                    </h5>
-                                                    <span>{Math.round(cryptoPrice?.btc.volume)} (Volume)</span>
-                                                </div>
-                                            </li>
-                                            <li className="media">
-                                                    <i className="cc ETH mr-3"></i>
-                                                    <div className="media-body">
-                                                        <h5 className="m-0">Ethereum</h5>
-                                                    </div>
-                                                    <div className="text-right">
-                                                    <h5>
-                                                        <CurrencyFormat
-                                                            renderText={(value) => (
-                                                            <>
-                                                                <p>
-                                                                <strong>{value}</strong>
-                                                                </p>
-                                                            </>
-                                                            )}
-                                                            value={cryptoPrice?.eth.price}
-                                                            decimalScale={2}
-                                                            fixedDecimalScale={true}
-                                                            thousandSeparator={true}
-                                                            displayType={"text"}
-                                                            prefix={"$"}
-                                                        />
-                                                        </h5>
-                                                        <span>{Math.round(cryptoPrice?.eth.volume)} (Volume)</span>
-                                                </div>
-                                            </li>
-                                            <li className="media">
-                                                <i className="cc LTC mr-3"></i>
-                                                <div className="media-body">
-                                                    <h5 className="m-0">Litecoin</h5>
-                                                </div>
-                                                <div className="text-right">
-                                                    <h5>
-                                                        <CurrencyFormat
-                                                            renderText={(value) => (
-                                                            <>
-                                                                <p>
-                                                                <strong>{value}</strong>
-                                                                </p>
-                                                            </>
-                                                            )}
-                                                            value={cryptoPrice?.ltc.price}
-                                                            decimalScale={2}
-                                                            fixedDecimalScale={true}
-                                                            thousandSeparator={true}
-                                                            displayType={"text"}
-                                                            prefix={"$"}
-                                                        />
-                                                    </h5>
-                                                    <span>{Math.round(cryptoPrice?.ltc.volume)} (Volume)</span>
-                                                </div>
-                                            </li>
+                            <li className="media">
+                                <i className="cc BTC mr-3"></i>
+                                <div className="media-body">
+                                    <h5 className="m-0">Bitcoin</h5>
+                                </div>
+                                <div className="text-right">
+                                    <h5>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                            <>
+                                                <p>
+                                                <strong>{value}</strong>
+                                                </p>
+                                            </>
+                                            )}
+                                            value={cryptoPrice?.btc.price}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h5>
+                                    <span>{Math.round(cryptoPrice?.btc.volume)} (Volume)</span>
+                                </div>
+                            </li>
+                            <li className="media">
+                                    <i className="cc ETH mr-3"></i>
+                                    <div className="media-body">
+                                        <h5 className="m-0">Ethereum</h5>
+                                    </div>
+                                    <div className="text-right">
+                                    <h5>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                            <>
+                                                <p>
+                                                <strong>{value}</strong>
+                                                </p>
+                                            </>
+                                            )}
+                                            value={cryptoPrice?.eth.price}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                        </h5>
+                                        <span>{Math.round(cryptoPrice?.eth.volume)} (Volume)</span>
+                                </div>
+                            </li>
+                            <li className="media">
+                                <i className="cc LTC mr-3"></i>
+                                <div className="media-body">
+                                    <h5 className="m-0">Litecoin</h5>
+                                </div>
+                                <div className="text-right">
+                                    <h5>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                            <>
+                                                <p>
+                                                <strong>{value}</strong>
+                                                </p>
+                                            </>
+                                            )}
+                                            value={cryptoPrice?.ltc.price}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h5>
+                                    <span>{Math.round(cryptoPrice?.ltc.volume)} (Volume)</span>
+                                </div>
+                            </li>
 
-                                            <li className="media">
-                                                <i className="cc BCH mr-3"></i>
-                                                <div className="media-body">
-                                                    <h5 className="m-0">Bitcoin Cash</h5>
-                                                </div>
-                                                <div className="text-right">
-                                                    <h5>
-                                                        <CurrencyFormat
-                                                            renderText={(value) => (
-                                                            <>
-                                                                <p>
-                                                                <strong>{value}</strong>
-                                                                </p>
-                                                            </>
-                                                            )}
-                                                            value={cryptoPrice?.bch.price}
-                                                            decimalScale={2}
-                                                            fixedDecimalScale={true}
-                                                            thousandSeparator={true}
-                                                            displayType={"text"}
-                                                            prefix={"$"}
-                                                        />
-                                                    </h5>
-                                                    <span>{Math.round(cryptoPrice?.bch.volume)} (Volume)</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                        </div>
+                            <li className="media">
+                                <i className="cc BCH mr-3"></i>
+                                <div className="media-body">
+                                    <h5 className="m-0">Bitcoin Cash</h5>
+                                </div>
+                                <div className="text-right">
+                                    <h5>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                            <>
+                                                <p>
+                                                <strong>{value}</strong>
+                                                </p>
+                                            </>
+                                            )}
+                                            value={cryptoPrice?.bch.price}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h5>
+                                    <span>{Math.round(cryptoPrice?.bch.volume)} (Volume)</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

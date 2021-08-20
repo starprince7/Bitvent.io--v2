@@ -9225,7 +9225,7 @@ button,
   justify-content: center;
   align-items: center;
   background-color: black;
-  background: url("./../images/background/bitcoin.jpg");
+  background: url("./../images/background/bitcoin.gif");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -9513,7 +9513,14 @@ button,
   height: 100vh; }
 
 .auth-form {
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  border-radius: 5px;
   border: 1px solid #f1f4f8; }
+  .auth-form .btn {
+    height: 50px;
+    font-weight: 700; }
   .auth-form .page-back {
     display: inline-block;
     margin-bottom: 15px; }

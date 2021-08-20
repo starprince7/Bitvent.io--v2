@@ -1,16 +1,40 @@
-import React, { } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Header2 from '../layout/header2';
 import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import SettingsNav from '../element/settings-nav';
 import { connect } from 'react-redux'
+import { changePassword } from '../../redux/app_state/actions'
 // Image
 import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 
 
-function Settings({ user }) {
+function Settings({ user, msg, changePassword, error }) {
+    const passwordChangeFormRef = useRef(null)
+    const passwordChangeButtonRef = useRef(null)
+
+    const handle_change_password = (e) => {
+        e.preventDefault()
+        // Loading & disabled Button Here
+        passwordChangeButtonRef.current.textContent = "Saving..."
+        passwordChangeButtonRef.current.disabled = true
+
+        const form = passwordChangeFormRef.current
+        const current_password = form.current_password.value
+        const new_password = form.new_password.value
+
+        console.log(current_password, new_password)
+        changePassword(current_password, new_password, user._id)
+    }
+
+    useEffect(() => {
+        if (msg || error) {
+            passwordChangeButtonRef.current.textContent = "Save"
+            passwordChangeButtonRef.current.disabled = false
+        }
+    }, [msg])
 
     return (
         <>
@@ -41,7 +65,7 @@ function Settings({ user }) {
                                                                 src={AvatarPlaceholder} width="55" height="55" alt="" />
                                                             <div className="media-body">
                                                                 <h4 className="mb-0">{user?.name} { user?.lastname }</h4>
-                                                                <p className="mb-0">Max file size is 20mb
+                                                                <p className="mb-0">Max file size is 5mb
                                                             </p>
                                                             </div>
                                                         </div>
@@ -64,22 +88,19 @@ function Settings({ user }) {
                                             <h4 className="card-title">Change Password</h4>
                                         </div>
                                         <div className="card-body">
-                                            <form action="#">
+                                            <form onSubmit={handle_change_password} ref={passwordChangeFormRef}>
                                                 <div className="form-row">
                                                     <div className="form-group col-xl-12">
                                                         <label className="mr-sm-2">Current Password</label>
-                                                        <input type="password" className="form-control" placeholder="password" />
+                                                        <input type="password" className="form-control" name="current_password" placeholder="password" />
                                                     </div>
                                                     <div className="form-group col-xl-12">
                                                         <label className="mr-sm-2">New Password</label>
-                                                        <input type="password" className="form-control"
+                                                        <input type="password" className="form-control" name="new_password"
                                                             placeholder="**********" />
-                                                        <p className="mt-2 mb-0">Enable two factor authencation on the security
-                                                            page
-                                                    </p>
                                                     </div>
                                                     <div className="col-12">
-                                                        <button className="btn btn-success waves-effect">Save</button>
+                                                        <button ref={passwordChangeButtonRef} className="btn btn-success waves-effect">Save</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -435,8 +456,16 @@ function Settings({ user }) {
 
 const mapStateToProps = state => {
     return {
-        user: state.dashboard_state.user
+        user: state.dashboard_state.user,
+        error: state.dashboard_state.error,
+        msg: state.dashboard_state.msg
     }
 }
 
-export default connect(mapStateToProps)(Settings);
+const mapDispatchToProps = dispatch => {
+    return {
+        changePassword: (current_password, new_password, id) => dispatch(changePassword(current_password, new_password, id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

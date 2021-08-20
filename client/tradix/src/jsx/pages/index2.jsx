@@ -60,46 +60,47 @@ function Homepage2({ logUserIn }) {
             <div className="exchange-form">
                 <div className="container">
                     <div className="row align-items-center justify-content-center">
-                        <div className="col-xl-7 col-lg-7">
+                        <div className="col-xl-11 col-lg-11">
                             <div className="intro-form-exchange">
-                            <div className="auth-form card pb-5">
-                                <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Let's get you started</h4>
-                                </div>
-                                <div className="card-body p-4">
-                                    <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
-                                        <div className="form-group">
-                                            <label>Email</label>
-                                            <input type="email" className="form-control" placeholder="Enter your email"
-                                                name="email" required />
-                                        </div>
-                                        <div className="form-group">
-                                            <label>Password</label>
-                                            <input type="password" className="form-control" placeholder="Password"
-                                                name="password" required />
-                                        </div>
-                                        <div className="form-row d-flex justify-content-between mt-4 mb-2">
-                                            <div className="form-group mb-0">
-                                                <label className="toggle">
-                                                    <input className="toggle-checkbox" type="checkbox" />
-                                                    <span className="toggle-switch"></span>
-                                                    <span className="toggle-label">Remember me</span>
-                                                </label>
-                                            </div>
-                                            <div className="form-group mb-0">
-                                                <Link href="reset.html">Forgot Password?</Link>
-                                            </div>
-                                        </div>
-                                        <div className="text-center mt-4">
-                                            <button type="submit" className="btn btn-success btn-block">Sign in</button>
-                                        </div>
-                                    </form>
-                                    <div className="new-account mt-3">
-                                        <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
-                                            up</Link></p>
+                            <coin-ponent shadow="sm" border-radius="6" />
+                                {/* <div className="auth-form card pb-5">
+                                    <div className="card-header justify-content-center">
+                                        <h4 className="card-title">Let's get you started</h4>
                                     </div>
-                                </div>
-                            </div>
+                                    <div className="card-body p-4">
+                                        <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
+                                            <div className="form-group">
+                                                <label>Email</label>
+                                                <input type="email" className="form-control" placeholder="Enter your email"
+                                                    name="email" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label>Password</label>
+                                                <input type="password" className="form-control" placeholder="Password"
+                                                    name="password" required />
+                                            </div>
+                                            <div className="form-row d-flex justify-content-between mt-4 mb-2">
+                                                <div className="form-group mb-0">
+                                                    <label className="toggle">
+                                                        <input className="toggle-checkbox" type="checkbox" />
+                                                        <span className="toggle-switch"></span>
+                                                        <span className="toggle-label">Remember me</span>
+                                                    </label>
+                                                </div>
+                                                <div className="form-group mb-0">
+                                                    <Link href="reset.html">Forgot Password?</Link>
+                                                </div>
+                                            </div>
+                                            <div className="text-center mt-4">
+                                                <button type="submit" className="btn btn-success btn-block">Sign in</button>
+                                            </div>
+                                        </form>
+                                        <div className="new-account mt-3">
+                                            <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
+                                                up</Link></p>
+                                        </div>
+                                    </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -111,7 +112,7 @@ function Homepage2({ logUserIn }) {
                     <div className="row justify-content-center">
                         <div className="col-xl-8">
                             <div className="section-title text-center">
-                                <h2>The World's Leading Financial Platform</h2>
+                                <h2>We are The World's Leading Financial Platform</h2>
                                 <p>Join thousands of investors world wide earning from our financial plans.</p>
                             </div>
                         </div>
@@ -119,16 +120,16 @@ function Homepage2({ logUserIn }) {
                     <div className="row">
                         <div className="col-xl-12">
                             <div className="market-table">
-                                <h3 className="text-center">Latest transcations</h3>
+                                <h3 className="text-center">Recent Transcations</h3>
                                 <div className="table-responsive">
                                     <table className="table mb-0 table-responsive-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Clients</th>
-                                                <th>Currency</th>
+                                                <th>Customers</th>
+                                                <th>Currencies</th>
                                                 <th>Amount</th>
-                                                <th>Rate</th>
+                                                <th>Rate / Change</th>
 
                                             </tr>
                                         </thead>
@@ -421,7 +422,7 @@ function Homepage2({ logUserIn }) {
                                         <div className="media">
                                             <span className="port-icon"> <i className="la la-bar-chart"></i></span>
                                             <div className="media-body">
-                                                <h4>We manage your portfolio</h4>
+                                                <h4>Build your investments</h4>
                                                 <p>Choose a suitable investment plan and jump start your portfolio today.
                                             </p>
                                             </div>
@@ -455,8 +456,8 @@ function Homepage2({ logUserIn }) {
                                             <span className="port-icon"> <i className="la la-mobile"></i></span>
                                             <div className="media-body">
                                                 <h4>Mobile access</h4>
-                                                <p>Stay on top of the markets with through our platform, using
-                                                 any device of your choice.</p>
+                                                <p>Stay on-top of your trade in the market through our platform, using
+                                                 the device of your choosing.</p>
                                             </div>
                                         </div>
                                     </div>

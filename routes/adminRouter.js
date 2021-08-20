@@ -72,10 +72,16 @@ AdminRouter.get("/customer/:id", async (req, res) => {
       console.log("Fetching One User's info From Admin router!  ID ---", userId)
 
       const price = require('crypto-price')
-      const btc = await price.getCryptoPrice("USD", "BTC")
-      const eth = await price.getCryptoPrice("USD", "ETH")
-      const ltc = await price.getCryptoPrice("USD", "LTC")
-      const bch = await price.getCryptoPrice("USD", "BCH")
+      let btc, eth, ltc, bch
+      try {
+          btc = await price.getCryptoPrice("USD", "BTC")
+          eth = await price.getCryptoPrice("USD", "ETH")
+          ltc = await price.getCryptoPrice("USD", "LTC")
+          bch = await price.getCryptoPrice("USD", "BCH")
+       }
+      catch (e) {
+        console.log("ERR thrown in fetching crypto Prices. "+ __dirname +"==+==>", e)
+      }
       
 
       // Add to the customer object response
@@ -83,7 +89,7 @@ AdminRouter.get("/customer/:id", async (req, res) => {
 
       try {
           let customer = await Customer.findById(userId).select("-password");
-          customer && res.json({ customer, crypto });
+          customer && res.json({ customer, crypto: !crypto ? null : crypto });
       } catch (error) {
           console.log("Cant Find User!! ---", error)
       }

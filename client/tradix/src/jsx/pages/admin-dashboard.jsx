@@ -27,7 +27,7 @@ function Accounts(props) {
             <div className="col-xl-12">
               <div className="card">
                 <div className="card-header border-0">
-                  <h4 className="card-title">All Customers</h4>
+                  <h4 className="card-title">{ users?.length } Registered Account(s)</h4>
                 </div>
                 <div className="card-body pt-0">
                   <div className="transaction-table">

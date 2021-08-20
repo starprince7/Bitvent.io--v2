@@ -1,7 +1,8 @@
 import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import WWFX_LOGO  from '../../images/wealth_wise.png'
+import WWFX_LOGO from '../../images/wealth_wise.png'
+import MarketCurrencyPrices from '../element/MarketCurrencyPrices'
 
 
 
@@ -9,6 +10,7 @@ function Header1() {
 
     return (
         <>
+            {/* <MarketCurrencyPrices /> */}
             <div className="header">
                 <div className="container">
                     <div className="row">
