@@ -22,9 +22,9 @@ function sendMailToCustomer(email, data, cb) {
         .then((data) => {
             console.log("Rendering the EJS with this Mail", email);
             const mailOptions = {
-                from: "support@skyviewtrading.co.uk",
+                from: "support@wealthwisefx.co.uk",
                 to: email,
-                subject: "Skyview Trading - Recover Your Password",
+                subject: "Password Reset - WWF",
                 html: data,
             }
   

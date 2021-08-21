@@ -8,15 +8,15 @@ import { fetchWithdrawRequest } from '../../redux/app_state/actions'
 function Sidebar2({ fetchWithdrawRequest, withdraw_request }) {
 
     const style = {
-        fontSize: '12px',
+        fontSize: '11px',
         color: 'white',
-        display: 'inline-flex',
-        marginLeft: "-10px"
+        marginLeft: "-10px",
+        display: 'inline-flex'
     }
 
     const icon_style = {
         fontSize: "14px",
-        marginLeft: "-15px"
+        marginLeft: "-10px",
     }
 
     useEffect(() => {

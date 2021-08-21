@@ -18,7 +18,7 @@ function Faq() {
                             <div className="terms_condition-content">
                                 <div className="terms_condition-text">
                                     <h3>Frequently Asked Questions </h3>
-                                    <p>Tradix is an instant cryptocurrency exchange that allows you to exchange crypto
+                                    <p>WWFx. is an instant cryptocurrency exchange and investment platform that allows you to exchange crypto
                                         fast and buy it with a bank card. The service provides the best crypto-to-crypto
                                         rates and supports over 140 cryptocurrencies available for exchange
                                 </p>
@@ -26,11 +26,11 @@ function Faq() {
 
 
                                 <div className="terms_condition-text">
-                                    <h3>How does Tradix work? </h3>
+                                    <h3>How does WWFx. work? </h3>
                                     <p>
-                                        Tradix’s trading algorithm is integrated into the largest cryptocurrency exchange
+                                        Our trading algorithm is integrated into the largest cryptocurrency exchange
                                         platforms, including Binance, Poloniex, Bittrex, etc. In the span of milliseconds,
-                                        Tradix makes bids and asks on the platforms, then selects and suggests the best
+                                        WWFx. makes bids and asks on the platforms, then selects and suggests the best
                                         available rate and displays the estimated rate on our site. The rates remain
                                         approximate until the transaction is actually made on the blockchain, which is why
                                         the exchange rate at the time of a transaction may differ slightly from the
@@ -42,7 +42,7 @@ function Faq() {
 
                                 <div className="terms_condition-text">
                                     <h3>Why should I trust you? </h3>
-                                    <p>Tradix is one of the most prominent instant cryptocurrency exchanges that has
+                                    <p>WWFx. is one of the most prominent instant cryptocurrency and forex exchanges that has
                                         gained the trust of more than 2M users from all over the world. The service provides
                                         safe and fast transactions without revealing users identities. We provide the best
                                         possible rates by comparing a wide range of reliable trading platforms and work with
@@ -54,23 +54,23 @@ function Faq() {
                                         </li>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>Instant exchange. </p>
-                                        </li>
-                                        <li>
-                                            <i className="fa fa-circle"></i>
-                                            <p>Each account is protected with 2-factor authentication and an HTTPS protocol.
+                                            <p>Fast withdrawal.
                                         </p>
                                         </li>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>More than 2 million satisfied users.</p>
+                                            <p>Instant exchange. </p>
+                                        </li>
+                                        <li>
+                                            <i className="fa fa-circle"></i>
+                                            <p>More than 2 million satisfied customers.</p>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div className="terms_condition-text">
-                                    <h3>Does Tradix fix rates? </h3>
-                                    <p>Tradix mobile app does! Mobile app users will no longer be affected by the risks
+                                    <h3>Does WWFx. have fixed rates? </h3>
+                                    <p>WWFx. mobile app does! Mobile app users will no longer be affected by the risks
                                         associated with crypto market fluctuations. Soon, the fixed-rate exchanges will also
                                         be implemented on the web version. To lock the current exchange rate, the user needs
                                         to click on the lock icon, which will result in them getting the exact same amount
@@ -79,34 +79,34 @@ function Faq() {
     
     
                                 </p>
-                                    <p> Alternatively, Tradix offers our lowest fee of 0.25% for all crypto-to-crypto
+                                    <p> Alternatively, WWFx. offers our lowest fee of 0.25% for all crypto-to-crypto
                                     exchanges made at a floating rate.</p>
                                 </div>
 
                                 <div className="terms_condition-text">
                                     <h3>No warranties : </h3>
-                                    <p>Elaenia is provided “as is” without any representations or warranties. Elaenia.com
+                                    <p>WWFx is provided “as is” without any representations or warranties. WWFx
                                         makes no representations or warranties in relation to this website or the
                                     information and materials provided on this website.</p>
-                                    <p>Elaenia.com does not warrant that:</p>
+                                    <p>WWFx. does not warrant that:</p>
 
                                     <ul>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>The website will be constantly available, or available at all moving forward.
+                                            <p>Funds deposited into an incorrect wallet address will be covered by WWFx.
                                         </p>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <i className="fa fa-circle"></i>
                                             <p>The information on this website is complete, true, or non-misleading.</p>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
 
-                                <div className="terms_condition-text">
+                                {/* <div className="terms_condition-text">
                                     <h3>Privacy : </h3>
                                     <p>For details about our privacy policy, please refer to the privacy policy section.</p>
-                                </div>
+                                </div> */}
 
                                 <div className="terms_condition-text">
                                     <h3>Unenforceable provisions : </h3>
@@ -123,7 +123,7 @@ function Faq() {
 
                                 <div className="terms_condition-text">
                                     <h3>Modifications: </h3>
-                                    <p>Elaenia.com may revise these terms of use for its website at any time without notice.
+                                    <p>{window.location.host} may revise these terms of use for its website at any time without notice.
                                         By using this web site you are agreeing to be bound by the then current version of
                                     these terms of service.</p>
                                 </div>
@@ -133,14 +133,14 @@ function Faq() {
                                     <ul>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>Elaenia.com reserves the rights under these terms and conditions to take
+                                            <p>{window.location.host} reserves the rights under these terms and conditions to take
                                             action if you breach these terms and conditions in any way. </p>
                                         </li>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>Elaenia.com may take such action as seems appropriate to deal with the
+                                            <p>{window.location.host} may take such action as seems appropriate to deal with the
                                                 breach, including suspending your access to the website, suspending your
-                                                earnings made trough Elaenia.com,prohibiting you from accessing the
+                                                earnings made trough our website, prohibiting you from accessing the
                                             website, or bringing court proceedings against you.</p>
                                         </li>
                                     </ul>

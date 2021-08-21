@@ -35,6 +35,10 @@ const customerSchema = new schema({
     type: Number,
     default: 50,
   },
+  country: {
+    type: String,
+    lowercase: true
+  },
   name: {
     type: String,
     lowercase: true,

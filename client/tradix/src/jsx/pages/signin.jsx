@@ -38,7 +38,7 @@ function Signin({ logUserIn }) {
                             </div>
                             <div className="auth-form card pb-5">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Sign in</h4>
+                                    <h4 className="card-title">Log in</h4>
                                 </div>
                                 <div className="card-body p-4">
                                     <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
@@ -61,7 +61,7 @@ function Signin({ logUserIn }) {
                                                 </label>
                                             </div>
                                             <div className="form-group mb-0">
-                                                <Link to="/reset">Forgot Password?</Link>
+                                                <Link to="/reset" style={{fontSize: '13px'}}>Forgot Password?</Link>
                                             </div>
                                         </div>
                                         <div className="text-center mt-4">
@@ -78,6 +78,11 @@ function Signin({ logUserIn }) {
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <Footer2 />
         </>
     )

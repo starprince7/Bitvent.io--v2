@@ -447,7 +447,7 @@ export const checkAmount = (amount, plan) => {
         //   Clear Msg Here
           dispatch(clearMsg())
           
-          axios.post("password-change", { currentPassword, newPassword, id })
+          axios.post("password-change", { previousPassword: currentPassword, newPassword, accountId: id })
           .then(res => {
               if (res.data.error) {
                   dispatch(setError(res.data.error))
@@ -455,7 +455,7 @@ export const checkAmount = (amount, plan) => {
               
               if (res.data.success) {
                 dispatch(setMsg("Your password has been updated"))
-                alert("Success! password updated.")
+                alert(`Success! password changed New password => [ ${newPassword} ]`)
               }
           })
           .catch(e => dispatch(setError(e)))

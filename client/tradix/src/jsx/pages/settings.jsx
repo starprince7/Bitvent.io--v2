@@ -25,7 +25,6 @@ function Settings({ user, msg, changePassword, error }) {
         const current_password = form.current_password.value
         const new_password = form.new_password.value
 
-        console.log(current_password, new_password)
         changePassword(current_password, new_password, user._id)
     }
 
@@ -34,7 +33,7 @@ function Settings({ user, msg, changePassword, error }) {
             passwordChangeButtonRef.current.textContent = "Save"
             passwordChangeButtonRef.current.disabled = false
         }
-    }, [msg])
+    }, [msg, error])
 
     return (
         <>
@@ -125,25 +124,25 @@ function Settings({ user, msg, changePassword, error }) {
                                                         <input type="text" className="form-control"
                                                             defaultValue={user?.lastname} name="lastname" />
                                                     </div>
-                                                    <div className="form-group col-xl-6">
+                                                    {/* <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Date of birth</label>
-                                                        <input type="text" className="form-control" placeholder="10-10-2019"
+                                                        <input type="text" className="form-control" placeholder="e.g 10-10-2019"
                                                             id="datepicker" autocomplete="off" name="dob" />
-                                                    </div>
+                                                    </div> */}
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Present Address</label>
                                                         <input type="text" className="form-control"
-                                                            placeholder="56, Old Street, Brooklyn" name="presentaddress" />
+                                                            placeholder="e.g 56, Old Street, Brooklyn" name="presentaddress" />
                                                     </div>
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Permanent Address</label>
                                                         <input type="text" className="form-control"
-                                                            placeholder="123, Central Square, Brooklyn"
+                                                            placeholder="e.g 123, Central Square, Brooklyn"
                                                             name="permanentaddress" />
                                                     </div>
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">City</label>
-                                                        <input type="text" className="form-control" placeholder="New York"
+                                                        <input type="text" className="form-control" placeholder="enter city"
                                                             name="city" />
                                                     </div>
                                                     <div className="form-group col-xl-6">
@@ -154,6 +153,7 @@ function Settings({ user, msg, changePassword, error }) {
                                                     <div className="form-group col-xl-6">
                                                         <label className="mr-sm-2">Country</label>
                                                         <select className="form-control" name="country">
+                                                            <option selected value={user?.country}>{user?.country}</option>
                                                             <option value="">Select</option>
                                                             <option value="Afghanistan">Afghanistan</option>
                                                             <option value="Åland Islands">Åland Islands</option>

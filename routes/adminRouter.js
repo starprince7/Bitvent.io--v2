@@ -31,9 +31,9 @@ function sendMailTo(customer, res, successResponse, walletAddress, amount) {
     .then((data) => {
       console.log("Rendering the EJS with this Mail", customer.email);
       const mailOptions = {
-        from: "support@skyviewtradingfx.com",
+        from: "support@wealthwisefx.co.uk",
         to: customer.email,
-        subject: "Withdrawal Request Successful!",
+        subject: "Withdrawal Request Successful",
         html: data,
       };
 

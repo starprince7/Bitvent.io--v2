@@ -78,7 +78,7 @@ class Index extends Component {
                             <Route path='/otp-2' component={Otp2} />
                             <Route path='/privacy-policy' component={PrivacyPolicy} />
                             <Route path='/reset' component={Reset} />
-                            <Route path='/password-reset' component={ResetPassword} />
+                            <Route path='/password_reset' component={ResetPassword} />
                             <Route path='/login' component={Signin} />
                             <Route path='/signup' component={Signup} />
                             <Route path='/terms-condition' component={TermsCondition} />

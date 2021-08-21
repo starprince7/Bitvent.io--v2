@@ -64,7 +64,7 @@ function WithdrawRequests({ withdraw_request, fetchWithdrawRequest }) {
         button.disabled = false
       
       if (result.data ) {
-        
+        alert("Request approved.")
         setTimeout(() => {       
           deleteRequest(id);  /* The ID is of the Request API and not the Customers APi */
         }, 500)
@@ -104,19 +104,24 @@ function WithdrawRequests({ withdraw_request, fetchWithdrawRequest }) {
                       <table className="table mb-0 table-responsive-sm">
                         <tbody>
                           {
-                            withdraw_request && withdraw_request.map( (request) => (
+                            withdraw_request?.length !== 0 && withdraw_request ? withdraw_request.map( (request) => (
                               <tr key={request._id}>
                               <td><button ref={approve_btn_ref} onClick={() => approve_withdrawal_request(request._id, request.amount, request.email, request.walletAddress)} className="btn btn-success">Approve</button></td>
                                 <td>
                                   <span className="badge badge-info">{ request.email }</span>
                                 </td>
 
-                                <td className="text-primary">{ request.amount }</td>
+                                <td className="text-primary">${ request.amount }</td>
                                 <td className="text-primary">{ request.crypto_type }</td>
                                 <td className="text-primary">{ request.wallet_address }</td>
                                 <td><button ref={remove_btn_ref} data-id={request._id} onClick={() => deleteRequest(request._id)} className="delete_btn btn btn-danger">Delete</button></td>
                             </tr>
-                            ))
+                            )) :
+                            (<div className="container">
+                              <div class="alert alert-info" role="alert">
+                                You have no widthraw request!
+                              </div>
+                            </div>)
                           }
                         </tbody>
                       </table>

@@ -26,7 +26,7 @@ function Header1() {
                                             <NavDropdown title="Company">
                                                 {/* <NavDropdown.Item><Link to={'/about'}>About us</Link></NavDropdown.Item> */}
                                                 {/* <NavDropdown.Item><Link to={'/team'}>Team</Link></NavDropdown.Item> */}
-                                                <NavDropdown.Item><Link to={'/blog'}>Blog</Link></NavDropdown.Item>
+                                                <NavDropdown.Item><Link to={'/faq'}>Faq</Link></NavDropdown.Item>
                                                 <NavDropdown.Item><Link to={'/career'}>Career</Link></NavDropdown.Item>
                                             </NavDropdown>
 
@@ -36,7 +36,6 @@ function Header1() {
                                             </NavDropdown> */}
                                             <Nav.Item><Link to={'/about'}>About</Link></Nav.Item>
                                             <Nav.Item><Link className="mx-2" to={'/team'}>Team</Link></Nav.Item>
-                                            <Nav.Item><Link to={'/faq'}>FAQ</Link></Nav.Item>
                                             
                                             
 
@@ -50,7 +49,7 @@ function Header1() {
                                         <Nav.Item><Link to={'/signup'} className='mx-3 text-secondary'>Sign up</Link></Nav.Item> 
 
                                     <div className="signin-btn ml-2">
-                                        <Link className="btn btn-primary" to={'/login'}>Sign in</Link>
+                                        <Link className="btn btn-primary" to={'/login'}>Log in</Link>
                                     </div>
                                     </Navbar.Collapse>
 

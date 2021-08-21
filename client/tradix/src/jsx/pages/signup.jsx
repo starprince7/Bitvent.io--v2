@@ -8,7 +8,7 @@ import WWFX_LOGO  from '../../images/wealth_wise.png'
 
 function Signup({ registerUser }) {
     const style = {
-        marginBottom: '30px'
+        height: 'auto',
     }
 
     const handle_signup_submit = (e) => {

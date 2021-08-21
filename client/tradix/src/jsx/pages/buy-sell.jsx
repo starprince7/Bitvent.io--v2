@@ -97,7 +97,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
                 // console.log(result);
                 // console.log(result.data);
 
-                result.data && alert(`Success! $${amount} is been requested for withdrawal, your value will be credited shortly.`)
+                result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited shortly.`)
                 // Reset Withdrawal Form field.
                 inputRef.current.value = ""
                 cryptoTypeRef.current.value = ""

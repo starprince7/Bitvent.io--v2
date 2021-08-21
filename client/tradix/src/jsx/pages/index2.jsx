@@ -40,8 +40,8 @@ function Homepage2({ logUserIn }) {
                     <div className="row justify-content-center">
                         <div className="col-xl-7 col-lg-12">
                             <div className="intro-content text-center">
-                                <h1>World Class Finance Planning</h1>
-                                <p>Financial Freedom without Boundaries</p>
+                                <h1>Every investment leads to profit only</h1>
+                                <p>Its all about how you spend your money.</p>
                                 <div className="intro-form">
                                     <form action="#">
                                         <input type="text" className="form-control" placeholder="Subscribe Now" />

@@ -88,7 +88,7 @@ app.post("/signup", async (req, res) => {
   const userId = req.params.id;
   console.log("The Path Paramter ==>", userId)
   console.log("The signUp details === ====", req.body);
-  const { name, lastname, username, email, password } = req.body
+  const { name, lastname, username, email, password, country } = req.body
 
   function spreadAndUpdateTheDate(object) {
     return {
@@ -98,7 +98,7 @@ app.post("/signup", async (req, res) => {
   }
 
   try {
-    const customer = await Customer.create(spreadAndUpdateTheDate({ name, lastname, username, email, password }));
+    const customer = await Customer.create(spreadAndUpdateTheDate({ name, lastname, username, email, password, country }));
     customer && console.log(customer);
     const token = createToken(customer._id);
     
@@ -459,7 +459,6 @@ app.post('/password-change', async (req, res) => {
 
   try {
     const customer = await Customer.findById(accountId)
-    console.log("The Customer ==>", customer)
 
     // Check to see if old [password matches!]
     // Bcrypt hashes under the hood B4 compare.
