@@ -30,6 +30,7 @@ app.use(express.static("client/icon"));
 app.use(express.static("client/icon/fav-icons"));
 app.use(express.static("client/icon/svg"));
 app.use(express.static("client/tradix/build"));
+app.use('/upload/', express.static('upload'))
 
 //Middlewares
 app.use(express.json());

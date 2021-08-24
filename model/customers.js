@@ -31,6 +31,7 @@ const customerSchema = new schema({
     type: String,
     default: "customer",
   },
+  image: String,
   wallet: {
     type: Number,
     default: 50,

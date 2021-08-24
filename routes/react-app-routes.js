@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const Customer = require("../model/customers");
@@ -38,6 +39,53 @@ const handleErrors = (error) => {
 
 
 
+// Handling Image File Upload.
+const storage = multer.diskStorage({
+  destination: "./upload",
+  filename: function (req, file, cb) {
+
+    console.log(
+      "File Name is saved as",
+      new Date().toISOString().replace(/:/g, "-") + file.originalname
+    );
+
+    cb(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 11 },
+  fileFilter: function (req, file, cb) {
+    if (
+      file.mimetype == "image/jpeg" ||
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/gif"
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Type not supported"));
+    }
+  },
+});
+
+
+router.post("/profile-upload", upload.single("file"), async (req, res) => {
+  const id = req.body.id
+  console.log("The File",req.file)
+  console.log("The Body",req.body)
+
+  const image = req.file.path
+  try {
+    const profile_image = await Customer.findByIdAndUpdate(id, { image: image }, { new: true })
+    console.log("Profile Image Saved To DB === ", profile_image)
+    profile_image && res.redirect("/settings")
+  }
+  catch (e) {
+    console.log("ERROR saving Image to DB")
+    res.json({ error: "Error! couldn't upload image" })
+  }
+})
 
 // WEB ROUTE!
 router.get("*", (req, res) => {

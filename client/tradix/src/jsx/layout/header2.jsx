@@ -113,7 +113,7 @@ function Header2({ user, logUserOut, setUser, cryptoPrice }) {
                                                 </li>
                                             </ul>
                                         </div>
-                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={AvatarPlaceholder} width="30"
+                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={ user?.image ? '/' + user?.image : AvatarPlaceholder } width="30"
                                             height="30" alt="profile" />
                                         <DropdownButton
                                             alignRight

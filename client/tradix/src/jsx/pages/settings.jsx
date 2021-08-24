@@ -1,23 +1,42 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Header2 from '../layout/header2';
 import Sidebar from '../layout/sidebar';
 import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import SettingsNav from '../element/settings-nav';
 import { connect } from 'react-redux'
-import { changePassword } from '../../redux/app_state/actions'
+import { changePassword, uploadImage } from '../../redux/app_state/actions'
 // Image
 import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 
 
-function Settings({ user, msg, changePassword, error }) {
+function Settings({ user, msg, changePassword, uploadImage, error }) {
     const passwordChangeFormRef = useRef(null)
     const passwordChangeButtonRef = useRef(null)
+    const upload_image_ref = useRef(null)
+    const [image, setImage] = useState(null)
+
+
+    const handle_image_change = (e) => {
+        e.persist()
+        setImage(e.target.files[0])
+        console.log(e.target.files[0])
+    }
+    
+    const handle_image_update = (e) => {
+        e.preventDefault()
+
+        // Start Loader & disabled Button here!
+        upload_image_ref.current.textContent = "Uploading..."
+        upload_image_ref.current.disabled = true
+
+        uploadImage(image, user._id)
+    }
 
     const handle_change_password = (e) => {
         e.preventDefault()
-        // Loading & disabled Button Here
+        // Start Loading & disabled Button Here
         passwordChangeButtonRef.current.textContent = "Saving..."
         passwordChangeButtonRef.current.disabled = true
 
@@ -33,7 +52,17 @@ function Settings({ user, msg, changePassword, error }) {
             passwordChangeButtonRef.current.textContent = "Save"
             passwordChangeButtonRef.current.disabled = false
         }
+
+        // For profile image upload Button
+        if (msg || error) {
+            upload_image_ref.current.textContent = "Save"
+            upload_image_ref.current.disabled = false
+
+            // reset the conponent state.
+            setImage(null)
+        }
     }, [msg, error])
+
 
     return (
         <>
@@ -55,26 +84,28 @@ function Settings({ user, msg, changePassword, error }) {
                                             <h4 className="card-title">User Profile</h4>
                                         </div>
                                         <div className="card-body">
-                                            <form action="#">
+                                            <form  action="/profile-upload" method="POST" enctype="multipart/form-data">
                                                 <div className="form-row">
                                                     
                                                     <div className="form-group col-xl-12">
                                                         <div className="media align-items-center mb-3">
                                                             <img className="mr-3 rounded-circle mr-0 mr-sm-3"
-                                                                src={AvatarPlaceholder} width="55" height="55" alt="" />
+                                                                src={ user?.image ? '/' + user?.image : AvatarPlaceholder } width="55" height="55" alt="" />
                                                             <div className="media-body">
                                                                 <h4 className="mb-0">{user?.name} { user?.lastname }</h4>
                                                                 <p className="mb-0">Max file size is 5mb
                                                             </p>
                                                             </div>
                                                         </div>
-                                                        <div className="file-upload-wrapper" data-text="Change Photo">
+                                                        {image?.name}
+                                                        <div className="file-upload-wrapper" data-text="Change Photo" required>
                                                             <input name="file-upload-field" type="file"
-                                                                className="file-upload-field" />
+                                                                className="file-upload-field" name="file" onChange={handle_image_change} />
                                                         </div>
+                                                        <input type="text" name="id" value={user?._id} style={{display: 'none'}} />
                                                     </div>
                                                     <div className="col-12">
-                                                        <button className="btn btn-success waves-effect">Save</button>
+                                                        <button ref={upload_image_ref} className="btn btn-success waves-effect">Save</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -464,6 +495,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        uploadImage: (image, id) => dispatch(uploadImage(image, id)),
         changePassword: (current_password, new_password, id) => dispatch(changePassword(current_password, new_password, id))
     }
 }

@@ -24,7 +24,7 @@ function Accounts({ user }) {
                             <div className="card profile_card">
                                 <div className="card-body">
                                     <div className="media">
-                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={AvatarPlaceholder} width="60"
+                                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={ user?.image ? '/' + user?.image : AvatarPlaceholder } width="60"
                                             height="60" alt="" />
                                         <div className="media-body">
                                             <span>Hello</span>

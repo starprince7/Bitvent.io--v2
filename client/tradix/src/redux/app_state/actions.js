@@ -461,3 +461,38 @@ export const checkAmount = (amount, plan) => {
           .catch(e => dispatch(setError(e)))
       }
   }
+  
+  export const uploadImage = (image, id) => {
+      return (dispatch) => {
+          //   Clear Msg Here
+          dispatch(clearMsg())
+          
+          const formData = new FormData()
+
+          const options = {
+              formData,
+              id
+          }
+          
+          formData.append('file', image)
+
+          axios.post("/profile-upload", options, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              },
+            //   onUploadProgress: (e) =>
+          })
+          .then(res => {
+              if (res.data.error) {
+                  dispatch(setError(res.data.error))
+              }
+
+              if (res.data.msg) {
+                  dispatch(setMsg(res.data.msg))
+              }
+          })
+          .catch(e => {
+              console.log("ERR Uploading Image file. === ", e)
+          })
+      }
+  }
