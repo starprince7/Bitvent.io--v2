@@ -93,7 +93,7 @@ function Settings({ user, msg, changePassword, uploadImage, error }) {
                                                                 src={ user?.image ? '/' + user?.image : AvatarPlaceholder } width="55" height="55" alt="" />
                                                             <div className="media-body">
                                                                 <h4 className="mb-0">{user?.name} { user?.lastname }</h4>
-                                                                <p className="mb-0">Max file size is 5mb
+                                                                <p className="mb-0">Max file size is 2mb
                                                             </p>
                                                             </div>
                                                         </div>

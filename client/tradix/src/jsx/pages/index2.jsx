@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
  import { Link } from 'react-router-dom';
 // import { Row, Col, Card } from 'react-bootstrap'
 import Header1 from './../layout/header1';
@@ -14,6 +14,9 @@ import { logUserIn } from '../../redux/app_state/actions'
 
 
 function Homepage2({ logUserIn }) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const handle_login_submit = (e) => {
         e.preventDefault()
@@ -117,10 +120,50 @@ function Homepage2({ logUserIn }) {
                             </div>
                         </div>
                     </div>
+                    <div className="info ">
+                        <div className="container">
+                            <div className="row justify-content-center">
+                                <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                                    <div className="info-content">
+                                        <span><i className="la la-shield"></i></span>
+                                        <h4>Best rates on the market</h4>
+                                    </div>
+                                </div>
+                                <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                                    <div className="info-content">
+                                        <span><i className="la la-cubes"></i></span>
+                                        <h4>Transparent 0.25% fee</h4>
+                                    </div>
+                                </div>
+                                <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                                    <div className="info-content">
+                                        <span><i className="la la-clock-o"></i></span>
+                                        <h4>Quick and easy fund withdraw</h4>
+                                    </div>
+                                </div>
+                                <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                                    <div className="info-content">
+                                        <span><i className="la la-exchange"></i></span>
+                                        <h4>Profitable exchanges</h4>
+                                    </div>
+                                </div>
+                                <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                                    <div className="info-content">
+                                        <span><i className="la la-support"></i></span>
+                                        <h4>24/7 live chat support</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
                     <div className="row">
                         <div className="col-xl-12">
                             <div className="market-table">
-                                <h3 className="text-center">Recent Transcations</h3>
+                                <h3 className="text-center">Recent transcation</h3>
                                 <div className="table-responsive">
                                     <table className="table mb-0 table-responsive-sm table-striped">
                                         <thead>
@@ -245,7 +288,7 @@ function Homepage2({ logUserIn }) {
                                             <tr>
                                                 <td>7</td>
                                                 <td className="coin_icon">
-                                                    <span>Rhaye Daniel</span>
+                                                    <span>Robert Steve</span>
                                                 </td>
                                                 <td className="coin_icon">
                                                     <i className="cc LTC"></i>
@@ -269,43 +312,6 @@ function Homepage2({ logUserIn }) {
                 </div>
             </div>
 
-            <div className="info ">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                            <div className="info-content">
-                                <span><i className="la la-shield"></i></span>
-                                <h4>Best rates on the market</h4>
-                            </div>
-                        </div>
-                        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                            <div className="info-content">
-                                <span><i className="la la-cubes"></i></span>
-                                <h4>Transparent 0.25% fee</h4>
-                            </div>
-                        </div>
-                        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                            <div className="info-content">
-                                <span><i className="la la-clock-o"></i></span>
-                                <h4>Quick and easy fund withdraw</h4>
-                            </div>
-                        </div>
-                        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                            <div className="info-content">
-                                <span><i className="la la-exchange"></i></span>
-                                <h4>Profitable exchanges</h4>
-                            </div>
-                        </div>
-                        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                            <div className="info-content">
-                                <span><i className="la la-support"></i></span>
-                                <h4>24/7 live chat support</h4>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
             <div className="product-feature section-padding">
                 <div className="container">
@@ -376,27 +382,30 @@ function Homepage2({ logUserIn }) {
                     <div className="row justify-content-center">
                         <div className="col-xl-8">
                             <div className="section-title">
-                                <h2>Get started in few minutes</h2>
+                                <h2>Get started with these few steps</h2>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                            <div className="getstart-content">
+                            <div className="getstart-content my-4">
                                 <span><i className="la la-user-plus"></i></span>
+                                <h3>1.</h3>
                                 <h3>Create an account</h3>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                            <div className="getstart-content">
+                            <div className="getstart-content my-4">
                                 <span><i className="la la-bank"></i></span>
+                                <h3>2.</h3>
                                 <h3>Pick a financial plan</h3>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                            <div className="getstart-content">
+                            <div className="getstart-content my-4">
                                 <span><i className="la la-exchange"></i></span>
-                                <h3>Earn income</h3>
+                                <h3>3.</h3>
+                                <h3>Earn Profit</h3>
                             </div>
                         </div>
                     </div>
@@ -627,9 +636,9 @@ function Homepage2({ logUserIn }) {
                             <div className="info-list">
                                 <h4 className="mb-3">Address</h4>
                                 <ul>
-                                    <li><i className="fa fa-map-marker"></i>  2-7 Clerkenwell Green, Farringdon London</li>
-                                    <li><i className="fa fa-phone"></i> (+880) 1243 665566</li>
-                                    <li><i className="fa fa-envelope"></i> hello@example.com</li>
+                                    <li><i className="fa fa-envelope"></i> wealthwisefx@gmail.com</li>
+                                    <li><i className="fa fa-map-marker"></i>  92 Lichfield Street, Tamworth, Staffordshire B79 7QF England.</li>
+                                    {/* <li><i className="fa fa-phone"></i> (+880) 1243 665566</li> */}
                                 </ul>
                             </div>
                         </div>

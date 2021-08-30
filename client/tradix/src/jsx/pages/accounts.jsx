@@ -29,8 +29,8 @@ function Accounts({ user }) {
                                         <div className="media-body">
                                             <span>Hello</span>
                                             <h4 className="mb-2">{ user?.name } { user?.lastname }</h4>
-                                            <p className="mb-1"> <span><i className="fa fa-phone mr-2 text-primary"></i></span> +1
-                                            235 5547</p>
+                                            {/* <p className="mb-1"> <span><i className="fa fa-phone mr-2 text-primary"></i></span> +1
+                                            235 5547</p> */}
                                             <p className="mb-1"> <span><i className="fa fa-envelope mr-2 text-primary"></i></span>
                                                 { user?.email }
                                             </p>
@@ -38,14 +38,14 @@ function Accounts({ user }) {
                                     </div>
 
                                     <ul className="card-profile__info">
-                                        <li>
+                                        {/* <li>
                                             <h5 className="mr-4">Address</h5>
                                             <span className="text-muted">House 14, Road 9, Gulshan, Dhaka</span>
                                         </li>
                                         <li className="mb-1">
                                             <h5 className="mr-4">Total Log</h5>
                                             <span>103 Time (Today 5 Times)</span>
-                                        </li>
+                                        </li> */}
                                         <li>
                                             <h5 className="text-danger mr-4">Last Log</h5>
                                             <span className="text-danger">{ user?.lastLogin }</span>

@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import Header1 from './../layout/header1';
 import Footer1 from './../layout/footer1';
 import Bottom from './../element/bottom';
@@ -8,6 +8,9 @@ import Bottom from './../element/bottom';
 
 
 function Faq() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <><Header1 />

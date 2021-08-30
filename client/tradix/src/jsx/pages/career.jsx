@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
  import { Link } from 'react-router-dom';
 // import { Row, Col, Card } from 'react-bootstrap'
 import Header1 from './../layout/header1';
@@ -9,6 +9,9 @@ import Bottom from './../element/bottom';
 
 
 function Career() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <><Header1 />

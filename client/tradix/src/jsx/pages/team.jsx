@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import Header1 from './../layout/header1';
 import Footer1 from './../layout/footer1';
 import Bottom from './../element/bottom';
@@ -11,27 +11,21 @@ import london_img from './../../images/brand/london.png'
 import forbes_img from './../../images/brand/forbes.png'
 import crypto_valley_img from './../../images/brand/crypto_valley.png'
 import person1 from './../../images/team/1.jpg'
+import person2 from './../../images/team/2.jpg'
+import person3 from './../../images/team/3.jpg'
+import person4 from './../../images/team/4.jpg'
+import person5 from './../../images/team/5.jpg'
+import person6 from './../../images/team/6.jpg'
 
 
 
 function Team() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <><Header1 />
-            <div className="join-team section-padding">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-xl-8">
-                            <div className="join-team-content text-center">
-                                <h2 className="mb-2">Better returns with us</h2>
-                                <p className="mb-4">Our trade experts are here to provide you with
-                                the most accurate trade analysis.</p>
-                                <Link to={'/signup'} className="btn btn-primary px-4 py-2">Get Started</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div className="team-member section-padding">
                 <div className="container">
@@ -49,23 +43,39 @@ function Team() {
                             <img src={person1} className="img-fluid rounded shadow-md" alt="...Team" />
                         </div>
                         <div className="col-3">
-                            <img src={person1} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
-                            <img src={person1} className="img-fluid rounded shadow-md" alt="...Team" />
+                            <img src={person2} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
+                            <img src={person3} className="img-fluid rounded shadow-md" alt="...Team" />
                         </div>
                         <div className="col-5">
                             <div className="row mb-4">
                                 <div className="col-5">
-                                    <img src={person1} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
+                                    <img src={person4} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
                                 </div>
                                 <div className="col-7">
-                                    <img src={person1} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
+                                    <img src={person5} className="img-fluid rounded shadow-md mb-4" alt="...Team" />
                                 </div>
                                 <div className="col-12">
-                                    <img src={person1} className="img-fluid rounded shadow-md" alt="...Team" />
+                                    <img src={person6} className="img-fluid rounded shadow-md" alt="...Team" />
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className="join-team section-padding">
+                        <div className="container">
+                            <div className="row justify-content-center">
+                                <div className="col-xl-8">
+                                    <div className="join-team-content text-center">
+                                        <h2 className="mb-2">Better returns with us</h2>
+                                        <p className="mb-4">Our trade experts are here to provide you with
+                                        the most accurate trade analysis.</p>
+                                        <Link to={'/signup'} className="btn btn-primary px-4 py-2">Get Started</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="row">
                         <div className="col-xl-12">
                             <div className="trusted-business py-5 text-center">

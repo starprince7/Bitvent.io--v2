@@ -377,13 +377,13 @@ export const checkAmount = (amount, plan) => {
       }
   }
 
-  export const verifyUrl = (url) => {
+  export const verifyUrl = (queryUrl) => {
       return dispatch => {
         //  Make Sure no User is in APP State first.
           dispatch(setUser(null))
 
         // Verify The Password reset url
-        axios.get(url)
+        axios.get(`/password-reset/${queryUrl}`)
         .then(res => {
             if (res.data.user) {
               // Do user stuffs.

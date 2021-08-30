@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { Row, Col, Card } from 'react-bootstrap'
 import Header1 from './../layout/header1';
@@ -7,6 +7,9 @@ import Bottom from '../element/bottom';
 
 // Image
 import about_hero_img from './../../images/about/1.jpg';
+import CEO_IMAGE from './../../images/team/001.jpg';
+import company_meeting from './../../images/team/002.jpg';
+import future_image from './../../images/team/future.jpg';
 // Video Pop up
 import Popup from '../element/popup'
 
@@ -14,6 +17,10 @@ import Popup from '../element/popup'
 
 
 function About() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <>
@@ -23,10 +30,10 @@ function About() {
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="service-img">
-                                <img src={about_hero_img} alt="" className="img-fluid" />
+                                <img src={company_meeting} alt="" className="img-fluid" />
                             </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-6"><br />
                             <div className="service-content m-t-50">
                                 <h3>In Brief</h3>
                                 <p>Founded in January of 2013, This is a forex and crypto-currency trading platform where
@@ -49,19 +56,20 @@ function About() {
                         <div className="col-lg-12">
                             <div className="ceo-content">
                                 <div className="media">
-                                    <img src={require('./../.././images/avatar/6.jpg')} alt="" className="img-fluid mr-4 rounded-circle" />
-                                    <div className="media-body">
-                                        <h3>Eric S. Peters</h3>
-                                        <span>CEO of WealthWiseFx</span>
-                                        <p className="mt-2">Sir Eric S. Peters has over 25+ years of experience working in and around
-                                            Financial Technology. He has delivered innovative SaaS systems for some of
-                                            today's biggest institutions around payments, identity, and banking
-                                            infrastructure. Eric has been in the Blockchain space since 2012 and is
-                                            involved in a number of blockchain and fintech businesses both as an investor,
-                                            board director, and founder.</p>
-                                    </div>
+                                    <img src={CEO_IMAGE} alt="" className="img-fluid mr-4 rounded-circle" />
+                                    
                                 </div>
-
+                                <br />
+                                <div className="media-body">
+                                    <h3>Eric S. Peters</h3>
+                                    <span>CEO of WealthWiseFx</span>
+                                    <p className="mt-2">Sir Eric S. Peters has over 25+ years of experience working in and around
+                                        Financial Technology. He has delivered innovative SaaS systems for some of
+                                        today's biggest institutions around payments, identity, and banking
+                                        infrastructure. Eric has been in the Blockchain space since 2012 and is
+                                        involved in a number of blockchain and fintech businesses both as an investor,
+                                        board director, and founder.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,7 +93,7 @@ function About() {
                         </div>
                         <div className="col-lg-6">
                             <div className="service-img">
-                                <img src={require('./../../images/about/1.jpg')} alt="" className="img-fluid" />
+                                <img src={about_hero_img} alt="" className="img-fluid" />
                             </div>
                         </div>
                     </div>
@@ -108,15 +116,14 @@ function About() {
                                 (and we have the emojis to prove it).</p>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div className="service-img">
-                                <img src={require('./../../images/about/1.jpg')} alt="" className="img-fluid" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-
+            <div className="col-lg-6">
+                    <div className="service-img">
+                        <img src={future_image} alt="" className="img-fluid" />
+                    </div>
+                </div>
             <div className="about-two section-padding">
                 <div className="container">
                     <div className="row align-items-center">

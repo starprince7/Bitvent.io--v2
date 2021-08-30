@@ -10,10 +10,10 @@ function ResetPassword({ verifyUrl, saveNewPassword, msg, error, user }) {
     const save_button_ref = useRef(null)
     
     useEffect(() => {
-        // Grab the full window URL
-        const URL = window.location.href
+        // Grab the query param from the window URL
+        const queryUrl = window.location.search
 
-        verifyUrl(URL)
+        verifyUrl(queryUrl)
     }, [verifyUrl])
 
     const handle_reset_password_submit = (e) => {
@@ -50,7 +50,7 @@ function ResetPassword({ verifyUrl, saveNewPassword, msg, error, user }) {
                             </div> */}
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Enter a new password</h4>
+                                    <h4 className="card-title">Password Reset</h4>
                                 </div>
                                 <div className="card-body">
                                     { msg && <div class="alert alert-success" role="alert">
