@@ -239,7 +239,7 @@ export const RegisterUser = (object) => {
                     // Server userID response
                     if (response.data.user) {
                         // stop loader
-                        dispatch(setLoading(false))
+                        // dispatch(setLoading(false))
                         localStorage.setItem("user", JSON.stringify(response.data.user))
                         setTimeout(() => {
                             window.location.assign('/dashboard');
@@ -247,6 +247,8 @@ export const RegisterUser = (object) => {
                     }
                     // Server error response
                     if (response.data.error) {
+                        // stop loader
+                        dispatch(setLoading(false))
                         dispatch(setError(response.data.error))
                     }
                     
@@ -264,7 +266,7 @@ export const RegisterUser = (object) => {
                     // Server userID response
                     if (response.data.user) {
                         // stop loader
-                        dispatch(setLoading(false))
+                        // dispatch(setLoading(false))
                         localStorage.setItem("user", JSON.stringify(response.data.user))
                         setTimeout(() => {
                             window.location.assign('/dashboard');
@@ -272,6 +274,8 @@ export const RegisterUser = (object) => {
                     }
                     // Server error response
                     if (response.data.error) {
+                        // stop loader
+                        dispatch(setLoading(false))
                         dispatch(setError(response.data.error))
                     }
                     
