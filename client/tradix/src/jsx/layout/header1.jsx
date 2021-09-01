@@ -48,7 +48,7 @@ function Header1() {
                                         </NavDropdown> 
 
 
-                                    <div className="signin-btn ml-3">
+                                    <div className="signin-btn ml-3 hidden-sm hidden-xs">
                                         <Link className="btn btn-primary" to={'/login'}>Log in</Link>
                                     </div>
                                     </Navbar.Collapse>
