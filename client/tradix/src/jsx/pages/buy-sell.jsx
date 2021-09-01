@@ -75,40 +75,46 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
 
     const handle_withdraw_submit = (e) => {
         e.preventDefault()
-        buttonRef.current.textContent = "Processing..."
-        buttonRef.current.disabled = true
-        
-        const email = user?.email
-        const amount = inputRef.current.value
-        const crypto_type = cryptoTypeRef.current.value
-        const wallet_address = cryptoAddressRef.current.value
 
-        const options = {
-            email,
-            amount,
-            wallet_address,
-            crypto_type
+        if (!user?.image) {
+            window.alert("You will need to update your profile picture for this account! Goto to settings and update your profile.")
+        } else {
+            buttonRef.current.textContent = "Processing..."
+            buttonRef.current.disabled = true
+            
+            const email = user?.email
+            const amount = inputRef.current.value
+            const crypto_type = cryptoTypeRef.current.value
+            const wallet_address = cryptoAddressRef.current.value
+    
+            const options = {
+                email,
+                amount,
+                wallet_address,
+                crypto_type
+            }
+            
+            axios.post("/admin/request", options)
+                .then(result => {
+                    buttonRef.current.textContent = "Withdraw Now"
+                    buttonRef.current.disabled = false
+                    // console.log(result);
+                    // console.log(result.data);
+    
+                    result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited shortly.`)
+                    // Reset Withdrawal Form field.
+                    inputRef.current.value = ""
+                    cryptoTypeRef.current.value = ""
+                    cryptoAddressRef.current.value = ""
+                    
+                })
+                .catch(error => {
+                    buttonRef.current.textContent = "Withdraw Now"
+                    buttonRef.current.disabled = false
+                    console.log("ERR! Creating Withdrawal request ==>", error)
+                })
         }
-        
-        axios.post("/admin/request", options)
-            .then(result => {
-                buttonRef.current.textContent = "Withdraw Now"
-                buttonRef.current.disabled = false
-                // console.log(result);
-                // console.log(result.data);
 
-                result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited shortly.`)
-                // Reset Withdrawal Form field.
-                inputRef.current.value = ""
-                cryptoTypeRef.current.value = ""
-                cryptoAddressRef.current.value = ""
-                
-            })
-            .catch(error => {
-                buttonRef.current.textContent = "Withdraw Now"
-                buttonRef.current.disabled = false
-                console.log("ERR! Creating Withdrawal request ==>", error)
-            })
     }
 
     return (
