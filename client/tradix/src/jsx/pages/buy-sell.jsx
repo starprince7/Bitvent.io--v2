@@ -77,7 +77,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
         e.preventDefault()
 
         if (!user?.image) {
-            window.alert("You will need to update your profile picture for this account! Goto to settings and update your profile.")
+            window.alert("Sorry, request failed. You will need to update your profile picture for this account! Goto to settings and update your profile.")
         } else {
             buttonRef.current.textContent = "Processing..."
             buttonRef.current.disabled = true
@@ -101,7 +101,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
                     // console.log(result);
                     // console.log(result.data);
     
-                    result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited shortly.`)
+                    result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited to you shortly.`)
                     // Reset Withdrawal Form field.
                     inputRef.current.value = ""
                     cryptoTypeRef.current.value = ""
