@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Footer1 from '../layout/footer1'
 import Header2 from '../layout/header2'
@@ -10,6 +10,27 @@ import BTC from '../../images/QR-code/bitcoin.jpg'
 
 
 function Invoice({ invoice, user }) {
+
+    // Purpose of this func
+    // After Code-Spliting the bundled files
+    // The App does not load the single page completely.
+    // SOLUTION:
+    // 1. Reload page after the first complete DOM load-up
+    useEffect(() => {
+        // Get The Refresh Count First!
+        const num_of_refresh = JSON.parse(localStorage.getItem('num_of_refresh'))
+
+         // On Component Mount Persist The Refresh Count onCondition Second
+        localStorage.setItem('num_of_refresh', JSON.stringify((num_of_refresh >=2 ? -1 : num_of_refresh) + 1))
+
+        setTimeout(() => {
+            if (num_of_refresh <= 1) {
+                window.location.reload()
+            }
+        }, 500)
+    }, [])
+
+
     const [address, setAddress] = useState('')
     const [srcImage, setSrcImage] = useState(QrCode)
     const walletSelectRef = useRef(null)

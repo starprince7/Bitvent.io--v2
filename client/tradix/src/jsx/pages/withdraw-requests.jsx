@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Header2 from "../layout/header2";
 import Sidebar2 from "../layout/sidebar2";
 import PageTitle from "../element/page-title";
@@ -8,6 +8,26 @@ import { fetchWithdrawRequest } from '../../redux/app_state/actions'
 import axios from 'axios'
 
 function WithdrawRequests({ withdraw_request, fetchWithdrawRequest }) {
+
+    // Purpose of this func
+    // After Code-Spliting the bundled files
+    // The App does not load the single page completely.
+    // SOLUTION:
+    // 1. Reload page after the first complete DOM load-up
+    useEffect(() => {
+      // Get The Refresh Count First!
+      const num_of_refresh = JSON.parse(localStorage.getItem('num_of_refresh'))
+
+       // On Component Mount Persist The Refresh Count onCondition Second
+      localStorage.setItem('num_of_refresh', JSON.stringify((num_of_refresh >=2 ? -1 : num_of_refresh) + 1))
+
+      setTimeout(() => {
+          if (num_of_refresh <= 1) {
+              window.location.reload()
+          }
+      }, 500)
+  }, [])
+
   const approve_btn_ref = useRef(null)
   const remove_btn_ref = useRef(null)
 
