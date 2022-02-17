@@ -42,7 +42,7 @@ function Faq() {
                             <div className="terms_condition-content">
                                 <div className="terms_condition-text">
                                     <h3>Frequently Asked Questions </h3>
-                                    <p>WWFx. is an instant cryptocurrency exchange and investment platform that allows you to exchange crypto
+                                    <p>Bitvent. is an instant cryptocurrency exchange and investment platform that allows you to exchange crypto
                                         fast and buy it with a bank card. The service provides the best crypto-to-crypto
                                         rates and supports over 140 cryptocurrencies available for exchange
                                 </p>
@@ -50,11 +50,11 @@ function Faq() {
 
 
                                 <div className="terms_condition-text">
-                                    <h3>How does WWFx. work? </h3>
+                                    <h3>How does Bitvent. work? </h3>
                                     <p>
                                         Our trading algorithm is integrated into the largest cryptocurrency exchange
                                         platforms, including Binance, Poloniex, Bittrex, etc. In the span of milliseconds,
-                                        WWFx. makes bids and asks on the platforms, then selects and suggests the best
+                                        Bitvent. makes bids and asks on the platforms, then selects and suggests the best
                                         available rate and displays the estimated rate on our site. The rates remain
                                         approximate until the transaction is actually made on the blockchain, which is why
                                         the exchange rate at the time of a transaction may differ slightly from the
@@ -66,7 +66,7 @@ function Faq() {
 
                                 <div className="terms_condition-text">
                                     <h3>Why should I trust you? </h3>
-                                    <p>WWFx. is one of the most prominent instant cryptocurrency and forex exchanges that has
+                                    <p>Bitvent. is one of the most prominent instant cryptocurrency and forex exchanges that has
                                         gained the trust of more than 2M users from all over the world. The service provides
                                         safe and fast transactions without revealing users identities. We provide the best
                                         possible rates by comparing a wide range of reliable trading platforms and work with
@@ -93,8 +93,8 @@ function Faq() {
                                 </div>
 
                                 <div className="terms_condition-text">
-                                    <h3>Does WWFx. have fixed rates? </h3>
-                                    <p>WWFx. mobile app does! Mobile app users will no longer be affected by the risks
+                                    <h3>Does Bitvent. have fixed rates? </h3>
+                                    <p>Bitvent. mobile app does! Mobile app users will no longer be affected by the risks
                                         associated with crypto market fluctuations. Soon, the fixed-rate exchanges will also
                                         be implemented on the web version. To lock the current exchange rate, the user needs
                                         to click on the lock icon, which will result in them getting the exact same amount
@@ -103,21 +103,21 @@ function Faq() {
     
     
                                 </p>
-                                    <p> Alternatively, WWFx. offers our lowest fee of 0.25% for all crypto-to-crypto
+                                    <p> Alternatively, Bitvent. offers our lowest fee of 0.25% for all crypto-to-crypto
                                     exchanges made at a floating rate.</p>
                                 </div>
 
                                 <div className="terms_condition-text">
                                     <h3>No warranties : </h3>
-                                    <p>WWFx is provided “as is” without any representations or warranties. WWFx
+                                    <p>Bitvent is provided “as is” without any representations or warranties. Bitvent
                                         makes no representations or warranties in relation to this website or the
                                     information and materials provided on this website.</p>
-                                    <p>WWFx. does not warrant that:</p>
+                                    <p>Bitvent. does not warrant that:</p>
 
                                     <ul>
                                         <li>
                                             <i className="fa fa-circle"></i>
-                                            <p>Funds deposited into an incorrect wallet address will be covered by WWFx.
+                                            <p>Funds deposited into an incorrect wallet address will be covered by Bitvent.
                                         </p>
                                         </li>
                                         {/* <li>

@@ -8,7 +8,7 @@ import {
     SET_INVOICE,
     CLEAR_MSG,
     CLEAR_ERROR,
-    SET_CRYPTO_PRICE,
+    SET_CRYPTO_PRICE_DATA,
     SET_LOG_USER_OUT,
     SET_WITHDRAW_REQUEST,
 } from './actionTypes'
@@ -55,9 +55,9 @@ export function setUser(user) {
     }
 }
 
-function setCryptoPrice(crypto) {
+function setCryptoPriceData(crypto) {
     return {
-        type: SET_CRYPTO_PRICE,
+        type: SET_CRYPTO_PRICE_DATA,
         payload: crypto
     }
 }
@@ -103,7 +103,10 @@ export const logUserOut = () => {
     }
 }
 
-export const logUserIn = (user) => {
+export const logUserIn = (user, button) => {
+    button.textContent = 'Loading...'
+    button.disabled = true
+
     const options = {
         email: user.email,
         password: user.password
@@ -133,11 +136,15 @@ export const logUserIn = (user) => {
 
             if (response.data.error) {
                 dispatch(setError(response.data.error))
+                button.textContent = 'Sign in'
+                button.disabled = false
             }
         })
         .catch(e => {
             console.log(e)
             dispatch(setError("Sorry could not reach server! try again."))
+            button.textContent = 'Sign in'
+            button.disabled = false
         })
     }
 }
@@ -192,7 +199,7 @@ export const fetchUser = () => {
                         if (!response.data.redirect) {
                             // console.log("From Thunk Action creator!!!", response.data)
                             dispatch(setUser(response.data.customer))
-                            dispatch(setCryptoPrice(response.data.crypto))
+                            dispatch(setCryptoPriceData(response.data.crypto))
                             // dispatch(setLoading(false))
                         } else {
                             window.location.assign(response.data.redirect);
@@ -500,3 +507,51 @@ export const checkAmount = (amount, plan) => {
           })
       }
   }
+
+
+  // FETCH SELECT CRYPTO PRICE DATA!
+export const fetchCrypto = () => {
+    return async (dispatch) => {
+        let url =
+        'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,USDT,LTC,SOL,ADA,XRP,ADA,DOGE&tsyms=USD&api_key=0ec893e5046f6864fcb47ad553dde60a5a6d050cd69397b0fba034cf9fe95a21'
+
+        try {
+            const res = await axios.get(url)
+            res && console.log('API Crypto Compare Stats <<>>>', res.data.RAW)
+            const { ADA, BNB, BTC, ETH, LTC, SOL, USDT, XRP, DOGE } = res.data.RAW
+            let crypto_data = [BTC, ETH, USDT, BNB, ADA, LTC, SOL, XRP, DOGE]
+            
+            dispatch(setCryptoPriceData(crypto_data))
+        } catch (e) {
+            console.log('ERR Fetching crypto data & prices...', e)
+        }
+    }
+}
+
+
+// MAKE ACCOUNT DEPOSIT, CALL BACKEND
+// BACKEND RETURNS A PAYMENT LINK
+export const makeAccountDeposit = (amount, currency, email) => {
+    return async (dispatch) => {
+        let options = {
+            amount,
+            currency,
+            email
+        }
+        let options2 = {
+            token: 'SsW-yoDN8GL798bfHBb5Bx8wihjyCw',
+            price_amount: 6000,
+            status: 'paid'
+        }
+        try { 
+            const res = await axios.post('/account_deposit', options)
+            res && console.log(res.data.deposit_url)
+            if (res.data.deposit_url) {
+                window.location.assign(res.data.deposit_url)
+            }
+        }
+        catch (e) {
+            console.log('Error posting DEPOSIT to backend', e)
+        }
+    }
+}

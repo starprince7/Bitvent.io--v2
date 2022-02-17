@@ -52,9 +52,8 @@ function Team() {
                     <div className="row justify-content-center">
                         <div className="col-xl-6">
                             <div className="section-title text-center">
-                                <h2>Our Professional Team Of Experts</h2>
-                                <p>Our focus is always on finding the best people to work with. Our bar is high
-                                 The only smart move now is investing today.</p>
+                                <h2>Join our Partners and Investors</h2>
+                                <p>Reach your set goals our standards are high, and we strive to go where others cannot.</p>
                             </div>
                         </div>
                     </div>
@@ -86,9 +85,8 @@ function Team() {
                             <div className="row justify-content-center">
                                 <div className="col-xl-8">
                                     <div className="join-team-content text-center">
-                                        <h2 className="mb-2">Better returns with us</h2>
-                                        <p className="mb-4">Our trade experts are here to provide you with
-                                        the most accurate trade analysis.</p>
+                                        <h2 className="mb-2">Buy & sell Crypto in minutes</h2>
+                                        <p className="mb-4">Join the world's largest crypto exchange.</p>
                                         <Link to={'/signup'} className="btn btn-primary px-4 py-2">Get Started</Link>
                                     </div>
                                 </div>

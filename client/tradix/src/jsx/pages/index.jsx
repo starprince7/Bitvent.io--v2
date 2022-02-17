@@ -1,8 +1,9 @@
-import React, { } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Header1 from './../layout/header1';
 import Footer1 from './../layout/footer1';
 import Bottom from './../element/bottom';
+
 import BtcChart from '../charts/btc';
 import DashChart from '../charts/dash';
 import EosChart from '../charts/eos';
@@ -11,11 +12,88 @@ import LtcChart from '../charts/ltc';
 import UsdChart from '../charts/usd';
 import XrpChart from '../charts/xrp';
 import XtzChart from '../charts/xtz';
+// NEW CHARTS IMPORTS!
+import BinanceChart from '../charts/bnb';
+import DogeChart from '../charts/doge.jsx';
+import AdaChart from '../charts/ada';
+
 import Testimonial from '../element/testimonial';
+import { connect } from 'react-redux'
+import CurrencyFormat from 'react-currency-format'
+// IMPORT ACTON FROM ACTION-CREATOR
+import { fetchCrypto, logUserIn } from '../../redux/app_state/actions'
+// LOGO / ICON IMPORTS
+import BNB from './../../icons/svg-icons/BNB.svg'
+import SOL from './../../icons/image-icon/solana.jpg'
+import ProtectIcon from './../../images/svg/protect.svg'
+import CyberIcon from './../../images/svg/cyber.svg'
+import FinanceIcon from './../../images/svg/finance.svg'
+import AndroidIcon from './../../images/android.svg'
+import AppleIcon from './../../images/apple.svg'
 
 
+function Homepage({ crypto, fetchCrypto, logUserIn }) {
 
-function Homepage() {
+    const [btc, setBtc] = useState(null)
+    const [eth, setEth] = useState(null)
+    const [ltc, setLtc] = useState(null)
+    const [bnb, setBnb] = useState(null)
+    const [ada, setAda] = useState(null)
+    const [xrp, setXrp] = useState(null)
+    const [doge, setDoge] = useState(null)
+    const [sol, setSol] = useState(null)
+    
+    const btn_ref = useRef()
+
+    // FUNCTION TO ADD 5% ONTOP EVERY CRYPTO PRICE
+    function spreadToAddPerctentage(object, percentage) {
+        return {
+            ...object,
+            USD: {
+                ...object.USD,
+                PRICE: (( percentage / 100 ) * object.USD.PRICE) + object.USD.PRICE
+            }
+        }
+    }
+
+    useEffect(() => {
+        crypto && crypto.forEach(oneCoin => {
+            console.log('Selected coins >>>', oneCoin)
+            // Add percentage here
+            let coin = spreadToAddPerctentage(oneCoin, 5)
+
+            if(coin.USD.FROMSYMBOL === 'BTC') setBtc(coin)
+            if(coin.USD.FROMSYMBOL === 'ETH') setEth(coin)
+            if(coin.USD.FROMSYMBOL === 'LTC') setLtc(coin)
+            if(coin.USD.FROMSYMBOL === 'BNB') setBnb(coin)
+            if(coin.USD.FROMSYMBOL === 'ADA') setAda(coin)
+            if(coin.USD.FROMSYMBOL === 'XRP') setXrp(coin)
+            if(coin.USD.FROMSYMBOL === 'SOL') setSol(coin)
+            if(coin.USD.FROMSYMBOL === 'DOGE') setDoge(coin)
+        })
+    }, [crypto])
+
+    useEffect(() => {
+        fetchCrypto()
+    }, [fetchCrypto])
+
+     const handle_login_submit = (e) => {
+         e.preventDefault()
+         const button = btn_ref.current
+
+        // Grab form
+        const form = document.querySelector('.signin_validate');
+        const email = form.email.value;
+        const password = form.password.value;
+
+        const Client = {
+            email,
+            password
+        }
+
+        logUserIn(Client, button);
+        
+    }
 
     return (
         <>
@@ -25,7 +103,7 @@ function Homepage() {
                     <div className="row justify-content-between align-items-center">
                         <div className="col-xl-6 col-lg-6 col-12">
                             <div className="intro-content">
-                                <h1>Trade with <strong className="text-primary">Tradix</strong>. <br /> Buy and sell
+                                <h1>Trade with <strong className="text-primary">Bitvent</strong>. <br /> Buy and sell
                                     cryptocurrency
                             </h1>
                                 <p>Fast and secure way to purchase or exchange 150+ cryptocurrencies</p>
@@ -38,43 +116,109 @@ function Homepage() {
                         </div>
                         <div className="col-xl-5 col-lg-6 col-12">
                             <div className="intro-form-exchange">
-                                <form method="post" name="myform" className="currency_validate">
+                                <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
+                                    <label htmlFor="form" className='text-center d-block'>Login to start exchanging assets</label>
                                     <div className="form-group">
-                                        <label className="mr-sm-2">Send</label>
-                                        <div className="input-group mb-3">
-                                            <select name='currency' className="form-control">
-                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin</option>
-                                                <option value="litecoin">Litecoin</option>
-                                            </select>
-                                            <input type="text" name="usd_amount" className="form-control" value="125.00 USD" />
+                                        <label>Email</label>
+                                        <input type="email" className="form-control" placeholder="Enter your email"
+                                            name="email" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Password</label>
+                                        <input type="password" className="form-control" placeholder="Password"
+                                            name="password" required />
+                                    </div>
+                                    <div className="form-row d-flex justify-content-between mt-4 mb-2">
+                                        <div className="form-group mb-0">
+                                            <label className="toggle">
+                                                <input className="toggle-checkbox" type="checkbox" />
+                                                <span className="toggle-switch"></span>
+                                                <span className="toggle-label">Remember me</span>
+                                            </label>
+                                        </div>
+                                        <div className="form-group mb-0">
+                                            <Link to="/reset" style={{fontSize: '13px'}}>Forgot Password?</Link>
                                         </div>
                                     </div>
-
-                                    <div className="form-group">
-                                        <label className="mr-sm-2">Get</label>
-                                        <div className="input-group mb-3">
-                                            <select name='currency' className="form-control">
-                                                <option data-display="Bitcoin" value="bitcoin">Bitcoin</option>
-                                                <option value="litecoin">Litecoin</option>
-                                            </select>
-                                            <input type="text" name="usd_amount" className="form-control" value="125.00 USD" />
-                                        </div>
-                                        <div className="d-flex justify-content-between mt-0 align-items-center">
-                                            <p className="mb-0">Monthly Limit</p>
-                                            <h6 className="mb-0">$49750 remaining</h6>
-                                        </div>
+                                    <div className="text-center mt-4">
+                                        <button ref={btn_ref} type="submit" className="btn btn-success btn-block">Sign in</button>
                                     </div>
-                                    <Link to={'./signin'} type="submit" name="submit" className="btn btn-success btn-block">
-                                        Exchange Now
-                                    <i className="la la-arrow-right"></i>
-                                    </Link>
-
+                                    <div className="new-account mt-4 text-center">
+                                        <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
+                                            up</Link></p>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <div className="trade-app section-padding">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-xl-6">
+                            <div className="section-title text-center">
+                                <h2>Trade. Anywhere</h2>
+                                <p> All of our products are ready to go, easy to use and offer great value to any kind of
+                                    business
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xl-4 col-lg-4 col-md-12">
+                            <div className="card trade-app-content">
+                                <div className="card-body">
+                                    <span><i className="la la-mobile"></i></span>
+                                    <h4 className="card-title">Mobile</h4>
+                                    <p>All the power of Bitvent's cryptocurrency exchange, in the palm of your hand. Download
+                                        the
+                                    Bitvent mobile crypto trading app today</p>
+
+                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-12">
+                            <div className="card trade-app-content">
+                                <div className="card-body">
+                                    <span><i className="la la-desktop"></i></span>
+                                    <h4 className="card-title">Desktop</h4>
+                                    <p>Powerful crypto trading platform for those who mean business. The Bitvent crypto
+                                        trading
+                                    experience, tailor-made for your Windows or MacOS device.</p>
+
+                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-12">
+                            <div className="card trade-app-content">
+                                <div className="card-body">
+                                    <span><i className="la la-connectdevelop"></i></span>
+                                    <h4 className="card-title">API</h4>
+                                    <p>The Bitvent API is designed to provide an easy and efficient way to integrate your
+                                        trading
+                                    application into our platform.</p>
+
+                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row pt-5">
+                        <div className="col-xl-12">
+                            <div className="trusted-business py-5 text-center">
+                                <h3>Trusted by Our <strong>Partners & Investors</strong></h3>
+                            </div>
+                            <div className="brand_container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div className="price-grid section-padding">
                 <div className="container">
@@ -85,15 +229,93 @@ function Homepage() {
                                     <div className="media">
                                         <span><i className="cc BTC"></i></span>
                                         <div className="media-body">
-                                            Bitcoin
+                                            Bitcoin (BTC)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={btc ? btc.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number( btc?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(btc?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={btc ? btc?.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
                                     <BtcChart />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div className="card">
+                                <div className="card-header">
+                                    <div className="media">
+                                        <span><i className="cc ETH"></i></span>
+                                        <div className="media-body">
+                                            Ethereum (ETH)
+                                    </div>
+                                    </div>
+                                    <p className="mb-0"> 24h</p>
+                                </div>
+                                <div className="card-body">
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={eth ? eth.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(eth?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(eth?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={eth ? eth.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
+
+                                    <EthChart />
                                 </div>
                             </div>
                         </div>
@@ -104,14 +326,43 @@ function Homepage() {
                                     <div className="media">
                                         <span><i className="cc LTC"></i></span>
                                         <div className="media-body">
-                                            Litecoin
+                                            Litecoin (LTC)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
+                                <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={ltc ? ltc.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(ltc?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(ltc?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={ltc ? ltc.change : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
                                     <LtcChart />
                                 </div>
                             </div>
@@ -120,18 +371,47 @@ function Homepage() {
                         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div className="card">
                                 <div className="card-header">
-                                    <div className="media">
-                                        <span><i className="cc DASH"></i></span>
+                                    <div className="media crypto_coin_logo">
+                                        <img src={ BNB } alt="coin logo" className='custom_logo_width' />
                                         <div className="media-body">
-                                            Dashcoin
+                                            Binance Coin (BNB)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
-                                    <DashChart />
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={bnb ? bnb.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(bnb?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(bnb?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={bnb ? bnb.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
+                                    <BinanceChart />
                                 </div>
                             </div>
                         </div>
@@ -142,34 +422,93 @@ function Homepage() {
                                     <div className="media">
                                         <span><i className="cc XRP"></i></span>
                                         <div className="media-body">
-                                            Ripple
+                                            Ripple (XRP)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={xrp ? xrp.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(xrp?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(xrp?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={xrp ? xrp.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
                                     <XrpChart />
                                 </div>
                             </div>
                         </div>
 
+
                         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div className="card">
                                 <div className="card-header">
                                     <div className="media">
-                                        <span><i className="cc ETH"></i></span>
+                                        <span><i className="cc ADA"></i></span>
                                         <div className="media-body">
-                                            Ethereum
+                                            Cardano (ADA)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
-                                    <EthChart />
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={ada ? ada.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(ada?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(ada?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={ada ? ada.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
+                                    <AdaChart />
                                 </div>
                             </div>
                         </div>
@@ -178,17 +517,45 @@ function Homepage() {
                             <div className="card">
                                 <div className="card-header">
                                     <div className="media">
-                                        <span><i className="cc USDT"></i></span>
+                                        <span><i className="cc DOGE"></i></span>
                                         <div className="media-body">
-                                            Tether
+                                            Doge Coin (DOGE)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
-                                    <UsdChart />
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={doge ? doge.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(doge?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(doge?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={doge ? doge.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
+                                    <DogeChart />
                                 </div>
                             </div>
                         </div>
@@ -196,45 +563,55 @@ function Homepage() {
                         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div className="card">
                                 <div className="card-header">
-                                    <div className="media">
-                                        <span><i className="cc EOS"></i></span>
+                                    <div className="media crypto_coin_logo">
+                                        <img src={ SOL } alt="coin logo" className='custom_logo_width' />
                                         <div className="media-body">
-                                            Eosio
+                                            Solana (SOL)
                                     </div>
                                     </div>
                                     <p className="mb-0"> 24h</p>
                                 </div>
                                 <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
-                                    <EosChart />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                            <div className="card">
-                                <div className="card-header">
-                                    <div className="media">
-                                        <span><i className="cc XTZ"></i></span>
-                                        <div className="media-body">
-                                            Tezos
-                                    </div>
-                                    </div>
-                                    <p className="mb-0"> 24h</p>
-                                </div>
-                                <div className="card-body">
-                                    <h3>USD 62,548.2254</h3>
-                                    <span className="text-success">+2.05%</span>
+                                    <h3>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <strong>{value}</strong>
+                                                </>
+                                            )}
+                                            value={sol ? sol.USD.PRICE : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                            prefix={"$"}
+                                        />
+                                    </h3>
+                                    <span>
+                                        <CurrencyFormat
+                                            renderText={(value) => (
+                                                <>
+                                                    <span className={`${Math.sign(Number(sol?.USD.CHANGEPCTHOUR)) === -1 ||
+                                                     Math.sign(Number(sol?.USD.CHANGEPCTHOUR)) === 0  ? 'text-danger' : 'text-success'}`}>
+                                                    { value }%</span>
+                                                </>
+                                            )}
+                                            value={sol ? sol.USD.CHANGEPCTHOUR : 0}
+                                            decimalScale={2}
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                            displayType={"text"}
+                                        />
+                                    </span>
                                     <XtzChart />
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
             </div>
 
-            <div className="getstart section-padding">
+            {/* <div className="getstart section-padding">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-xl-8">
@@ -248,6 +625,7 @@ function Homepage() {
                             <div className="getstart-content">
                                 <span><i className="la la-user-plus"></i></span>
                                 <h3>Create an account</h3>
+
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
@@ -272,7 +650,7 @@ function Homepage() {
                         <div className="col-xl-7">
                             <div className="section-title text-center">
                                 <h2>Create your cryptocurrency portfolio today</h2>
-                                <p>Tradix has a variety of features that make it the best place to start trading</p>
+                                <p>Bitvent has a variety of features that make it the best place to start trading</p>
                             </div>
                         </div>
                     </div>
@@ -319,7 +697,7 @@ function Homepage() {
                                             <span className="port-icon"> <i className="la la-mobile"></i></span>
                                             <div className="media-body">
                                                 <h4>Mobile apps</h4>
-                                                <p>Stay on top of the markets with the Tradix app for <Link
+                                                <p>Stay on top of the markets with the Bitvent app for <Link
                                                     to={'#'}>Android</Link>
                                                     or
                                                 <Link to={'#'}>iOS</Link>.</p>
@@ -336,97 +714,7 @@ function Homepage() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="trade-app section-padding">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-xl-6">
-                            <div className="section-title text-center">
-                                <h2>Trade. Anywhere</h2>
-                                <p> All of our products are ready to go, easy to use and offer great value to any kind of
-                                    business
-                            </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xl-4 col-lg-4 col-md-12">
-                            <div className="card trade-app-content">
-                                <div className="card-body">
-                                    <span><i className="la la-mobile"></i></span>
-                                    <h4 className="card-title">Mobile</h4>
-                                    <p>All the power of Tradix's cryptocurrency exchange, in the palm of your hand. Download
-                                        the
-                                    Tradix mobile crypto trading app today</p>
-
-                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-4 col-lg-4 col-md-12">
-                            <div className="card trade-app-content">
-                                <div className="card-body">
-                                    <span><i className="la la-desktop"></i></span>
-                                    <h4 className="card-title">Desktop</h4>
-                                    <p>Powerful crypto trading platform for those who mean business. The Tradix crypto
-                                        trading
-                                    experience, tailor-made for your Windows or MacOS device.</p>
-
-                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-4 col-lg-4 col-md-12">
-                            <div className="card trade-app-content">
-                                <div className="card-body">
-                                    <span><i className="la la-connectdevelop"></i></span>
-                                    <h4 className="card-title">API</h4>
-                                    <p>The Tradix API is designed to provide an easy and efficient way to integrate your
-                                        trading
-                                    application into our platform.</p>
-
-                                    <Link to={'#'}> Know More <i className="la la-arrow-right"></i> </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row pt-5">
-                        <div className="col-xl-12">
-                            <div className="trusted-business py-5 text-center">
-                                <h3>Trusted by Our <strong>Partners & Investors</strong></h3>
-                            </div>
-                            <div className="row justify-content-center">
-                                <div className="col-auto">
-                                    <div className="trusted-logo">
-                                        <Link to={'#'}><img className="img-fluid" src={require('./../../images/brand/1.webp')} alt="" /></Link>
-                                    </div>
-                                </div>
-                                <div className="col-auto">
-                                    <div className="trusted-logo">
-                                        <Link to={'#'}><img className="img-fluid" src={require('./../../images/brand/2.webp')} alt="" /></Link>
-                                    </div>
-                                </div>
-                                <div className="col-auto">
-                                    <div className="trusted-logo">
-                                        <Link to={'#'}><img className="img-fluid" src={require('./../../images/brand/3.webp')} alt="" /></Link>
-                                    </div>
-                                </div>
-                                <div className="col-auto">
-                                    <div className="trusted-logo">
-                                        <Link to={'#'}><img className="img-fluid" src={require('./../../images/brand/4.webp')} alt="" /></Link>
-                                    </div>
-                                </div>
-                                <div className="col-auto">
-                                    <div className="trusted-logo">
-                                        <Link to={'#'}><img className="img-fluid" src={require('./../../images/brand/5.webp')} alt="" /></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> */}
 
 
             {/* Testimonial-Section */}
@@ -456,7 +744,7 @@ function Homepage() {
                         <div className="col-xl-8">
                             <div className="section-title text-center">
                                 <h2>The most trusted cryptocurrency platform</h2>
-                                <p> Here are a few reasons why you should choose Tradix
+                                <p> Here are a few reasons why you should choose Bitvent
                             </p>
                             </div>
                         </div>
@@ -465,7 +753,7 @@ function Homepage() {
                         <div className="col-xl-4 col-lg-4 col-md-4">
                             <div className="promo-content">
                                 <div className="promo-content-img">
-                                    <img className="img-fluid" src={require('./../../images/svg/protect.svg')} alt="" />
+                                    <img className="img-fluid" src={ProtectIcon} alt="" />
                                 </div>
                                 <h3>Secure storage </h3>
                                 <p>We store the vast majority of the digital assets in secure offline storage.</p>
@@ -474,7 +762,7 @@ function Homepage() {
                         <div className="col-xl-4 col-lg-4 col-md-4">
                             <div className="promo-content">
                                 <div className="promo-content-img">
-                                    <img className="img-fluid" src={require('./../../images/svg/cyber.svg')} alt="" />
+                                    <img className="img-fluid" src={CyberIcon} alt="" />
                                 </div>
                                 <h3>Protected by insurance</h3>
                                 <p>Cryptocurrency stored on our servers is covered by our insurance policy.</p>
@@ -483,10 +771,10 @@ function Homepage() {
                         <div className="col-xl-4 col-lg-4 col-md-4">
                             <div className="promo-content">
                                 <div className="promo-content-img">
-                                    <img className="img-fluid" src={require('./../../images/svg/finance.svg')} alt="" />
+                                    <img className="img-fluid" src={FinanceIcon} alt="" />
                                 </div>
                                 <h3>Industry best practices</h3>
-                                <p>Tradix supports a variety of the most popular digital currencies.</p>
+                                <p>Bitvent supports a variety of the most popular digital currencies.</p>
                             </div>
                         </div>
                     </div>
@@ -506,17 +794,17 @@ function Homepage() {
                                 </ul>
                                 <div className="mt-4">
                                     <Link to={'#'} className="btn btn-primary my-1 waves-effect">
-                                        <img src={require('./../../images/android.svg')} alt="" />
+                                        <img src={AndroidIcon} alt="Android Icon" />
                                     </Link>
                                     <Link to={'#'} className="btn btn-primary my-1 waves-effect">
-                                        <img src={require('./../../images/apple.svg')} alt="" />
+                                        <img src={AppleIcon} alt="AppStore Icon" />
                                     </Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-5 col-lg-6 col-md-6">
                             <div className="appss-img">
-                                <img className="img-fluid" src={require('./../../images/app.png')} alt="" />
+                                <img className="img-fluid" src="https://trustwallet.com/assets/images/buy/buy.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -627,7 +915,7 @@ function Homepage() {
                                 <div className="media">
                                     <span><i className="fa fa-cubes"></i></span>
                                     <div className="media-body">
-                                        <h4>Tradix Blog</h4>
+                                        <h4>Bitvent Blog</h4>
                                         <p>News and updates from the world’s leading cryptocurrency exchange.
                                     </p>
                                     </div>
@@ -640,7 +928,7 @@ function Homepage() {
                                     <span><i className="fa fa-certificate"></i></span>
                                     <div className="media-body">
                                         <h4>Careers</h4>
-                                        <p>Help build the future of technology. Start your new career at Tradix.
+                                        <p>Help build the future of technology. Start your new career at Bitvent.
                                     </p>
                                     </div>
                                 </div>
@@ -652,7 +940,7 @@ function Homepage() {
                                     <span><i className="fa fa-life-ring"></i></span>
                                     <div className="media-body">
                                         <h4>Community</h4>
-                                        <p>Tradix is global. Join the discussion in our worldwide communities.
+                                        <p>Bitvent is global. Join the discussion in our worldwide communities.
                                     </p>
                                     </div>
                                 </div>
@@ -669,4 +957,17 @@ function Homepage() {
     )
 }
 
-export default Homepage;
+const mapStateToProps = (state) => {
+    return {
+        crypto: state.dashboard_state.cryptoPriceData
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchCrypto: () => dispatch(fetchCrypto()),
+        logUserIn: (user, button) => dispatch(logUserIn(user, button))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

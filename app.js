@@ -8,10 +8,12 @@ const nodemailer = require("nodemailer");
 const nodeMailGun = require("nodemailer-mailgun-transport");
 const schedule = require('node-schedule');
 const moment = require("moment")
+const axios = require('axios')
 
 const Customer = require("./model/customers");
 const Router = require("./routes/react-app-routes");
 const AdminRouter = require("./routes/adminRouter");
+const ex = require("./routes/exchange");
 const resetRouter = require('./routes/passwordRecovery')
 const { requireAuth2 } = require("./middleware/authentication");
 const runTradeBot = require('./utils/tradeBot')
@@ -44,7 +46,7 @@ app.set('view engine', 'ejs');
 const port = process.env.PORT || 5000;
 
 // db connection
-const dbURI = `mongodb+srv://starprince:starprince7@cluster0.vyxlv.mongodb.net/wwfx_database?retryWrites=true&w=majority`;
+const dbURI = 'mongodb+srv://coinvent:coinvent@cluster0.7ounf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
@@ -502,14 +504,6 @@ app.post('/password-change', async (req, res) => {
 
 
 
-// Coingate Integration
-
-// const coingate = client("ZEJLc8M9W-1bEVUJjKSnBzo2ryNnbRiMymunXvHr");
-// const testCoingate = testClient("ZEJLc8M9W-1bEVUJjKSnBzo2ryNnbRiMymunXvHr");
-// const testCoingate = testClient("ZEJLc8M9W-1bEVUJjKSnBzo2ryNnbRiMymunXvHr");
-
-
-
 
 // Route to make crypto payment!
 
@@ -536,74 +530,116 @@ app.post('/start-investment', async (req, res) => {
 
 
 
-app.post('/invest', async(req, res) => {
-  console.log('Request from INVESTMENT!!!', req.body);
-  const { plan, amount, currencyType, userEmail, userId } = req.body;
+app.post('/account_deposit3', async (req, res) => {
+  console.log('Request for /Account_Deposit2')
+  console.log(req.body)
+  const { plan, amount, currency, email, userId } = req.body;
+
+  let data = JSON.stringify({
+    price_amount: 3000,
+    price_currency: 'usd',
+    pay_currency: 'btc',
+    // ipn_callback_url: '',
+  })
+  
+  let options = {
+    headers: {
+      'Content-Type': 'application/json',
+      "x-api-key": "FMRS6RD-HJNMBWK-MPRZYE2-EFZRBJN"
+    }
+  }
+
+  try {
+    const res = await axios.post('https://www.alfacoins.com/api/create.json', data, options)
+  } catch (error) {
+    console.log('NowPayments Error >>>', error)
+  }
+})
+
+
+
+app.post('/account_deposit2', async (req, res) => {
+  console.log('Request for /Account_Deposit2')
+  console.log(req.body)
+  const { plan, amount, currency, email, userId } = req.body;
+
+  let data = JSON.stringify({
+    price_amount: 3000,
+    price_currency: 'usd',
+    pay_currency: 'btc',
+    // ipn_callback_url: '',
+  })
+  
+  let options = {
+    headers: {
+      'Content-Type': 'application/json',
+      "x-api-key": "FMRS6RD-HJNMBWK-MPRZYE2-EFZRBJN"
+    }
+  }
+
+  try {
+    const res = await axios.post('https://api.sandbox.nowpayments.io/v1/payment', data, options)
+  } catch (error) {
+    console.log('NowPayments Error >>>', error)
+  }
+})
+
+
+
+// Coingate Integration
+const { client, testClient, Client, Config } = require('coingate-v2');
+
+// const coingate = client("ZEJLc8M9W-1bEVUJjKSnBzo2ryNnbRiMymunXvHr");
+// const testCoingate = testClient("ZEJLc8M9W-1bEVUJjKSnBzo2ryNnbRiMymunXvHr");
+// -- TEST CLIENT WITH NEW API KEY --
+const testCoingate = testClient("LreJoHfzCScR7P8ymL7z-4mzCE3STFJKUHGGggtu");
+
+
+
+app.post('/account_deposit', async(req, res) => {
+  console.log('Request for Account Deposit!!! >>>', req.body);
+  const { plan, amount, currency, email, userId } = req.body;
 
   // pay(amount, currencyType)
 
 
   // Create Order Here!
+  let params = {
+    price_amount: amount,
+    price_currency: 'usd',
+    receive_currency: "USDT",
+    // callback_url: "https://bitvent.io/instant_payment_notification",
+    callback_url: "https://bitvent.io/instant_payment_notification",
+    success_url: "https://bitvent.io/dashboard",
+    purchaser_email: email
+  }
   try {
-    const result = await testCoingate.createOrder({
-      price_amount: amount,
-      price_currency: currencyType,
-      receive_currency: "BTC",
-      callback_url: "http://localhost:5000/payment-notification",
-      success_url: "http://localhost:3000/#/dashboard",
-      purchaser_email: userEmail
-    });
+    const result = await testCoingate.createOrder(params);
 
     result && console.log('Coin Gate response =====> ', result)
     result && console.log('Coin Gate response =====> ', result.payment_url)
-    result && res.send(result)
     
-/* 
     if (result) {
-
-      const customer = await Customer.findByIdAndUpdate(userId, {
-        $push: { transcations: result }
+      const customer = await Customer.findOneAndUpdate({ email }, {
+        token: result.token
       }, { new: true })
-      
-      customer && console.log('Customer With Transaction details ==>', customer)
-      // I Check if response of coingate order Placement
-      // Has been saved to the DB!
-      customer && res.send(result)
 
-    } */
+      // RESPOND TO CLIENT AFTER SAVING TOKEN TO DB
+      res.json({ deposit_url: result.payment_url })
+    }
 
   }
   catch (err) {
     console.log('Coin Gate ERR!!! =====> ', err)
     err && res.send(err)
 
-  }
-
-  
-})
-
-
-/* async function getOrder(number) {
-  testCoingate.getOrder(number)
-    .then(response => {
-      console.log("Get Order Response ===>", response)
-    })
-  
-}
-
-getOrder(297867) */
-
-
-
-app.get('/payment-notification', (req, res) => {
-  console.log('Notification CoinGate GET request Data Sent!!!', req.body)
+  }  
 })
 
 
 // Listining for coin gate Payment callback Notification in a Post Method!!!
-app.post('/payment-notification', (req, res) => {
-  console.log('Notification CoinGate POST request Data Sent!!!', req.body);
-  
+app.post('/instant_payment_notification', async (req, res) => {
+  console.log('Notification CoinGate POST request incoming Data!!!', req.body);
   /* Request.Body = {
       id: '',
       order_id: '',
@@ -625,7 +661,24 @@ app.post('/payment-notification', (req, res) => {
   // const resp = await transcations.findById(req.body.token)
   // step 4: NOW UPDATE THE API STATUS AND WALLET AMOUNT!
 
+  const customer = await Customer.findOne({ token: req.body.token })
+  customer && console.log("Customer Account found", customer)
+
+  if (!customer) {
+    res.status(204).end()
+    console.log('No customer!')
+  }
+
+  // CHECK FOR TRANSCATION SUCCESS
+  if (req.body.status === 'paid') {
+    customer.wallet = customer.wallet + req.body.price_amount
+    customer.deposit.push(req.body.price_amount)
+    await customer.save()
+  }
+  res.status(200).end()
 })
+
+app.use('/exchange', ex)
 
 
 

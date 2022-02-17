@@ -73,19 +73,19 @@ AdminRouter.get("/customer/:id", async (req, res) => {
 
       const price = require('crypto-price')
       let btc, eth, ltc, bch
-      try {
-          btc = await price.getCryptoPrice("USD", "BTC")
-          eth = await price.getCryptoPrice("USD", "ETH")
-          ltc = await price.getCryptoPrice("USD", "LTC")
-          bch = await price.getCryptoPrice("USD", "BCH")
-       }
-      catch (e) {
-        console.log("ERR thrown in fetching crypto Prices. "+ __dirname +"==+==>", e)
-      }
+      // try {
+      //   btc = await price.getCryptoPrice("USD", "BTC")
+      //   eth = await price.getCryptoPrice("USD", "ETH")
+      //   ltc = await price.getCryptoPrice("USD", "LTC")
+      //   bch = await price.getCryptoPrice("USD", "BCH")
+      // }
+      // catch (e) {
+      //   console.log("ERR thrown in fetching crypto Prices. "+ __dirname +"==+==>", e)
+      // }
       
 
       // Add to the customer object response
-     const crypto = { btc, eth, ltc, bch }
+     const crypto = null /* { btc, eth, ltc, bch } */
 
       try {
           let customer = await Customer.findById(userId).select("-password");

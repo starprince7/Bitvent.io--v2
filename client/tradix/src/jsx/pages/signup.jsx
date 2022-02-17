@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { RegisterUser } from '../../redux/app_state/actions'
+import HeaderSignUp from '../layout/header_signup'
 import Footer2 from '../layout/footer2';
 import WWFX_LOGO  from '../../images/wealth_wise.png'
 
@@ -78,15 +79,11 @@ function Signup({ registerUser }) {
 
     return (
         <>
-            <div className="authincation" style={style}>
+            <HeaderSignUp />
+            <div className="authincation exclude_default_card_style" style={style}>
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-10 col-md-10">
-                            <div className="mini-logo text-center mb-5">
-                                <Link to={'./'}>
-                                    <img src={WWFX_LOGO} alt="Logo" />
-                                </Link>
-                            </div>
                             <div className="auth-form card">
                                 <div className="card-header justify-content-center">
                                     <h4 className="card-title">Create an Account</h4>

@@ -1,5 +1,6 @@
 import React, { } from 'react';
 import { Link } from 'react-router-dom';
+import Bitvent_WhiteLogo from './../../images/bitvent/bitvent-logo-alone-white.png'
 
 
 
@@ -12,9 +13,7 @@ function Bottom() {
                     <div className="row">
                         <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                             <div className="bottom-logo">
-                                <img className="pb-3" src={require('./../../images/logo-white.png')} alt="" />
-
-                                <p>We are here to guide you at every step of your investment.</p>
+                                <img className="pb-3" src={Bitvent_WhiteLogo} alt="logo" width="100" />
                             </div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6">

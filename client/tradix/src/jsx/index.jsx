@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Homepage from './pages/index';
 import Price from './pages/price';
 import Wallet from './pages/wallet';
 import Blog from './pages/blog';
@@ -28,6 +27,7 @@ import History from './pages/history';
 import Demo from './pages/demo';
 import { Sugar } from 'react-preloaders';
 // Core imports below
+const Homepage = React.lazy(() => import('./pages/index'))
 const Homepage2 = React.lazy(()=> import('./pages/index2'));
 const About = React.lazy(() => import("./pages/about"));
 const Faq = React.lazy(() => import("./pages/faq"));
@@ -54,8 +54,8 @@ class Index extends Component {
                     <BrowserRouter >
                         <div id="main-wrapper">
                             <Switch>
-                                <Route path='/' exact component={Homepage2} />
-                                <Route path='/index2'  component={Homepage} />
+                                <Route path='/' exact component={Homepage} />
+                                <Route path='/index2'  component={Homepage2} />
                                 <Route path='/price' component={Price} />
                                 <Route path='/wallet' component={Wallet} />
                                 <Route path='/about' component={About} />
@@ -71,7 +71,7 @@ class Index extends Component {
                                 <Route path='/dashboard' component={Dashboard} />
                                 <Route path='/buy-sell' component={BuySell} />
                                 <Route path='/invoice' component={Invoice} />
-                                <Route path='/accounts' component={Accounts} />
+                                <Route path='/account_wallet' component={Accounts} />
                                 <Route path='/settings' component={Settings} />
                                 <Route path='/settings-preferences' component={Preferences} />
                                 <Route path='/settings-security' component={SettingsSecurity} />

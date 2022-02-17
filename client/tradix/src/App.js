@@ -3,7 +3,7 @@ import React from 'react';
 import './css/style.css';
 import Index from './jsx';
 
-import { Sugar } from 'react-preloaders';
+import { Cube } from 'react-preloaders';
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import Loader from './jsx/element/loader';
@@ -16,9 +16,9 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Index />
-        <Loader />
+        {/* <Loader /> */}
         <ErrorPopup />
-        <Sugar color={'#1652f0'} />
+        <Cube color={'#1652f0'} />
       </div>
     </Provider>
   );

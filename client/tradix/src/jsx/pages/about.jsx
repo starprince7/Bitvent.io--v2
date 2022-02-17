@@ -6,9 +6,9 @@ import Footer1 from './../layout/footer1';
 import Bottom from '../element/bottom';
 
 // Image
-import about_hero_img from './../../images/about/1.jpg';
+import about_hero_img from './../../images/background/girl-standing-on-street.jpg';
 import CEO_IMAGE from './../../images/team/001.jpg';
-import company_meeting from './../../images/team/002.jpg';
+import AboutPhoto from './../../images/background/national-building.jpg';
 import future_image from './../../images/team/future.jpg';
 // Video Pop up
 import Popup from '../element/popup'
@@ -17,6 +17,25 @@ import Popup from '../element/popup'
 
 
 function About() {
+
+    // Purpose of this func
+    // After Code-Spliting the bundled files
+    // The App does not load the single page completely.
+    // SOLUTION:
+    // 1. Reload page after the first complete DOM load-up
+    useEffect(() => {
+        // Get The Refresh Count First!
+        const num_of_refresh = JSON.parse(localStorage.getItem('num_of_refresh'))
+
+         // On Component Mount Persist The Refresh Count onCondition Second
+        localStorage.setItem('num_of_refresh', JSON.stringify((num_of_refresh >=2 ? -1 : num_of_refresh) + 1))
+
+        setTimeout(() => {
+            if (num_of_refresh <= 1) {
+                window.location.reload()
+            }
+        }, 500)
+    }, [])
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -30,61 +49,34 @@ function About() {
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="service-img">
-                                <img src={company_meeting} alt="" className="img-fluid" />
+                                <img src={AboutPhoto} alt="" className="img-fluid" />
                             </div>
                         </div>
                         <div className="col-lg-6"><br />
                             <div className="service-content m-t-50">
-                                <h3>In Brief</h3>
-                                <p>Founded in January of 2013, This is a forex and crypto-currency trading platform where
-                                    merchants
-                                    and consumers can transact with all currency including many digital currencies like bitcoin, ethereum, and
-                                    litecoin.
-                                    We're based in the United Kingdom.</p>
+                                <h3>We feel purchasing crypto shouldn't be so difficult.</h3>
+                                <p>Bitvent was formed in 2021 with a single objective in mind: to promote cryptocurrency
+                                    acceptance. The goal of the company was to develop a simple and safe software solution
+                                    that would allow individuals all around the world to engage in the biggest digital
+                                    revolution since the internet.</p>
                                 
-                                <p>Here at WealthWiseFx. we are charged with the responsibility of using advance and ethical medium to
-                                    bring you the best and most suitable result in your investment.</p>
+                                <p>Money is important to us all, whether it's in the form of a wage, a pension, or savings
+                                    in a piggybank. The freedom to acquire and employ personal resources is an essential 
+                                    component of human dignity and a fundamental human right.</p>
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="our-ceo py-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="ceo-content">
-                                <div className="media">
-                                    <img src={CEO_IMAGE} alt="" className="img-fluid mr-4 rounded-circle" />
-                                    
-                                </div>
-                                <br />
-                                <div className="media-body">
-                                    <h3>Eric S. Peters</h3>
-                                    <span>CEO of WealthWiseFx</span>
-                                    <p className="mt-2">Sir Eric S. Peters has over 25+ years of experience working in and around
-                                        Financial Technology. He has delivered innovative SaaS systems for some of
-                                        today's biggest institutions around payments, identity, and banking
-                                        infrastructure. Eric has been in the Blockchain space since 2012 and is
-                                        involved in a number of blockchain and fintech businesses both as an investor,
-                                        board director, and founder.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div className="about-two section-padding">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
-                            <Popup />
-                        </div>
-                        <div className="col-lg-6">
                             <div className="service-content my-5">
-                            <h3>Working at WealthWiseFx.</h3>
-                                <p>We’ve taken a huge challenge and made it into our mission: To create an open financial
+                            <h3>Blockchain technology is the new revolution in today's financial systems.</h3>
+                                <p>We’ve taken up a challenge and turned it into a mission To create an open financial
                                     system
                                     for the world. To achieve this, we are building a team of smart, creative, passionate
                                     optimists, the kind of people who see opportunity
@@ -92,9 +84,7 @@ function About() {
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div className="service-img">
-                                <img src={about_hero_img} alt="" className="img-fluid" />
-                            </div>
+                            <Popup />
                         </div>
                     </div>
                 </div>
@@ -104,8 +94,13 @@ function About() {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
+                            <div className="service-img">
+                                <img src={about_hero_img} alt="" className="img-fluid" />
+                            </div>
+                        </div>
+                        <div className="col-lg-6">
                             <div className="service-content my-5">
-                            <h3>Our values</h3>
+                            <h3>Our core values</h3>
                                 <p>Our values inform our behavior and the choices we make every day. As a result, our
                                     culture is
                                     a model of the world we’re trying to build: transparent, joyful, curious, and
@@ -119,30 +114,24 @@ function About() {
                     </div>
                 </div>
             </div>
-            <div className="col-lg-6">
-                    <div className="service-img">
-                        <img src={future_image} alt="" className="img-fluid" />
-                    </div>
-                </div>
+
             <div className="about-two section-padding">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="service-content my-5">
                             <h3>Our mission</h3>
-                                <p>We think achieving our mission is the highest leverage way to bring about more economic
-                                    freedom, innovation, efficiency, and equality of opportunity in the world. Each member
-                                    of
-                                    our team—every engineer, designer, kitchen team member,
-                                    lawyer, writer, support coordinator, recruiter, and product manager—plays an important
-                                    role
-                                    in helping us achieve our mission.
+                                <p>
+                                    We believe that completing our purpose is the most effective method to increase
+                                    economic freedom, creativity, efficiency, and equality of opportunity in the globe.
+                                    Every member of our team—every engineer, designer, key team member, lawyer, writer,
+                                    support coordinator, recruiter, and product manager—is critical to our success.
                                 </p>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="service-img">
-                                <img src={require('./../../images/about/1.jpg')} alt="" className="img-fluid" />
+                                <img src={future_image} alt="" className="img-fluid" />
                             </div>
                         </div>
                     </div>

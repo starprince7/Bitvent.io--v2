@@ -13,7 +13,7 @@ function Footer1() {
                     <div className="row">
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="copyright">
-                                <p>© Copyright { new Date().getFullYear() } <Link to={'#'}>WWFx.</Link> I All Rights Reserved</p>
+                                <p>© Copyright { new Date().getFullYear() } <Link to={'#'}>Bitvent.io</Link> I All Rights Reserved</p>
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

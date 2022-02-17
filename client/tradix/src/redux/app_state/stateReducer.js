@@ -8,7 +8,7 @@ import {
     SET_INVOICE,
     CLEAR_MSG,
     CLEAR_ERROR,
-    SET_CRYPTO_PRICE,
+    SET_CRYPTO_PRICE_DATA,
     SET_LOG_USER_OUT,
     SET_AUTHENTICATED_ID,
     SET_WITHDRAW_REQUEST
@@ -22,7 +22,7 @@ const initialState = {
     users: null,
     invoice: null,
     isLoading: false,
-    cryptoPrice: null,
+    cryptoPriceData: null,
     authenticatedID: null,
     withdraw_request: null
 };
@@ -73,9 +73,9 @@ const StateReducer = (state = initialState, action) => {
             ...state,
             withdraw_request: action.payload
         }
-        case SET_CRYPTO_PRICE: return {
+        case SET_CRYPTO_PRICE_DATA: return {
             ...state,
-            cryptoPrice: action.payload
+            cryptoPriceData: action.payload
         }
         case SET_LOG_USER_OUT: return {
             ...state,
@@ -84,7 +84,7 @@ const StateReducer = (state = initialState, action) => {
             user: null,
             users: null,
             invoice: null,
-            cryptoPrice: null,
+            cryptoPriceData: null,
             authenticatedID: null,
             withdraw_request: null
         }

@@ -7,13 +7,13 @@ import PageTitle from '../element/page-title';
 import Footer2 from '../layout/footer2';
 import Popup from '../element/popup';
 import { connect } from 'react-redux'
-import { checkAmount } from '../../redux/app_state/actions';
+import { checkAmount, makeAccountDeposit } from '../../redux/app_state/actions';
 import { setInvoice, setError } from '../../redux/app_state/actions';
 import axios from 'axios'
 
 
 
-function BuySell({ checkAmount, setInvoice, setError, error, user }) {
+function BuySell({ checkAmount, makeAccountDeposit, setInvoice, setError, error, user }) {
     // DOM Reference here
     const cryptoTypeRef = useRef(null)
     const cryptoAddressRef = useRef(null)
@@ -56,7 +56,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
         
         const form = document.querySelector(".form");
         const amount = form.deposit_amount.value;
-        const plan = form.plan_type.value;
+        const plan = form.currency_type.value;
     
         // Import CheckAmount from redux Actions!
         // to check Plan with Amount.
@@ -71,68 +71,74 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
         button.textContent = 'Processing...'
 
         const form = document.querySelector('.form')
-        const plan = form.plan_type.value
+        const currency_type = form.currency_type.value
         const amount = form.deposit_amount.value;
         const email = user?.email
 
         const options = {
-            plan,
+            currency_type,
             amount,
             email
         }
 
-        if (!plan && !amount) {
+        if (!currency_type && !amount) {
             setTimeout(() => button.textContent = 'Pay Now', 2000)
             setError('Please complete the required field')
         } else {
-            // Submit deposit to Invoice
-            // for payment checkout.
-            setInvoice(options)
-            setTimeout(() => history.push("/invoice"), 2000)
+            // Call redux action to make post request to the backend.
+            makeAccountDeposit(amount, currency_type, email)
+            // setInvoice(options)
+            // setTimeout(() => history.push("/invoice"), 2000)
         }
     }
 
-    const handle_withdraw_submit = (e) => {
+    const handle_exchange_submit = (e) => {
         e.preventDefault()
 
-        if (!user?.image) {
-            window.alert("Sorry, request failed. You will need to update your profile picture for this account! Goto to settings and update your profile.")
-        } else {
-            buttonRef.current.textContent = "Processing..."
-            buttonRef.current.disabled = true
-            
-            const email = user?.email
-            const amount = inputRef.current.value
-            const crypto_type = cryptoTypeRef.current.value
-            const wallet_address = cryptoAddressRef.current.value
-    
-            const options = {
-                email,
-                amount,
-                wallet_address,
-                crypto_type
-            }
-            
-            axios.post("/admin/request", options)
-                .then(result => {
-                    buttonRef.current.textContent = "Withdraw Now"
-                    buttonRef.current.disabled = false
-                    // console.log(result);
-                    // console.log(result.data);
-    
-                    result.data && alert(`Success! $${amount} has been requested for withdrawal, value will be credited to you shortly.`)
-                    // Reset Withdrawal Form field.
-                    inputRef.current.value = ""
-                    cryptoTypeRef.current.value = ""
-                    cryptoAddressRef.current.value = ""
-                    
-                })
-                .catch(error => {
-                    buttonRef.current.textContent = "Withdraw Now"
-                    buttonRef.current.disabled = false
-                    console.log("ERR! Creating Withdrawal request ==>", error)
-                })
+        buttonRef.current.textContent = "Processing..."
+        buttonRef.current.disabled = true
+        
+        const id = user?._id
+        const email = user?.email
+        const amount = inputRef.current.value
+        const currency = cryptoTypeRef.current.value
+
+        const options = {
+            id,
+            email,
+            amount,
+            currency
         }
+        console.log('Data sent to backend', options)
+        
+        axios.post("/exchange", options)
+            .then(result => {
+                buttonRef.current.textContent = "Exchange"
+                buttonRef.current.disabled = false
+                console.log(result);
+                console.log(result.data);
+                
+                // CHECK FOR ERROR RESPONSE
+                if (result.data.error) {
+                    alert(result.data.error)
+                }
+
+                // CHECK FOR SUCCESS RESPONSE
+                if (result.data.msg) {
+                    alert(result.data.msg)
+                }
+
+                // Reset Withdrawal Form field.
+                inputRef.current.value = ""
+                cryptoTypeRef.current.value = ""
+                cryptoAddressRef.current.value = ""
+                
+            })
+            .catch(error => {
+                buttonRef.current.textContent = "Exchange"
+                buttonRef.current.disabled = false
+                console.log("ERR! Creating Withdrawal request ==>", error)
+            })
 
     }
 
@@ -143,8 +149,8 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
             <PageTitle />
 
             <div className="content-body">
-                <div className="container-fluid">
-                <div className="col-xl-11 col-lg-12 col-md-12">
+                <div className="container-fluid exclude_default_card_style">
+                <div className="col-xl-10 col-lg-10 col-md-12">
                             <div className="card">
                                 <div className="card-body">
                                     <div className="buy-sell-widget">
@@ -152,54 +158,49 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
                                         <Tabs defaultActiveKey="deposit" id="uncontrolled-tab-example">
                                             <Tab eventKey="deposit" title="Deposit">
                                                 <div className="card">
-                                                    <div className="card-header">
-                                                        <h4 className="card-title mt-3">Deposit</h4>
+                                                    <div className="p-3">
+                                                        <h4 className="card-title mt-3">Deposit USDT</h4>
                                                     </div>
-                                                    <div className="card-body">
+                                                    <div className="card-body p-3">
                                                         <form onSubmit={handle_deposit_submit} className="form">
                                                             <div className="form-group">
                                                                 <div className="input-group mb-3">
                                                                     <div className="input-group-prepend">
                                                                         <label className="input-group-text"><i className="fa fa-money"></i></label>
                                                                     </div>
-                                                                    <input type="text" name="deposit_amount" onChange={ callCheckAmount } className="form-control" placeholder="5000 USD" />
+                                                                    <input type="text" name="deposit_amount" onChange={ callCheckAmount } className="form-control" placeholder="Amount (USD)" />
                                                                 </div>
                                                             </div>
                                                             <div className="form-group">
                                                                 <div className="input-group mb-3">
                                                                     <div className="input-group-prepend">
-                                                                        <label className="input-group-text"><i className="fa fa-bank"></i></label>
+                                                                        <label className="input-group-text"><i className="fas fa-coins"></i></label>
                                                                     </div>
-                                                                    <select onChange={ callCheckAmount } name="plan_type" className="form-control">
-                                                                        {/* <option>Bank of America ********45845</option> */}
-                                                                        {/* <option>Master Card ***********5458</option> */}
-                                                                    <option value="">Select Plan</option>
-                                                                    <option value="Start-up Plan">Start-up Plan 25% (daily)  $[500 - 5,000] </option>
-                                                                    <option value="Business Plan">Business Plan 35% (daily)  $[6,000 - 15,000]</option>
-                                                                    <option value="Corporate Plan">Corporate Plan 50% (daily)  $[16,000 - 50,000]</option>
-                                                                    <option value="5-Star-Corporate Plan">5-Star-Corporate Plan 80% (daily)  $[50,000 - 10,000]</option>
+                                                                    <select name="currency_type" className="form-control">
+                                                                        <option value="btc">BTC</option>
+                                                                        <option value="USDT" selected>USDT</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
 
-                                                            <button className="custom_paynow_btn btn btn-primary btn-block">Pay Now</button>
+                                                            <button className="custom_paynow_btn btn btn-primary btn-block">Deposit</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </Tab>
-                                            <Tab eventKey="withdraw" title="Withdraw">
+                                            <Tab eventKey="withdraw" title="Exchange">
                                                 <div className="card">
                                                         <div className="card-header">
-                                                            <h4 className="card-title mt-3">Withdraw</h4>
+                                                            <h4 className="card-title mt-3">Exchange</h4>
                                                         </div>
                                                         <div className="card-body">
-                                                            <form onSubmit={handle_withdraw_submit}>
+                                                            <form onSubmit={handle_exchange_submit}>
                                                                 <div className="form-group">
                                                                     <div className="input-group mb-3">
                                                                         <div className="input-group-prepend">
                                                                             <label className="input-group-text"><i className="fa fa-money"></i></label>
                                                                         </div>
-                                                                        <input required ref={inputRef} type="number" className="form-control" placeholder="5000 USD" />
+                                                                        <input required ref={inputRef} type="number" className="form-control" placeholder="Amount (USD)" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="form-group">
@@ -208,22 +209,20 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
                                                                             <label className="input-group-text"><i className="fas fa-coins"></i></label>
                                                                         </div>
                                                                         <select required ref={cryptoTypeRef} className="form-control">
-                                                                            <option value="">Choose Wallet</option>
-                                                                            <option value="bitcoin">Bitcoin</option>
-                                                                            <option value="ethereum">Ethereum</option>
-                                                                            <option value="litecoin">Litecoin</option>
-                                                                            <option value="bitcoin cash">Bitcoin Cash</option>
+                                                                            <option value="BTC">BTC</option>
+                                                                            <option value="ETH">ETH</option>
+                                                                            <option value="USDT">USDT</option>
+                                                                            <option value="BNB">BNB</option>
+                                                                            <option value="ADA">ADA</option>
+                                                                            <option value="LTC">LTC</option>
+                                                                            <option value="SOL">SOL</option>
+                                                                            <option value="XRP">XRP</option>
+                                                                            <option value="DOGE">DOGE</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-group">
-                                                                <p>Paste your wallet address</p>
-                                                                    <div className="input-group mb-3">
-                                                                        <input required ref={cryptoAddressRef} type="text" className="form-control text-center" placeholder="PASTE" />
-                                                                    </div>
-                                                                </div>
 
-                                                                <button ref={buttonRef} className="btn btn-primary btn-block">Withdraw Now</button>
+                                                                <button ref={buttonRef} className="btn btn-primary btn-block">Exchange</button>
                                                             </form>
                                                     </div>
                                                 </div>
@@ -300,6 +299,7 @@ function BuySell({ checkAmount, setInvoice, setError, error, user }) {
 
 const mapDispatchToProps = dispatch => {
     return {
+        makeAccountDeposit: (amount, currency, email) => dispatch(makeAccountDeposit(amount, currency, email)),
         checkAmount: (amount, plan) => dispatch(checkAmount(amount, plan)),
         setInvoice: (options) => dispatch(setInvoice(options)),
         setError: (e) => dispatch(setError(e))

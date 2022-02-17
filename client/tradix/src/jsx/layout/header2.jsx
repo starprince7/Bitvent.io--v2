@@ -9,7 +9,7 @@ import { logUserOut } from '../../redux/app_state/actions'
 
 import { setUser } from '../../redux/app_state/actions'
 import axios from 'axios'
-import WWFX_LOG0 from '../../images/wealth_wise.png'
+import BitventLogo from '../../images/bitvent/bitvent-blue-logo.svg'
 import CurrencyFormat from 'react-currency-format';
 // Image
 import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
@@ -83,7 +83,7 @@ function Header2({ user, logUserOut, setUser, cryptoPrice }) {
                         <div className="col-xl-12">
                             <nav className="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
                                 <Link className="navbar-brand" to={'/'}>
-                                    <img src={WWFX_LOG0} alt="Logo" />
+                                    <img src={BitventLogo} alt="Logo" />
                                 </Link>
 
                                 <div className="dashboard_log my-2">

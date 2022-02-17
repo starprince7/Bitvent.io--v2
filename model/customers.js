@@ -4,6 +4,7 @@ const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
 
 const customerSchema = new schema({
+  token: String,
   plan: String,
   status: {
     type: String,
@@ -33,6 +34,42 @@ const customerSchema = new schema({
   },
   image: String,
   wallet: {
+    type: Number,
+    default: 0,
+  },
+  bitcoin_wallet: {
+    type: Number,
+    default: 0,
+  },
+  ethereum_wallet: {
+    type: Number,
+    default: 0,
+  },
+  tether_wallet: {
+    type: Number,
+    default: 0,
+  },
+  binancecoin_wallet: {
+    type: Number,
+    default: 0,
+  },
+  cardano_wallet: {
+    type: Number,
+    default: 0,
+  },
+  litecoin_wallet: {
+    type: Number,
+    default: 0,
+  },
+  solana_wallet: {
+    type: Number,
+    default: 0,
+  },
+  ripple_wallet: {
+    type: Number,
+    default: 0,
+  },
+  dogecoin_wallet: {
     type: Number,
     default: 0,
   },
@@ -97,6 +134,15 @@ customerSchema.statics.login = async function (email, password) {
     role: null,
     status: null,
     wallet: null,
+    bitcoin_wallet: null ,
+    ethereum_wallet: null ,
+    tether_wallet: null,
+    binancecoin_wallet: null ,
+    cardano_wallet: null ,
+    litecoin_wallet: null ,
+    solana_wallet: null ,
+    ripple_wallet: null ,
+    dogecoin_wallet: null,
     email: null,
     name: null,
     lastname: null,
@@ -131,6 +177,15 @@ customerSchema.statics.login = async function (email, password) {
       verifiedUser.referral = user.referral;
       verifiedUser.username = user.username;
       verifiedUser.lastDeposit = user.lastDeposit;
+      verifiedUser.bitcoin_wallet
+      verifiedUser.ethereum_wallet
+      verifiedUser.tether_wallet
+      verifiedUser.binancecoin_wallet
+      verifiedUser.cardano_wallet
+      verifiedUser.litecoin_wallet
+      verifiedUser.solana_wallet
+      verifiedUser.ripple_wallet
+      verifiedUser.dogecoin_wallet
 
       return verifiedUser;
     }

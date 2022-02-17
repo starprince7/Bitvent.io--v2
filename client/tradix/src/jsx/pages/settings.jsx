@@ -91,7 +91,7 @@ function Settings({ user, msg, changePassword, uploadImage, error }) {
             <Sidebar />
             <PageTitle />
 
-            <div className="content-body">
+            <div className="content-body exclude_default_card_style">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-xl-3 col-md-4">

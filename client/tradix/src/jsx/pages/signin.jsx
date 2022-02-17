@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logUserIn } from '../../redux/app_state/actions'
 import Footer2 from '../layout/footer2';
-import WWFX_LOGO  from '../../images/wealth_wise.png'
+import HeaderSignUp from '../layout/header_signup'
 
 
 function Signin({ logUserIn }) {
@@ -27,6 +27,8 @@ function Signin({ logUserIn }) {
         }, 500)
     }, [])
 
+    const btn_ref = useRef(null)
+
     const handle_login_submit = (e) => {
         e.preventDefault()
 
@@ -34,27 +36,24 @@ function Signin({ logUserIn }) {
         const form = document.querySelector('.signin_validate');
         const email = form.email.value;
         const password = form.password.value;
+        const button = btn_ref.current
 
         const Client = {
             email,
             password
         }
 
-        logUserIn(Client);
+        logUserIn(Client, button);
         
     }
 
     return (
         <>
-            <div className="authincation">
+            <HeaderSignUp />
+            <div className="authincation exclude_default_card_style">
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-5 col-md-6">
-                            <div className="mini-logo text-center mb-5">
-                                <Link to={'./'}>
-                                    <img src={WWFX_LOGO} alt="Logo" />
-                                </Link>
-                            </div>
                             <div className="auth-form card pb-5">
                                 <div className="card-header justify-content-center">
                                     <h4 className="card-title">Log in</h4>
@@ -84,7 +83,7 @@ function Signin({ logUserIn }) {
                                             </div>
                                         </div>
                                         <div className="text-center mt-4">
-                                            <button type="submit" className="btn btn-success btn-block">Sign in</button>
+                                            <button type="submit" ref={btn_ref} className="btn btn-success btn-block">Sign in</button>
                                         </div>
                                     </form>
                                     <div className="new-account mt-3">
@@ -109,7 +108,7 @@ function Signin({ logUserIn }) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logUserIn: (user) => dispatch(logUserIn(user))
+        logUserIn: (user, button) => dispatch(logUserIn(user, button))
     }
 }
 

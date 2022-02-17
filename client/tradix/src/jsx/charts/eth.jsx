@@ -1,18 +1,42 @@
 
+import axios from 'axios'
 import React, { Component } from "react";
 import ReactApexChart from "react-apexcharts";
 
 
 
 class EthChart extends Component {
+    
+    fetchEthereumData = () => {
+        axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=30')
+        .then(res => {
+            // Iterate through res.data & return an array of two values [Time, HighPrice]
+            const data = res.data.Data.map((data) => [data.time * 1000, data.high] )
+            // console.log('Parsed ETH Data', data)
+            // Set data to the component State.
+            this.setState({
+                series: [
+                    ...this.state.series,
+                    { data: data }
+                ]
+            })
+            // _data.push(res.data.Data.)
+        })
+        .catch(e => console.log(e))
+    }
+
+    componentDidMount() {
+        this.fetchEthereumData()
+    }
+
     constructor(props) {
         super(props);
 
         this.state = {
 
             series: [{
-                name: "Desktops",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 80, 10, 41, 35, 51, 49, 62, 69, 91, 80]
+                name: "ETH (USD)",
+                data: [] /* [10, 41, 35, 51, 49, 62, 69, 91, 80, 10, 41, 35, 51, 49, 62, 69, 91, 80] */
             }],
             options: {
                 chart: {
