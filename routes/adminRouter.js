@@ -341,32 +341,119 @@ AdminRouter.post("/request", async (req, res) => {
 AdminRouter.post("/request/approval", async (req, res) => {
   console.log("The request for Withdraw Approval --->>> ", req.body);
 
-  const { amount, email, walletAddress } = req.body;
+  const { amount, currency, email, walletAddress } = req.body;
 
   try {
     const customer = await Customer.findOneAndUpdate(
       { email: email },
       {
         $push: { payouts: amount },
+      },  
+      {
+        status: "",
       },
       { new: true }
     );
 
     // customer && console.log("Customer With Transaction details ==>", customer)
 
-    if (customer) {
-      Customer.findOneAndUpdate(
-        { email: email },
-        {
-          status: "",
+    switch (currency) {
+      case 'BTC': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.bitcoin_wallet >= amount) {
+            customer.bitcoin_wallet = customer.bitcoin_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient bitcoin balance in wallet'})
         }
-      ).then((result) => {
-        // console.log("Updated Withdraw Status ==>>", result)
-        // res.json(result);
-
-        sendMailTo(customer, res, result, walletAddress, amount);
-      });
+      }
+      case 'ETH': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.ethereum_wallet >= amount) {
+            customer.ethereum_wallet = customer.ethereum_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient ethereum balance in wallet'})
+        }
+      }
+      case 'USDT': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.tether_wallet >= amount) {
+            customer.tether_wallet = customer.tether_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient USDT balance in wallet'})
+        }
+      }
+      case 'BNB': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.binancecoin_wallet >= amount) {
+            customer.binancecoin_wallet = customer.binancecoin_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient BNB balance in wallet'})
+        }
+      }
+      case 'ADA': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.cardano_wallet >= amount) {
+            customer.cardano_wallet = customer.cardano_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient cardano balance in wallet'})
+        }
+      }
+      case 'LTC': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.litecoin_wallet >= amount) {
+            customer.litecoin_wallet = customer.litecoin_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient litecoin balance in wallet'})
+        }
+      }
+      case 'SOL': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.solana_wallet >= amount) {
+            customer.solana_wallet = customer.solana_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient solana balance in wallet'})
+        }
+      }
+      case 'XRP': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.ripple_wallet >= amount) {
+            customer.ripple_wallet = customer.ripple_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient Ripple(XRP) balance in wallet'})
+        }
+      }
+      case 'DOGE': {
+        // CHECK IF USER HAS A SUFFICIENT WALLET BALANCE BEFORE DEDUCTING
+        if (currency.doge_wallet >= amount) {
+            customer.doge_wallet = customer.doge_wallet - amount
+            await customer.save()
+            sendMailTo(customer, res, result, walletAddress, amount);
+        } else {
+          res.json({error: 'This user has an insufficient Dogecoin(DOGE) balance in wallet'})
+        }
+      }
+        
+      default:
+        res.json({ error: " Could'nt approve withdrawal, No currency selected!"})
+        
     }
+
   } catch (error) {
     console.log("ERR! Approving WIthdraw Request ==> ", error);
     error && res.json(error);

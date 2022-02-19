@@ -46,7 +46,7 @@ app.set('view engine', 'ejs');
 const port = process.env.PORT || 5000;
 
 // db connection
-const dbURI = 'mongodb+srv://coinvent:coinvent@cluster0.7ounf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://coinvent:coinvent@cluster0.7ounf.mongodb.net/BitventDB?retryWrites=true&w=majority';
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
