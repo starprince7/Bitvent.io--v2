@@ -609,8 +609,8 @@ app.post('/account_deposit', async(req, res) => {
     price_currency: 'usd',
     receive_currency: "USDT",
     // callback_url: "https://bitvent.io/instant_payment_notification",
-    callback_url: "https://bitvent.io/instant_payment_notification",
-    success_url: "https://bitvent.io/dashboard",
+    callback_url: "https://https://bitvent-test.herokuapp.com/instant_payment_notification",
+    success_url: "https://https://bitvent-test.herokuapp.com/dashboard",
     purchaser_email: email
   }
   try {
