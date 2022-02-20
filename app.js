@@ -662,18 +662,27 @@ app.post('/instant_payment_notification', async (req, res) => {
   // step 4: NOW UPDATE THE API STATUS AND WALLET AMOUNT!
 
   const customer = await Customer.findOne({ token: req.body.token })
-  customer && console.log("Customer Account found", customer)
 
   if (!customer) {
     res.status(204).end()
     console.log('No customer!')
   }
 
+  customer && console.log("Customer Account found", customer)
+
   // CHECK FOR TRANSCATION SUCCESS
   if (req.body.status === 'paid') {
-    customer.wallet = customer.wallet + req.body.price_amount
-    customer.deposit.push(req.body.price_amount)
-    await customer.save()
+    const customer_updated = await Customer.findOneAndUpdate({ token: req.body.token },
+      {
+        wallet: customer.wallet + req.body.price_amount
+      },
+      {
+        $push: { deposit: req.body.price_amount }
+      },
+      {
+        new: true
+      }
+    )
   }
   res.status(200).end()
 })

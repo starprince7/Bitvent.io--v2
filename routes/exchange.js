@@ -12,6 +12,9 @@ ex.post('/', async (req, res) => {
     const { id, amount, currency } = req.body
     
     const customer = await Customer.findById(id)
+    // await Customer.findByIdAndUpdate(id, {
+    //     bitcoin_wallet: customer.wallet - amount
+    // })
 
     if (amount > customer.wallet) {
         res.json({ error: 'Insufficient wallet balance' }).end()
@@ -22,58 +25,67 @@ ex.post('/', async (req, res) => {
         // FIRST CHECK THE CURRENCY TO KNOW
         // WHICH WALLET NEEDS TO BE UPDATED.
         if (currency == 'BTC') {
-            customer.wallet = customer.wallet - amount
-            customer.bitcoin_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                bitcoin_wallet: amount
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Bitcoin wallet`})
         }
         else if (currency == 'ETH') {
-            customer.wallet = customer.wallet - amount
-            customer.ethereum_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                ethereum_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Ethereum wallet`})
         }
         else if (currency == 'USDT') {
-            customer.wallet = customer.wallet - amount
-            customer.tether_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                tether_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your USDT wallet`})
         }
         else if (currency == 'BNB') {
-            customer.wallet = customer.wallet - amount
-            customer.binancecoin_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                binancecoin_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your BNB wallet`})
         }
         else if (currency == 'ADA') {
-            customer.wallet = customer.wallet - amount
-            customer.cardano_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                cardano_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Cardano(ADA) wallet`})
         }
         else if (currency == 'LTC') {
-            customer.wallet = customer.wallet - amount
-            customer.litecoin_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                litecoin_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Litcoin(LTC) wallet`})
         }
         else if (currency == 'SOL') {
-            customer.wallet = customer.wallet - amount
-            customer.solana_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                solana_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Solana(SOL) wallet`})
         }
         else if (currency == 'XRP') {
-            customer.wallet = customer.wallet - amount
-            customer.ripple_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                ripple_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your XRP wallet`})
         }
         else if (currency == 'DOGE') {
-            customer.wallet = customer.wallet - amount
-            customer.doge_wallet = amount
-            await customer.save()
-            res.json({ msg: 'Transaction succeeded'})
+            await Customer.findByIdAndUpdate(id, {
+                wallet: customer.wallet - amount,
+                dogecoin_wallet: amount,
+            })
+            res.json({ msg: `Transaction succeeded, USD${amount}.00 has been credited to your Dogecoin(DOGE) wallet`})
         }
     }
 })

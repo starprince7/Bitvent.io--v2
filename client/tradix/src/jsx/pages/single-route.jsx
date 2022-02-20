@@ -10,25 +10,6 @@ import CurrencyFormat from 'react-currency-format'
 
 function SingleRoute(props) {
 
-    // Purpose of this func
-    // After Code-Spliting the bundled files
-    // The App does not load the single page completely.
-    // SOLUTION:
-    // 1. Reload page after the first complete DOM load-up
-    useEffect(() => {
-        // Get The Refresh Count First!
-        const num_of_refresh = JSON.parse(localStorage.getItem('num_of_refresh'))
-
-         // On Component Mount Persist The Refresh Count onCondition Second
-        localStorage.setItem('num_of_refresh', JSON.stringify((num_of_refresh >=2 ? -1 : num_of_refresh) + 1))
-
-        setTimeout(() => {
-            if (num_of_refresh <= 1) {
-                window.location.reload()
-            }
-        }, 500)
-    }, [])
-
     const inputRef = useRef(null)
     const { setLoading } = props
     const [user, setUser] = useState(null)

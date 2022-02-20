@@ -26,22 +26,36 @@ import VerifyStep6 from './pages/verify-step-6';
 import History from './pages/history';
 import Demo from './pages/demo';
 import { Sugar } from 'react-preloaders';
+// 
+import About from './pages/about'
+import Signin from './pages/signin'
+import Signup from './pages/signup'
+import AdminDashboard from './pages/admin-dashboard'
+import WithdrawRequests from './pages/withdraw-requests'
+import SingleRoute from './pages/single-route'
+import Dashboard from './pages/dashboard'
+import BuySell from './pages/buy-sell'
+import Accounts from './pages/accounts'
+import Settings from './pages/settings'
+import Team from './pages/team'
+import Invoice from './pages/invoice'
 // Core imports below
 const Homepage = React.lazy(() => import('./pages/index'))
 const Homepage2 = React.lazy(()=> import('./pages/index2'));
-const About = React.lazy(() => import("./pages/about"));
+
+// const About = React.lazy(() => import("./pages/about"));
 const Faq = React.lazy(() => import("./pages/faq"));
-const Signin = React.lazy(() => import('./pages/signin'));
-const Signup = React.lazy(() => import('./pages/signup'));
-const AdminDashboard = React.lazy(() => import('./pages/admin-dashboard'));
-const WithdrawRequests = React.lazy(() => import('./pages/withdraw-requests'));
-const SingleRoute = React.lazy(() => import('./pages/single-route'));
-const Dashboard = React.lazy(() => import('./pages/dashboard'));
-const BuySell = React.lazy(() => import('./pages/buy-sell'));
-const Invoice = React.lazy(() => import('./pages/invoice'));
-const Accounts = React.lazy(() => import('./pages/accounts'));
-const Settings = React.lazy(() => import('./pages/settings'));
-const Team = React.lazy(() => import('./pages/team'));
+// const Signin = React.lazy(() => import('./pages/signin'));
+// const Signup = React.lazy(() => import('./pages/signup'));
+// const AdminDashboard = React.lazy(() => import('./pages/admin-dashboard'));
+// const WithdrawRequests = React.lazy(() => import('./pages/withdraw-requests'));
+// const SingleRoute = React.lazy(() => import('./pages/single-route'));
+// const Dashboard = React.lazy(() => import('./pages/dashboard'));
+// const BuySell = React.lazy(() => import('./pages/buy-sell'));
+// const Invoice = React.lazy(() => import('./pages/invoice'));
+// const Accounts = React.lazy(() => import('./pages/accounts'));
+// const Settings = React.lazy(() => import('./pages/settings'));
+// const Team = React.lazy(() => import('./pages/team'));
 const Reset = React.lazy(() => import('./pages/reset'));
 const ResetPassword = React.lazy(() => import('./pages/reset-password'));
 
