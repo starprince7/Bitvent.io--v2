@@ -216,9 +216,11 @@ export const fetchUser = () => {
     }
 }
 
-export const RegisterUser = (object) => {
+export const RegisterUser = (object, btn) => {
     return (dispatch) => {
         // set Loader.
+        btn.textContent = 'Processing...'
+        btn.disabled = true
         dispatch(setLoading(true))
 
         // Grab form fields.
@@ -255,6 +257,8 @@ export const RegisterUser = (object) => {
                     // Server error response
                     if (response.data.error) {
                         // stop loader
+                        btn.textContent = 'Sign up'
+                        btn.disabled = false
                         dispatch(setLoading(false))
                         dispatch(setError(response.data.error))
                     }
@@ -262,6 +266,8 @@ export const RegisterUser = (object) => {
                 })
                 .catch(e => {
                     console.log(e);
+                    btn.textContent = 'Sign up'
+                    btn.disabled = false
                     dispatch(setError(e))
 
                 })
@@ -282,6 +288,8 @@ export const RegisterUser = (object) => {
                     // Server error response
                     if (response.data.error) {
                         // stop loader
+                        btn.textContent = 'Sign up'
+                        btn.disabled = false
                         dispatch(setLoading(false))
                         dispatch(setError(response.data.error))
                     }
@@ -289,12 +297,16 @@ export const RegisterUser = (object) => {
                 })
                 .catch(e => {
                     console.log(e);
+                    btn.textContent = 'Sign up'
+                    btn.disabled = false
                     dispatch(setError(e))
 
                 })
             }
         } else {
             // Here Passwords Do not match
+            btn.textContent = 'Sign up'
+            btn.disabled = false
             dispatch(setError("Sorry passwords do not match!"))
         }
     }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { RegisterUser } from '../../redux/app_state/actions'
@@ -8,6 +8,7 @@ import WWFX_LOGO  from '../../images/wealth_wise.png'
 
 
 function Signup({ registerUser }) {
+    const btn_ref = useRef(null)
 
     // Purpose of this func
     // After Code-Spliting the bundled files
@@ -34,6 +35,9 @@ function Signup({ registerUser }) {
 
     const handle_signup_submit = (e) => {
         e.preventDefault();
+        
+        // START LOADING
+        const btn = btn_ref.current
 
         // Grab form fields
         const form = document.querySelector('.signup_validate');
@@ -73,7 +77,7 @@ function Signup({ registerUser }) {
         }
         console.log(new_user)
 
-        registerUser(new_user)
+        registerUser(new_user, btn)
     }
     
 
@@ -422,7 +426,7 @@ function Signup({ registerUser }) {
                                         
                                         </div>
                                         <div className="text-center mt-4">
-                                            <button type="submit" className="btn btn-success btn-block">Sign up</button>
+                                            <button type="submit" className="btn btn-success btn-block" ref={btn_ref}>Sign up</button>
                                         </div>
                                     </form>
                                     <div className="new-account mt-3">
@@ -450,7 +454,7 @@ function Signup({ registerUser }) {
 
 const mapDispatchToProps = (dispatch, componentProps) => {
     return {
-        registerUser: (user) => dispatch(RegisterUser(user))
+        registerUser: (user, btn) => dispatch(RegisterUser(user, btn))
     }
 }
 
