@@ -3577,7 +3577,7 @@ input[type="button"].btn-block {
   margin-left: 1.25rem; }
 
 .card-header {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem !important;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
@@ -3586,8 +3586,12 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid rgba(0, 0, 0, 0.125); }
+  background-color: #0d39ac63;
+  /* border: solid red; */
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.125);  */
+}
   .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
 
@@ -8013,7 +8017,7 @@ a {
     max-width: 100%; } }
 
 .header {
-  padding: 10px 0px;
+  padding: 5px 0px;
   background: #fff;
   border-bottom: 1px solid #f1f4f8;
   transition: all 0.3s ease-in-out;
@@ -8022,6 +8026,11 @@ a {
   left: 0;
   right: 0;
   top: 0; }
+  @media only screen and (max-width: 500px) {
+    .header {
+      padding: 5px 0px;
+    }
+  }
   .header.fixed {
     padding: 10px 0px;
     box-shadow: 0px 5px 10px rgba(22, 28, 45, 0.05); }
@@ -8392,14 +8401,14 @@ a {
     border-radius: 20px;
   }
 
-  .card:not(.exclude_default_card_style .card) {
+  /* .card:not(.exclude_default_card_style .card) {
     background: linear-gradient(to bottom, #f3f3f3, transparent);
-  }
+  } */
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f1f4f8;
+    /* border-bottom: 1px solid #f1f4f8; */
     background: transparent;
     padding: 30 0px; }
     @media only screen and (min-width: 1200px) {
@@ -8681,7 +8690,7 @@ label.error {
 
 button,
 .btn {
-  padding: 10px 30px;
+  padding: 8px 30px;
   display: inline-block;
   border-radius: 5px;
   min-width: 130px;
@@ -8724,6 +8733,7 @@ button,
     .widget-card .widget-stat h5 {
       color: #869ab8; }
     .widget-card .widget-stat i {
+      color: #1652f0;
       font-size: 24px; }
 
 .profile_chart.card .card-header {

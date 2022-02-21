@@ -91,8 +91,8 @@ function Accounts({ user }) {
             <Header2 />
             <Sidebar />
             <PageTitle />
-            <div className="content-body">
-                <div className="container-fluid exclude_default_card_style">
+            <div className="content-body mt-0">
+                <div className="container-fluid card pt-2">
                     <div className="mb-4 pl-2 ml-sm-5 pl-sm-4">
                         <p><strong>Portfolio Balance</strong></p>
                         <h2>
@@ -118,18 +118,24 @@ function Accounts({ user }) {
                     <div className="row ml-md-5">
                         <div className="col-xl-8 col-lg-8 col-md-6">
                             <div className="card profile_card px-3">
-                                <div className="card-body buy-sell-widget">
+                                <div className=" buy-sell-widget">
                                     
                                     {/* TABLE SHOWING WALLET BALANCE OF COINS */}
-                                    <div className="buy-sell-widget"></div>
                                     <Tabs defaultActiveKey="Assets" id="uncontrolled-tab-example">
                                         <Tab eventKey="Assets" title="Assets">
                                         <div className="table-responsive">
                                             <table className="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Cryptocurrency</th>
+                                                        {/* <th scope="col"></th> */}
+                                                        <th scope="col">Balance</th>
+                                                    </tr>
+                                                </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <th width="10"><img src={btc} alt="crypto Icon" width={30} /></th>
-                                                        <td>Bitcoin</td>
+                                                        <th width="10"><img src={btc} alt="crypto Icon" width={30} /> BTC</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -147,8 +153,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={eth} alt="crypto Icon" width={30} /></th>
-                                                        <td>Ethereum</td>
+                                                        <th width="10"><img src={eth} alt="crypto Icon" width={30} /> ETH</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -166,8 +172,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={usdt} alt="crypto Icon" width={30} /></th>
-                                                        <td>Tether</td>
+                                                        <th width="10"><img src={usdt} alt="crypto Icon" width={30} /> USDT</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -185,8 +191,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={bnb} alt="crypto Icon" width={30} /></th>
-                                                        <td>Binance Coin</td>
+                                                        <th width="10"><img src={bnb} alt="crypto Icon" width={30} /> BNB</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -204,8 +210,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={ada} alt="crypto Icon" width={30} /></th>
-                                                        <td>Cardano</td>
+                                                        <th width="10"><img src={ada} alt="crypto Icon" width={30} />ADA</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -223,8 +229,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={ltc} alt="crypto Icon" width={30} /></th>
-                                                        <td>Litecoin</td>
+                                                        <th width="10"><img src={ltc} alt="crypto Icon" width={30} /> LTC</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -242,8 +248,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={sol} alt="crypto Icon" width={30} /></th>
-                                                        <td>Solana</td>
+                                                        <th width="10"><img src={sol} alt="crypto Icon" width={30} /> SOL</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -261,8 +267,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={xrp} alt="crypto Icon" width={30} /></th>
-                                                        <td>Ripple</td>
+                                                        <th width="10"><img src={xrp} alt="crypto Icon" width={30} /> XRP</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (
@@ -280,8 +286,8 @@ function Accounts({ user }) {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="10"><img src={doge} alt="crypto Icon" width={30} /></th>
-                                                        <td>Dogecoin</td>
+                                                        <th width="10"><img src={doge} alt="crypto Icon" width={30} />DOGE</th>
+                                                        <td></td>
                                                         <td>
                                                             <CurrencyFormat
                                                                 renderText={(value) => (

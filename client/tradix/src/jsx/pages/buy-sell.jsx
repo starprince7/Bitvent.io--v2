@@ -130,7 +130,7 @@ function BuySell({ checkAmount, makeAccountDeposit, setInvoice, setError, error,
             <PageTitle />
 
             <div className="content-body">
-                <div className="container-fluid exclude_default_card_style">
+                <div className="container-fluid card">
                 <div className="col-xl-10 col-lg-10 col-md-12">
                             <div className="card">
                                 <div className="card-body">
@@ -139,27 +139,24 @@ function BuySell({ checkAmount, makeAccountDeposit, setInvoice, setError, error,
                                         <Tabs defaultActiveKey="deposit" id="uncontrolled-tab-example">
                                             <Tab eventKey="deposit" title="Deposit">
                                                 <div className="card">
-                                                    <div className="p-3">
-                                                        <h4 className="card-title mt-3">Deposit USDT</h4>
-                                                    </div>
-                                                    <div className="card-body p-3">
+                                                    <div className="card-body">
                                                         <form onSubmit={handle_deposit_submit} className="form">
                                                             <div className="form-group">
-                                                                <div className="input-group mb-3">
+                                                                <p >Pay crypto (USDT) to fund your account and commence the buying and selling of  assets</p>
+                                                                <div className="input-group mb-3 mt-md-5">
                                                                     <div className="input-group-prepend">
-                                                                        <label className="input-group-text"><i className="fa fa-money"></i></label>
+                                                                        <label className="input-group-text"><i className="fas fa-coins"></i></label>
                                                                     </div>
-                                                                    <input type="text" name="deposit_amount" onChange={ callCheckAmount } className="form-control" placeholder="Amount (USD)" />
+                                                                    <input type="text" name="deposit_amount" onChange={ callCheckAmount } className="form-control" placeholder="Enter Amount" />
                                                                 </div>
                                                             </div>
                                                             <div className="form-group">
                                                                 <div className="input-group mb-3">
                                                                     <div className="input-group-prepend">
-                                                                        <label className="input-group-text"><i className="fas fa-coins"></i></label>
+                                                                        <label className="input-group-text"><i className="fa fa-money"></i></label>
                                                                     </div>
                                                                     <select name="currency_type" className="form-control">
-                                                                        <option value="btc">BTC</option>
-                                                                        <option value="USDT" selected>USDT</option>
+                                                                        <option value="USDT" selected>USD</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -171,12 +168,11 @@ function BuySell({ checkAmount, makeAccountDeposit, setInvoice, setError, error,
                                             </Tab>
                                             <Tab eventKey="withdraw" title="Exchange">
                                                 <div className="card">
-                                                        <div className="card-header">
-                                                            <h4 className="card-title mt-3">Exchange</h4>
-                                                        </div>
                                                         <div className="card-body">
                                                             <form onSubmit={handle_exchange_submit}>
                                                                 <div className="form-group">
+                                                                    <p >Purchase crypto with ease, simply select your choice of crypto enter an amount and get selected crypto in your 
+                                                                    In-chain wallet.</p>
                                                                     <div className="input-group mb-3">
                                                                         <div className="input-group-prepend">
                                                                             <label className="input-group-text"><i className="fa fa-money"></i></label>

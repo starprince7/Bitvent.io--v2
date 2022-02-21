@@ -12,10 +12,10 @@ function PageTitle({ user }) {
                     <div className="row">
                         <div className="col-xl-12">
                             <div className="page-title-content">
-                                <p>Welcome,
+                                {/* <p>Welcome,
                                 <span> {user?.name} </span>
                                 <span> {user?.lastname} </span>
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>

@@ -106,7 +106,7 @@ function Homepage({ crypto, fetchCrypto, logUserIn }) {
                                 <h1>Trade with <strong className="text-primary">Bitvent</strong>. <br /> Buy and sell
                                     cryptocurrency
                             </h1>
-                                <p>Fast and secure way to purchase or exchange 150+ cryptocurrencies</p>
+                                <p>Fast and secure way to purchase or exchange select cryptocurrencies</p>
                             </div>
 
                             <div className="intro-btn">

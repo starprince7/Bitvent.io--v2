@@ -82,9 +82,9 @@ function Header2({ user, logUserOut, setUser, cryptoPrice }) {
                     <div className="row">
                         <div className="col-xl-12">
                             <nav className="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
-                                <Link className="navbar-brand" to={'/'}>
+                                <a className="navbar-brand" href={'/'}>
                                     <img src={BitventLogo} alt="Logo" />
-                                </Link>
+                                </a>
 
                                 <div className="dashboard_log my-2">
                                     <div className="d-flex align-items-center">
@@ -121,7 +121,7 @@ function Header2({ user, logUserOut, setUser, cryptoPrice }) {
                                             className="profile_log"
                                         >
                                             <Link to={'./accounts'} className="dropdown-item">
-                                                <i className="la la-user"></i> <span style={{fontSize: "9px"}}>{user?.email}</span> 
+                                                <i className="la la-user"></i> <span>{user?.username}</span> 
                                             </Link>
                                             {/* <Link to={'./history'} className="dropdown-item">
                                                 <i className="la la-book"></i> History

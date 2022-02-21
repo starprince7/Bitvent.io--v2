@@ -130,28 +130,30 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
             <Sidebar />
             <PageTitle />
 
-            <div className="content-body">
+            <div className="content-body pr-3 py-0 mt-0">
                 <div className="pl-3">
                     <div className="row">
                         <div className="col-xl-12 col-lg-12 col-xxl-12">
-                            <div className="exclude_default_card_style balance-widget">
+                            <div className="card balance-widget">
                                 <div className="card-header border-0 py-0">
                                     {/* <h4 className="card-title">Your Portfolio </h4> */}
                                 </div>
-                                <div className="card-body pt-0">
+                                <div className="card-body mt-0 pt-0">
                                     <div className="balance-widget ">
                                         <Card
                                           bg="primary"
                                           text="white"
                                           className="text-center">
-                                            <Card.Header style={{fontSize: '0.8rem', padding: 'none'}}>Wallet Balance</Card.Header>
+                                            <Card.Header style={{ fontSize: '0.8rem'}}>{user?.name} { user?.lastname }</Card.Header>
                                             <Card.Footer>
-                                                <Card.Title className="">
+                                                <Card.Title className="pt-2 pb-1">
                                                     <CurrencyFormat
                                                         renderText={(value) => (
                                                             <>
-                                                            <p className="text-white px-4 py-2" style={{fontSize: '1.5rem'}}>
-                                                                <strong>{value}</strong>
+                                                            <p className="text-muted mb-2 mb-sm-3" style={{fontSize: '0.8rem'}}>Total Balance</p>
+                                                            <p className="text-white px-4" style={{fontSize: '1.2rem'}}>
+                                                                <i className="la la-wallet mr-1"></i>
+                                                                <strong>{value} USDT</strong>
                                                             </p>
                                                             </>
                                                         )}
@@ -160,38 +162,38 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                                         fixedDecimalScale={true}
                                                         thousandSeparator={true}
                                                         displayType={"text"}
-                                                        prefix={"$"}
                                                     />
                                                     {/* <br /> */}
                                                 </Card.Title>
-                                                <div className="d-flex justify-content-center">
-                                                    <Card.Text>
-                                                        <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-1 btn-success bg-success rounded-lg  text-white">DEPOSIT</Link>
-                                                    </Card.Text>
-                                                    <Card.Text>
-                                                        <Link to="/buy-sell" style={{fontSize: '13px'}} className="mx-2 p-1 btn-success bg-success rounded-lg  text-white">TRANSFER</Link>
-                                                    </Card.Text>
-                                                    <Card.Text>
-                                                        <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-1 btn-success bg-success rounded-lg text-white">WITHDRAW</Link>
-                                                    </Card.Text>
-                                                </div>
+                                                
                                             </Card.Footer>
                                         </Card>
+                                        <div className="d-flex justify-content-center">
+                                            <Card.Text>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-left  text-white"><i className="fas fa-dollar-sign"></i> Deposit</Link>
+                                            </Card.Text>
+                                            <Card.Text>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="mx-1 p-2 btn-success bg-success rounded-sm text-white"><i class="fas fa-exchange-alt"></i> Exchange</Link>
+                                            </Card.Text>
+                                            <Card.Text>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-right text-white"><i className="fas fa-money-bill-wave"></i> Withdraw</Link>
+                                            </Card.Text>
+                                        </div>
                                         <div className="row">
                                             <div className="col col-lg-3 col-xl-4">
-                                                <div className=" border-0 mb-1 pl-2">
-                                                    <h4 className="card-title">Account Overview</h4>
-                                                </div>
                                                 <div className="card">
                                                     <div className="card-body">
+                                                        <div className="mt-3 pl-2">
+                                                            <p className="text-center font-weight-bold">Account Overview</p>
+                                                        </div>
                                                         <div className="row">
                                                             <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                                 <div className="widget-card">
-                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                    <div className="d-flex justify-content-center text-center align-items-center">
                                                                         <div className="widget-stat">
                                                                             <div className="coin-title">
-                                                                                <span><i className="fas fa-money-check-alt"></i></span>
-                                                                                <h5 className="d-inline-block ml-2 mb-3">All-time Deposit <span>($)</span>
+                                                                                <span><i className="fas fa-money-check-alt"></i></span> <br />
+                                                                                <h5 className="d-inline-block ml-2 mb-3">Total Deposit <span>($)</span>
                                                                                 </h5>
                                                                             </div>
                                                                             <h4>
@@ -219,11 +221,11 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                                             </div>
                                                             <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                                 <div className="widget-card">
-                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                    <div className="d-flex justify-content-center text-center align-items-center">
                                                                         <div className="widget-stat">
                                                                             <div className="coin-title">
-                                                                                <span><i className="fas fa-piggy-bank"></i></span>
-                                                                                <h5 className="d-inline-block ml-2 mb-3">All-time Payouts <span>($)</span>
+                                                                                <span><i className="fas fa-piggy-bank"></i></span> <br />
+                                                                                <h5 className="d-inline-block ml-2 mb-3">Total Payouts <span>($)</span>
                                                                                 </h5>
                                                                             </div>
                                                                             <h4>
@@ -251,10 +253,10 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                                             </div>
                                                             <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                                 <div className="widget-card">
-                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                    <div className="d-flex justify-content-center text-center align-items-center">
                                                                         <div className="widget-stat">
                                                                             <div className="coin-title">
-                                                                                <span><i className="fas fa-users"></i></span>
+                                                                                <span><i className="fas fa-users"></i></span> <br />
                                                                                 <h5 className="d-inline-block ml-2 mb-3">Referrals <span>(accounts)</span>
                                                                                 </h5>
                                                                             </div>
@@ -266,10 +268,10 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                                             </div>
                                                             <div className="col-xl-12 col-lg-12 col-xxl-12">
                                                                 <div className="widget-card">
-                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                    <div className="d-flex justify-content-center text-center align-items-center">
                                                                         <div className="widget-stat">
                                                                             <div className="coin-title">
-                                                                                <span><i className="fas fa-money-bill-wave-alt"></i></span>
+                                                                                <span><i className="fas fa-money-bill-wave-alt"></i></span> <br />
                                                                                 <h5 className="d-inline-block ml-2 mb-3">Bonus <span>($)</span>
                                                                                 </h5>
                                                                             </div>
@@ -301,9 +303,11 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                                 </div>
                                             </div>
                                             <div className="col col-lg-9 col-xl-8">
-                                                <br />
                                                 <div className="card">
                                                     <div className="card-body">
+                                                        <div className=" pl-2">
+                                                            <p className="text-center font-weight-bold text-sm">Cryptocurrency by Market Cap</p>
+                                                        </div>
                                                         <div className="table-responsive">
                                                             <table className="table">
                                                                 <thead>
