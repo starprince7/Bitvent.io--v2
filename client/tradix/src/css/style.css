@@ -8019,7 +8019,7 @@ a {
 .header {
   padding: 5px 0px;
   background: #fff;
-  border-bottom: 1px solid #f1f4f8;
+  /* border-bottom: 1px solid #f1f4f8; */
   transition: all 0.3s ease-in-out;
   z-index: 999;
   position: fixed;
@@ -8408,7 +8408,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border-bottom: 1px solid #f1f4f8; */
+    border-bottom: none;
     background: transparent;
     padding: 30 0px; }
     @media only screen and (min-width: 1200px) {
@@ -9581,7 +9581,7 @@ button,
   height: 100vh; }
 
 .auth-form {
-  padding: 30px;
+  padding: 10px 0px;
   background: #fff;
   box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
   border-radius: 5px;

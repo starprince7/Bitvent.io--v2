@@ -110,14 +110,13 @@ function Homepage({ crypto, fetchCrypto, logUserIn }) {
                             </div>
 
                             <div className="intro-btn">
-                                <Link to={'#'} className="btn btn-primary">Get Started</Link>
-                                <Link to={'#'} className="btn btn-outline-primary">Browse Now</Link>
+                                <Link to={'#login'} className="btn btn-primary">Buy</Link>
+                                <Link to={'#login'} className="btn btn-outline-primary">Sell</Link>
                             </div>
                         </div>
                         <div className="col-xl-5 col-lg-6 col-12">
-                            <div className="intro-form-exchange">
+                            <div id="login" className="intro-form-exchange">
                                 <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
-                                    <label htmlFor="form" className='text-center d-block'>Login to start exchanging assets</label>
                                     <div className="form-group">
                                         <label>Email</label>
                                         <input type="email" className="form-control" placeholder="Enter your email"
@@ -811,7 +810,7 @@ function Homepage({ crypto, fetchCrypto, logUserIn }) {
                 </div>
             </div>
 
-            <div className="blog section-padding">
+            {/* <div className="blog section-padding">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-xl-6">
@@ -886,7 +885,7 @@ function Homepage({ crypto, fetchCrypto, logUserIn }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="get-touch section-padding">
                 <div className="container">

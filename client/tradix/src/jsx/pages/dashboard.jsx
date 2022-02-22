@@ -144,7 +144,7 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                           bg="primary"
                                           text="white"
                                           className="text-center">
-                                            <Card.Header style={{ fontSize: '0.8rem'}}>{user?.name} { user?.lastname }</Card.Header>
+                                            <Card.Header className="text-capitalize" style={{ fontSize: '0.8rem'}}>{user?.name} { user?.lastname }</Card.Header>
                                             <Card.Footer>
                                                 <Card.Title className="pt-2 pb-1">
                                                     <CurrencyFormat
@@ -170,13 +170,13 @@ function Dashboard({ user, crypto, fetchUser, fetchCrypto }) {
                                         </Card>
                                         <div className="d-flex justify-content-center">
                                             <Card.Text>
-                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-left  text-white"><i className="fas fa-dollar-sign"></i> Deposit</Link>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-sm  text-white"><i className="fas fa-dollar-sign mr-1"></i> Deposit</Link>
                                             </Card.Text>
                                             <Card.Text>
-                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="mx-1 p-2 btn-success bg-success rounded-sm text-white"><i class="fas fa-exchange-alt"></i> Exchange</Link>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="mx-1 p-2 btn-success bg-success rounded-sm text-white"><i class="fas fa-exchange-alt mr-1"></i> Exchange</Link>
                                             </Card.Text>
                                             <Card.Text>
-                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-right text-white"><i className="fas fa-money-bill-wave"></i> Withdraw</Link>
+                                                <Link to="/buy-sell" style={{fontSize: '13px'}} className="ml-0 p-2 btn-success bg-success rounded-sm text-white"><i className="fas fa-money-bill-wave mr-1"></i> Withdraw</Link>
                                             </Card.Text>
                                         </div>
                                         <div className="row">

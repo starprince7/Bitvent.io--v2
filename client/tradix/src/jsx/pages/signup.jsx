@@ -84,17 +84,17 @@ function Signup({ registerUser }) {
     return (
         <>
             <HeaderSignUp />
-            <div className="authincation exclude_default_card_style" style={style}>
+            <div className="authincation card" style={style}>
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-10 col-md-10">
                             <div className="auth-form card">
-                                <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Create an Account</h4>
-                                </div>
                                 <div className="card-body">
+                                    <div className="card-header justify-content-center">
+                                        <h4 className="card-title">Create an Account</h4>
+                                    </div>
                                     {/* ========= Form-Section ======== */}
-                                    <form onSubmit={handle_signup_submit} name="myform" className="signup_validate">
+                                    <form onSubmit={handle_signup_submit} name="myform" className="signup_validate px-3">
                                         <div className="row">
                                             <div className="col-xl-6 col-md-6">
                                                 <div className="form-group">
@@ -135,10 +135,10 @@ function Signup({ registerUser }) {
                                                         name="confirm_password" required />
                                                 </div>
                                             </div>
-                                            <div className="col-xl-6 col-md-6">
-                                                <div className="form-group col-xl-6">
+                                            <div className="col">
+                                                <div className="form-group">
                                                     <label className="mr-sm-2">Country</label>
-                                                    <select required className="form-control" name="country">
+                                                    <select required className="form-control text-sm-center" name="country">
                                                         <option value="">Select</option>
                                                         <option value="Afghanistan">Afghanistan</option>
                                                         <option value="Åland Islands">Åland Islands</option>
@@ -429,7 +429,7 @@ function Signup({ registerUser }) {
                                             <button type="submit" className="btn btn-success btn-block" ref={btn_ref}>Sign up</button>
                                         </div>
                                     </form>
-                                    <div className="new-account mt-3">
+                                    <div className="new-account mt-3 text-center">
                                         <p>Already have an account? <Link className="text-primary" to={'login'}>Sign in</Link>
                                         </p>
                                     </div>

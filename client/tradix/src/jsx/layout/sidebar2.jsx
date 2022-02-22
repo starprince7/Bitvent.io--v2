@@ -15,8 +15,8 @@ function Sidebar2({ fetchWithdrawRequest, withdraw_request }) {
     }
 
     const icon_style = {
-        fontSize: "14px",
-        marginLeft: "-10px",
+        fontSize: "16px",
+        marginTop: "1.2rem"
     }
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function Sidebar2({ fetchWithdrawRequest, withdraw_request }) {
                         <li>
                             <Link to={'./admin_dashboard'} data-toggle="tooltip" data-placement="right" title="Home">
                                 <span><i style={icon_style} className="fas fa-users"></i></span><br />
-                                <span style={style}>Accounts</span>
+                                {/* <span style={style}>Accounts</span> */}
                             </Link>
                         </li>
                         {/* <li>
@@ -43,16 +43,16 @@ function Sidebar2({ fetchWithdrawRequest, withdraw_request }) {
                         </li> */}
                         <li>
                             <Link to={'./admin_withdrawal_request'} data-toggle="tooltip" data-placement="right" title="Account">
-                                <span><i style={icon_style} className="fas fa-money-check-alt"></i></span>
+                                <span> <i style={icon_style} className="fas fa-cash-register"></i></span>
                                 { withdraw_request?.length !== 0 &&
                                     <span style={{ fontSize: '9px' }} className="badge badge-pill badge-danger text-white">{ withdraw_request?.length }</span> }
-                                <span style={style}>Withdraw Request</span>
+                                {/* <span style={style}>Withdraw Request</span> */}
                             </Link>
                         </li>
                         <li>
                             <Link to={'#'} data-toggle="tooltip" data-placement="right" title="Setting">
-                                <span><i className="la la-tools"></i></span>
-                                <span style={style}>Settings</span>
+                                <span><i style={icon_style} className="la la-tools"></i></span>
+                                {/* <span style={style}>Settings</span> */}
                             </Link>
                         </li>
                     </ul>

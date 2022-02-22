@@ -7,6 +7,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { setLoading } from '../../redux/app_state/actions';
 import CurrencyFormat from 'react-currency-format'
+import AvatarPlaceholder from '../../images/avatar/avatar_placeholder1.png'
 
 function SingleRoute(props) {
 
@@ -80,7 +81,7 @@ function SingleRoute(props) {
     const deleteUser = (user) => {
         if (user.role !== 'admin') {
             const user_response = window.confirm(
-            'You are about to delete a Customer click "OK" to continue with this task! '
+            'This action is irreversible click OK to continue.'
           );
           
           if (user_response) {
@@ -132,7 +133,7 @@ function SingleRoute(props) {
                 <div className="card profile_card">
                 <div className="card-body">
                     <div className="media">
-                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={require('./../../images/profile/2.png')} width="60"
+                        <img className="mr-3 rounded-circle mr-0 mr-sm-3" src={AvatarPlaceholder} width="60"
                             height="60" alt="" />
                         <div className="media-body">
                             <span>Hello</span>

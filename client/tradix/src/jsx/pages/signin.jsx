@@ -31,15 +31,15 @@ function Signin({ logUserIn }) {
     return (
         <>
             <HeaderSignUp />
-            <div className="authincation exclude_default_card_style">
+            <div className="authincation card">
                 <div className="container h-100">
                     <div className="row justify-content-center h-100 align-items-center">
                         <div className="col-xl-5 col-md-6">
                             <div className="auth-form card pb-5">
-                                <div className="card-header justify-content-center">
-                                    <h4 className="card-title">Log in</h4>
-                                </div>
                                 <div className="card-body p-4">
+                                    <div className="card-header justify-content-center">
+                                        <h4 className="card-title">Log in</h4>
+                                    </div>
                                     <form onSubmit={handle_login_submit} name="myform" className="signin_validate" action="#">
                                         <div className="form-group">
                                             <label>Email</label>
@@ -67,7 +67,7 @@ function Signin({ logUserIn }) {
                                             <button type="submit" ref={btn_ref} className="btn btn-success btn-block">Sign in</button>
                                         </div>
                                     </form>
-                                    <div className="new-account mt-3">
+                                    <div className="new-account mt-3 text-center">
                                         <p>Don't have an account? <Link className="text-primary" to='/signup'>Sign
                                             up</Link></p>
                                     </div>
